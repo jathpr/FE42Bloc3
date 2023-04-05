@@ -40,13 +40,12 @@ function countPeople(object) {
 console.log(countPeople(subjects));
 
 // 3. Получить среднее количество студентов на всех прeдметах
-function countAverageStudents (object) {
+function countAverageStudents(object) {
     let allStudents = 0
     let count = 0
     for (const key in object) {
-            allStudents = allStudents + object[key]['students']
-
-            count =+ 1
+        allStudents = allStudents + object[key]['students']
+        count += 1
     }
     return allStudents / count
 }
@@ -63,8 +62,9 @@ function createSublectsArray(object) {
 console.log(createSublectsArray(subjects));
 
 // 5. Получить массив из предметов и отсортировать по количеству преподавателей на факультете от большего к меньшему
-function sortTeachers (object) {
-    let subjectsArray = createSublectsArray(subjects)
-
+function sortTeachers(object) {
+    const subjectsArray = createSublectsArray(object)
+    const sortedArray = subjectsArray.sort((a, b) => a.teachers < b.teachers ? 1 : -1)
+    return sortedArray
 }
-sortTeachers()
+console.log(sortTeachers(subjects))
