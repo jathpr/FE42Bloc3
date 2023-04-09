@@ -70,18 +70,17 @@ arr.push(subjects)
 // Получить массив из предметов и отсортировать
 //  по количеству преподавателей 
 // на факультете от большего к меньшему 
-let arr2 = []
+
+let sortArr = []
+
 for (const key in subjects) {
-    arr2.push(key)
-    for ( i = 0; i < subjects.length; i++) {
-        if (subjects[key].teachers < arr) {
-            
-        }
-    }
+    // const newSubject = {
+    //     subject: key,
+    //     students: subjects[key].students,
+    //     teachers: subjects[key].teachers
+    // };
+    sortArr.push(subjects[key])
+    sortArr.sort((a,b) => a.teachers-b.teachers).reverse()
 }
-console.log(arr2)
-// if (subjects.teachers > arr2) {
-//     arr2.unshift(subjects)
-// } else {
-//     arr2.push(key)
-// }
+console.log(sortArr)
+
