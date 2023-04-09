@@ -55,45 +55,38 @@ const getCarsTotalNumber = (users: User[]): number => users.reduce((carsTotalNum
 console.log(getCarsTotalNumber(users));
 
 // 3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования
-const sortUsersByEducation = (users: User[]): User[] => {
-   const usersCopy = [...users];
-   usersCopy.sort((user1, user2) => +user2.hasEducation - +user1.hasEducation)
+const filterUsersByEducation = (users: User[]): User[] => {
+   const filteredUsers = users.filter(user => user.hasEducation)
 
-   return usersCopy;
+   return filteredUsers;
 }
 
-console.log(sortUsersByEducation(users));
+console.log(filterUsersByEducation(users));
 
 // 4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
 const sortUsersByAnimalsExisting = (users: User[]): User[] => {
-   const usersCopy = [...users];
-   usersCopy.sort((user1, user2) => {
-      if (user1.animals && !user2.animals)
-         return -1;
+   const filteredUsers = users.filter(user => user.animals)
 
-
-      if (!user1.animals && user2.animals)
-         return 1;
-
-      return 0
-   })
-
-   return usersCopy;
+   return filteredUsers;
 }
 
 console.log(sortUsersByAnimalsExisting(users));
 
 // 5. Создать функцию, которая бы принимала массив пользователей и отдавала бы строку с названиями марок автомобилей через запятую
 const getCarsBrand = (users: User[]): string => {
-   const usersWithCarsArray = users.filter(user => Boolean(user.cars) === true);
-   const usersCarsArray = usersWithCarsArray.map(user => user.cars);
+   const carsSet = users.reduce((carsSet, user) => {
+      (user.cars)?.forEach(car => {
+         if (!carsSet.has(car)) {
+            carsSet.add(car)
+         }
+      });
 
-   let allCarsArray: string[] = [];
-   for (let i = 0; i < usersCarsArray.length; i++) {
-      allCarsArray.push(usersCarsArray[i].join(', '));
-   }
+      return carsSet;
+   }, new Set());
 
-   return allCarsArray.join(', ');
+   const carsArr = Array.from(carsSet);
+
+   return carsArr.join(', ');
 }
 
 console.log(getCarsBrand(users));

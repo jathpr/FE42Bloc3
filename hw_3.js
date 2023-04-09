@@ -1,12 +1,3 @@
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var users = [
     {
         name: "Henry Ford",
@@ -48,33 +39,29 @@ var getCarsTotalNumber = function (users) { return users.reduce(function (carsTo
 }, 0); };
 console.log(getCarsTotalNumber(users));
 // 3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования
-var sortUsersByEducation = function (users) {
-    var usersCopy = __spreadArray([], users, true);
-    usersCopy.sort(function (user1, user2) { return +user2.hasEducation - +user1.hasEducation; });
-    return usersCopy;
+var filterUsersByEducation = function (users) {
+    var filteredUsers = users.filter(function (user) { return user.hasEducation; });
+    return filteredUsers;
 };
-console.log(sortUsersByEducation(users));
+console.log(filterUsersByEducation(users));
 // 4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
 var sortUsersByAnimalsExisting = function (users) {
-    var usersCopy = __spreadArray([], users, true);
-    usersCopy.sort(function (user1, user2) {
-        if (user1.animals && !user2.animals)
-            return -1;
-        if (!user1.animals && user2.animals)
-            return 1;
-        return 0;
-    });
-    return usersCopy;
+    var filteredUsers = users.filter(function (user) { return user.animals; });
+    return filteredUsers;
 };
 console.log(sortUsersByAnimalsExisting(users));
 // 5. Создать функцию, которая бы принимала массив пользователей и отдавала бы строку с названиями марок автомобилей через запятую
 var getCarsBrand = function (users) {
-    var usersWithCarsArray = users.filter(function (user) { return Boolean(user.cars) === true; });
-    var usersCarsArray = usersWithCarsArray.map(function (user) { return user.cars; });
-    var allCarsArray = [];
-    for (var i = 0; i < usersCarsArray.length; i++) {
-        allCarsArray.push(usersCarsArray[i].join(', '));
-    }
-    return allCarsArray.join(', ');
+    var carsSet = users.reduce(function (carsSet, user) {
+        var _a;
+        (_a = (user.cars)) === null || _a === void 0 ? void 0 : _a.forEach(function (car) {
+            if (!carsSet.has(car)) {
+                carsSet.add(car);
+            }
+        });
+        return carsSet;
+    }, new Set());
+    var carsArr = Array.from(carsSet);
+    return carsArr.join(', ');
 };
 console.log(getCarsBrand(users));
