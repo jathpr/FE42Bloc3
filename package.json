@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "ts": "func() { tsc \"$1\".ts && node \"$1\".js; }; func"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.3"
+  }
+}
