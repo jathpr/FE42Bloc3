@@ -53,13 +53,7 @@ console.log(getUsers(users))
 console.log("\n2. Посчитать общее количнство машин у пользователей")
 
 const totalCars = (arr: User[]): number => {
-    let countCars: number = 0
-    for (const user in arr) {
-        if (arr[user].cars !== undefined) {
-            countCars += arr[user].cars?.length
-        }
-    }
-    return countCars
+    return arr.map(user => user.cars).length
 }
 
 console.log(totalCars(users))
@@ -97,7 +91,11 @@ const carName = (arr: User[]) => {
 
     for (const user of arr) {
         if (user.cars) {
-            carBrands.push(...user.cars);
+            for (const car of user.cars) {
+                if (!carBrands.includes(car)) {
+                    carBrands.push(car);
+                }
+            }
         }
     }
 

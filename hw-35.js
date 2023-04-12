@@ -44,14 +44,7 @@ console.log(getUsers(users));
 // 2. Посчитать общее количнство машин у пользователей
 console.log("\n2. Посчитать общее количнство машин у пользователей");
 var totalCars = function (arr) {
-    var _a;
-    var countCars = 0;
-    for (var user in arr) {
-        if (arr[user].cars !== undefined) {
-            countCars += (_a = arr[user].cars) === null || _a === void 0 ? void 0 : _a.length;
-        }
-    }
-    return countCars;
+    return arr.map(function (user) { return user.cars; }).length;
 };
 console.log(totalCars(users));
 // 3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования
@@ -77,7 +70,12 @@ var carName = function (arr) {
     for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
         var user = arr_1[_i];
         if (user.cars) {
-            carBrands.push.apply(carBrands, user.cars);
+            for (var _a = 0, _b = user.cars; _a < _b.length; _a++) {
+                var car = _b[_a];
+                if (!carBrands.includes(car)) {
+                    carBrands.push(car);
+                }
+            }
         }
     }
     return carBrands.join(", ");
