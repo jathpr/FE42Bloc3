@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 type Movie = {
+=======
+type Movies = {
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     id: number,
     title: string,
     year: number,
@@ -17,7 +21,11 @@ type Movie = {
     boxOffice: string,
     production: string,
 }
+<<<<<<< HEAD
 const movies: Movie[] = [
+=======
+const movies: Movies[] = [
+>>>>>>> 3735277 (init(hw_36): add hw_36)
         {
 					id: 1,
 					title: "Black Widow",
@@ -115,46 +123,81 @@ const movies: Movie[] = [
 
     //1. Собрать в массив все жанры фильмов (без повторения)
 
+<<<<<<< HEAD
     const getGenre = (movies: Movie[]) => {
         const genre = movies.map(movie=> movie.genre)
         return Array.from(new Set([].concat(...genre)))
+=======
+    const getGenre = (array: Movies[]) => {
+        const genre = array.map(movie=> movie.genre)
+        const arrayGenres = []
+        return Array.from(new Set(arrayGenres.concat(...genre)))
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     }
     console.log('All genres', getGenre(movies))
 
     // 2. Собрать в массив всех актеров всех фильмов (без повторения)
         
+<<<<<<< HEAD
     const getActors = (movies: Movie[]) => {
         const actors = movies.map(movie=> movie.actors)
         return Array.from(new Set([].concat(...actors)))
+=======
+    const getActors = (array: Movies[]) => {
+        const actors = array.map(movie=> movie.actors)
+        const arrayActors = []
+        return Array.from(new Set(arrayActors.concat(...actors)))
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     }
     console.log('All actors', getActors(movies))
 
     //3. Отсортировать фильмы по рейтингу по убыванию
 
+<<<<<<< HEAD
     const sortRating = (movies: Movie[]) =>[...movies].sort((a, b)=> b.imdbRating - a.imdbRating)
+=======
+    const sortRating = (array: Movies[]) =>array.sort((a, b)=> b.imdbRating - a.imdbRating)
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     console.log('sorted by rating', sortRating(movies))
 
     //4. Создать новый массив, где объекты фильмов будут состоять из следующих полей: id, title, released, plot
 
+<<<<<<< HEAD
     const getNewArrayMovies = (movies: Movie[]) =>movies.map(({id, title, released, plot})=>({id, title, released, plot}))
+=======
+    const getNewArrayMovies = (array: Movies[]) =>array.map(movie=>({id: movie.id, title: movie.title, released: movie.released, plot: movie.plot}))
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     console.log(getNewArrayMovies(movies))
 
     //5. Создать функцию, которая бы принимала массив фильмов и число. А результатом этой функции должен быть отфильтрованный массив,
     // с фильмами где число равно году выхода фильма.
 
+<<<<<<< HEAD
     const getMovieYear = (movies: Movie[], year: number) => movies.filter(movie => movie.year === year)
+=======
+    const getMovieYear = (array: Movies[], year: number) => array.filter(movie => movie.year === year)
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     console.log(getMovieYear(movies, 2021))
 
     // 6. Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть новый
     // отфильтрованный массив, с фильмами, где строка входит в название фильма.
 
+<<<<<<< HEAD
     const getMovieWithString = (movies: Movie[], string: string) => movies.filter(movie => movie.title.includes(string))
+=======
+    const getMovieWithString = (array: Movies[], string: string) => array.filter(movie => movie.title.includes(string) === true)
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     console.log('6 task', getMovieWithString(movies, 'Harry Potter and'))
 
     // 7. Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть
     // отфильтрованный массив, с фильмами где строка входит в название фильма или в его сюжет.
+<<<<<<< HEAD
     const getMovieWithStringInTitleOrPlot = (movies: Movie[], string: string) => {
         return Array.from(new Set(movies.filter(movie => (movie.title.includes(string)) || (movie.plot.includes(string)))))
+=======
+    const getMovieWithStringInTitleOrPlot = (array: Movies[], string: string) => {
+        return Array.from(new Set(array.filter(movie => (movie.title.includes(string) === true) || (movie.plot.includes(string) === true))))
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     }
     console.log('7 task', getMovieWithStringInTitleOrPlot(movies, ''))
 
@@ -162,6 +205,10 @@ const movies: Movie[] = [
 // этой функции должен быть отфильтрованный массив, где параметры 2 и 3 равны в объекте фильма. Например: передаем (films, 'title', 'Black Widow') и на выходе получаем
 // фильм с id=1 если передаем (films, 'year', 2011) , то получаем фильм с id=2
 
+<<<<<<< HEAD
     const getThisArray = (movies: Movie[], keyofMovies: string, parameter: string|number) => movies.filter(movie=>movie[keyofMovies] === parameter)
+=======
+    const getThisArray = (array: Movies[], string: string, parameter: string|number) => array.filter(movie=>movie[string] === parameter)
+>>>>>>> 3735277 (init(hw_36): add hw_36)
     
     console.log('8 task:', getThisArray(movies, 'year', 1977))
