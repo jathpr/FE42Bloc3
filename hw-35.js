@@ -1,13 +1,4 @@
-type User = {
-    name: string,
-    phone: string | number,
-    email: string,
-    animals?: string[],
-    cars?: string[],
-    hasChildren: boolean,
-    hasEducation: boolean,
-}
-const users = [
+var users = [
     {
         name: "Harry Felton",
         phone: "(09) 897 33 33",
@@ -32,41 +23,41 @@ const users = [
         hasChildren: true,
         hasEducation: false
     }
-]
+];
 //     1. Создать строку из имен пользователей через запятую.
-const getUserNames = (users: User[]) => {
-    const namesArr = users.map(user => user.name)
-    const namesStr = namesArr.join(', ')
-    return namesStr
-}
-console.log(getUserNames(users))
+var getUserNames = function (users) {
+    var namesArr = users.map(function (user) { return user.name; });
+    var namesStr = namesArr.join(', ');
+    return namesStr;
+};
+console.log(getUserNames(users));
 //     2. Посчитать общее количнство машин у пользователей.
-const sumCars = (users: User[]) => {
-    const carsArr = users.map(user => user.cars)
-    return carsArr.length
-}
-console.log(sumCars(users))
+var sumCars = function (users) {
+    var carsArr = users.map(function (user) { return user.cars; });
+    return carsArr.length;
+};
+console.log(sumCars(users));
 //     3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования.
-const isEducationed = (users: User[]) => {
-    const usersArr = users.filter(user => user.hasEducation)
-    return usersArr
-}
+var isEducationed = function (users) {
+    var usersArr = users.filter(function (user) { return user.hasEducation; });
+    return usersArr;
+};
 console.log(isEducationed(users));
-
 //     4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных.
-const isHasAnimals = (users: User[]) => {
-    const usersArr = users.filter(user => user.animals)
-    return usersArr
-}
+var isHasAnimals = function (users) {
+    var usersArr = users.filter(function (user) { return user.animals; });
+    return usersArr;
+};
 console.log(isHasAnimals(users));
 //     5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую
-const getCarNames = (users: User[]) => {
+var getCarNames = function (users) {
     // const isCarArr = users.filter(user => user.cars)
     // const carArr = isCarArr.map(user => user.cars)
     // const carStr = carArr.join (',')
     // return carStr
-    const getCars = users.reduce((acc, user) => [...acc, ...user.cars], []);
-    return Array.from(new Set(getCars))
-
-}
+    var carArr = users.map(function (user) { return user.cars; });
+    var newCarArr = new Set(carArr);
+    // const arr = new Set(carArr)
+    return newCarArr;
+};
 console.log(getCarNames(users));
