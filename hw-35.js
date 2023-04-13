@@ -1,3 +1,12 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var users = [
     {
         name: "Harry Felton",
@@ -55,9 +64,7 @@ var getCarNames = function (users) {
     // const carArr = isCarArr.map(user => user.cars)
     // const carStr = carArr.join (',')
     // return carStr
-    var carArr = users.map(function (user) { return user.cars; });
-    var newCarArr = new Set(carArr);
-    // const arr = new Set(carArr)
-    return newCarArr;
+    var getCars = users.reduce(function (acc, user) { return (user.cars ? __spreadArray(__spreadArray([], acc, true), user.cars, true) : acc); }, []);
+    return Array.from(new Set(getCars)).join(', ');
 };
 console.log(getCarNames(users));
