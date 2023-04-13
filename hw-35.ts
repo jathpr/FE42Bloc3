@@ -65,8 +65,8 @@ const getCarNames = (users: User[]) => {
     // const carArr = isCarArr.map(user => user.cars)
     // const carStr = carArr.join (',')
     // return carStr
-    const getCars = users.reduce((acc, user) => [...acc, ...user.cars], []);
-    return Array.from(new Set(getCars))
-
+    const getCars = users.reduce(
+        (acc, user) => (user.cars ? [...acc, ...user.cars] : acc), []);
+    return Array.from(new Set(getCars)).join(', ')
 }
 console.log(getCarNames(users));
