@@ -102,7 +102,7 @@ var films = [
     }
 ];
 // 1. Собрать в массив все жанры фильмов ( без повторений)
-console.log(" 1. Собрать в массив все жанры фильмов ( без повторений)");
+console.log("1.\n");
 var getGenre = function (array) {
     var newArr = array.map(function (film) { return film.genre; });
     var genresArr = newArr.reduce(function (acc, genres) { return __spreadArray(__spreadArray([], acc, true), genres, true); }, []);
@@ -111,7 +111,7 @@ var getGenre = function (array) {
 };
 console.log(getGenre(films));
 // 2. Собрать в массив всех актеров всех фильмов (без повторений)
-console.log("\n2. Собрать в массив всех актеров всех фильмов (без повторений)");
+console.log("\n2.\n");
 var getActors = function (array) {
     var newArr = array.map(function (film) { return film.actors; });
     var actorsArr = newArr.reduce(function (acc, actors) { return __spreadArray(__spreadArray([], acc, true), actors, true); }, []);
@@ -119,3 +119,43 @@ var getActors = function (array) {
     return result;
 };
 console.log(getActors(films));
+// 3. 
+console.log('\n3.\n');
+var getSortedRaiting = function (array) {
+    return array.sort(function (a, b) { return b.imdbRating - a.imdbRating; });
+};
+console.log(getSortedRaiting(films));
+// 4. 
+console.log('\n4.\n');
+var getNewFilmsArray = function (array) {
+    return array.map(function (film) { return ({ id: film.id, title: film.title, released: film.released, plot: film.plot }); });
+};
+console.log(getNewFilmsArray(films));
+// 5. 
+console.log('\n5.\n');
+var getFilmYear = function (array, year) {
+    return array.filter(function (film) { return film.year === year; });
+};
+console.log(getFilmYear(films, 2011));
+// 6. 
+console.log('\n6.\n');
+var hasStrNameFilm = function (array, str) {
+    return array.filter(function (film) { return film.title.includes(str); });
+};
+console.log(hasStrNameFilm(films, 'Potter'));
+// 7. 
+console.log('\n7.\n');
+var hasNameFilm = function (array, str) {
+    return array.filter(function (film) { return film.title.includes(str) || film.plot.includes(str); });
+};
+console.log(hasNameFilm(films, 'Star'));
+// 8. 
+console.log('\n8.\n');
+function filterFilmsByProperty(films, property, value) {
+    // const result = films.filter(film => film[property] === value);
+    var result = films.filter(function (film) {
+        return film[property] === value;
+    }).map(function (film) { return "id = ".concat(film.id); }).join('&');
+    return result;
+}
+console.log(filterFilmsByProperty(films, 'title', 'Black Widow'));

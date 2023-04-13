@@ -116,9 +116,8 @@ const films: Film[] = [
 
 // 1. Собрать в массив все жанры фильмов ( без повторений)
 
-console.log(" 1. Собрать в массив все жанры фильмов ( без повторений)")
-
-const getGenre = (array:Film[]) => {
+console.log("1.\n")
+const getGenre = (array: Film[]) => {
     const newArr = array.map(film => film.genre)
     const genresArr = newArr.reduce((acc, genres) => [...acc, ...genres], [])
     const result = genresArr.filter((genre, index, genres) => genres.indexOf(genre) === index)
@@ -128,10 +127,9 @@ const getGenre = (array:Film[]) => {
 console.log(getGenre(films))
 
 // 2. Собрать в массив всех актеров всех фильмов (без повторений)
+console.log("\n2.\n")
 
-console.log("\n2. Собрать в массив всех актеров всех фильмов (без повторений)")
-
-const getActors = (array:Film[]) => {
+const getActors = (array: Film[]) => {
     const newArr = array.map(film => film.actors)
     const actorsArr = newArr.reduce((acc, actors) => [...acc, ...actors], [])
     const result = actorsArr.filter((actor, index, actors) => actors.indexOf(actor) === index)
@@ -139,3 +137,62 @@ const getActors = (array:Film[]) => {
 }
 
 console.log(getActors(films))
+
+// 3. 
+console.log('\n3.\n')
+
+const getSortedRaiting = (array: Film[]) => {
+    return array.sort((a, b) => b.imdbRating - a.imdbRating)
+}
+
+console.log(getSortedRaiting(films))
+
+// 4. 
+console.log('\n4.\n')
+
+const getNewFilmsArray = (array: Film[]) => {
+    return array.map(film => ({ id: film.id, title: film.title, released: film.released, plot: film.plot }))
+}
+
+console.log(getNewFilmsArray(films))
+
+// 5. 
+console.log('\n5.\n')
+
+const getFilmYear = (array: Film[], year: number) => {
+    return array.filter((film) => film.year === year)
+}
+
+console.log(getFilmYear(films, 2011))
+
+// 6. 
+console.log('\n6.\n')
+
+const hasStrNameFilm = (array: Film[], str: string) => {
+    return array.filter((film) => film.title.includes(str))
+}
+
+console.log(hasStrNameFilm(films, 'Potter'))
+
+// 7. 
+console.log('\n7.\n')
+
+const hasNameFilm = (array: Film[], str: string) => {
+    return array.filter((film) => film.title.includes(str) || film.plot.includes(str))
+}
+
+console.log(hasNameFilm(films, 'Star'))
+
+// 8. 
+console.log('\n8.\n')
+
+function filterFilmsByProperty(films: Film[], property: keyof Film, value: string | number) {
+    const result = films.filter((film) => {
+        return film[property] === value
+    }).map(film => `id = ${film.id}`).join('&')
+
+    return result
+
+}
+
+console.log(filterFilmsByProperty(films, 'title', 'Black Widow'))
