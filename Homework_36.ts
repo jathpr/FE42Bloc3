@@ -1,4 +1,4 @@
-type Movies = {
+type Movie = {
     id: number,
     title: string,
     year: number,
@@ -17,7 +17,7 @@ type Movies = {
     boxOffice: string,
     production: string,
 }
-const movies: Movies[] = [
+const movies: Movie[] = [
         {
 					id: 1,
 					title: "Black Widow",
@@ -115,48 +115,46 @@ const movies: Movies[] = [
 
     //1. Собрать в массив все жанры фильмов (без повторения)
 
-    const getGenre = (array: Movies[]) => {
-        const genre = array.map(movie=> movie.genre)
-        const arrayGenres = []
-        return Array.from(new Set(arrayGenres.concat(...genre)))
+    const getGenre = (movies: Movie[]) => {
+        const genre = movies.map(movie=> movie.genre)
+        return Array.from(new Set([].concat(...genre)))
     }
     console.log('All genres', getGenre(movies))
 
     // 2. Собрать в массив всех актеров всех фильмов (без повторения)
         
-    const getActors = (array: Movies[]) => {
-        const actors = array.map(movie=> movie.actors)
-        const arrayActors = []
-        return Array.from(new Set(arrayActors.concat(...actors)))
+    const getActors = (movies: Movie[]) => {
+        const actors = movies.map(movie=> movie.actors)
+        return Array.from(new Set([].concat(...actors)))
     }
     console.log('All actors', getActors(movies))
 
     //3. Отсортировать фильмы по рейтингу по убыванию
 
-    const sortRating = (array: Movies[]) =>array.sort((a, b)=> b.imdbRating - a.imdbRating)
+    const sortRating = (movies: Movie[]) =>[...movies].sort((a, b)=> b.imdbRating - a.imdbRating)
     console.log('sorted by rating', sortRating(movies))
 
     //4. Создать новый массив, где объекты фильмов будут состоять из следующих полей: id, title, released, plot
 
-    const getNewArrayMovies = (array: Movies[]) =>array.map(movie=>({id: movie.id, title: movie.title, released: movie.released, plot: movie.plot}))
+    const getNewArrayMovies = (movies: Movie[]) =>movies.map(({id, title, released, plot})=>({id, title, released, plot}))
     console.log(getNewArrayMovies(movies))
 
     //5. Создать функцию, которая бы принимала массив фильмов и число. А результатом этой функции должен быть отфильтрованный массив,
     // с фильмами где число равно году выхода фильма.
 
-    const getMovieYear = (array: Movies[], year: number) => array.filter(movie => movie.year === year)
+    const getMovieYear = (movies: Movie[], year: number) => movies.filter(movie => movie.year === year)
     console.log(getMovieYear(movies, 2021))
 
     // 6. Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть новый
     // отфильтрованный массив, с фильмами, где строка входит в название фильма.
 
-    const getMovieWithString = (array: Movies[], string: string) => array.filter(movie => movie.title.includes(string) === true)
+    const getMovieWithString = (movies: Movie[], string: string) => movies.filter(movie => movie.title.includes(string))
     console.log('6 task', getMovieWithString(movies, 'Harry Potter and'))
 
     // 7. Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть
     // отфильтрованный массив, с фильмами где строка входит в название фильма или в его сюжет.
-    const getMovieWithStringInTitleOrPlot = (array: Movies[], string: string) => {
-        return Array.from(new Set(array.filter(movie => (movie.title.includes(string) === true) || (movie.plot.includes(string) === true))))
+    const getMovieWithStringInTitleOrPlot = (movies: Movie[], string: string) => {
+        return Array.from(new Set(movies.filter(movie => (movie.title.includes(string)) || (movie.plot.includes(string)))))
     }
     console.log('7 task', getMovieWithStringInTitleOrPlot(movies, ''))
 
@@ -164,6 +162,6 @@ const movies: Movies[] = [
 // этой функции должен быть отфильтрованный массив, где параметры 2 и 3 равны в объекте фильма. Например: передаем (films, 'title', 'Black Widow') и на выходе получаем
 // фильм с id=1 если передаем (films, 'year', 2011) , то получаем фильм с id=2
 
-    const getThisArray = (array: Movies[], string: string, parameter: string|number) => array.filter(movie=>movie[string] === parameter)
+    const getThisArray = (movies: Movie[], keyofMovies: string, parameter: string|number) => movies.filter(movie=>movie[keyofMovies] === parameter)
     
     console.log('8 task:', getThisArray(movies, 'year', 1977))
