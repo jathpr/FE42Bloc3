@@ -61,17 +61,15 @@ const getUsersWithEducation = (users: Users[]) =>
 console.log(getUsersWithEducation(users), "with education");
 
 // 4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
-const getUsersWithAnimals = (array: Users[]) => 
-  array.filter(user => user.animals) 
+const getUsersWithAnimals = (users: Users[]) => 
+users.filter(user => user.animals) 
 console.log(getUsersWithAnimals(users), "with animals");
 
 // 5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую
-const getCars = (array: Users[]) => {
+const getCars = (users: Users[]) => {
   const arrCars = [];
-  array.forEach((user) => {
-    if (user.cars) {
-      arrCars.push(user.cars);
-    }
+  users.forEach((user) => {
+    if (user.cars) arrCars.push(...user.cars);
   });
   return arrCars.toString();
 };
