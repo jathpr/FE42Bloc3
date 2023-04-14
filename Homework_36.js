@@ -1,3 +1,12 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var movies = [
     {
         id: 1,
@@ -94,43 +103,42 @@ var movies = [
     }
 ];
 //1. Собрать в массив все жанры фильмов (без повторения)
-var getGenre = function (array) {
-    var genre = array.map(function (movie) { return movie.genre; });
-    var arrayGenres = [];
-    return Array.from(new Set(arrayGenres.concat.apply(arrayGenres, genre)));
+var getGenre = function (movies) {
+    var genre = movies.map(function (movie) { return movie.genre; });
+    return Array.from(new Set([].concat.apply([], genre)));
 };
 console.log('All genres', getGenre(movies));
 // 2. Собрать в массив всех актеров всех фильмов (без повторения)
-var getActors = function (array) {
-    var actors = array.map(function (movie) { return movie.actors; });
-    var arrayActors = [];
-    return Array.from(new Set(arrayActors.concat.apply(arrayActors, actors)));
+var getActors = function (movies) {
+    var actors = movies.map(function (movie) { return movie.actors; });
+    return Array.from(new Set([].concat.apply([], actors)));
 };
 console.log('All actors', getActors(movies));
 //3. Отсортировать фильмы по рейтингу по убыванию
-var sortRating = function (array) { return array.sort(function (a, b) { return b.imdbRating - a.imdbRating; }); };
+var sortRating = function (movies) { return __spreadArray([], movies, true).sort(function (a, b) { return b.imdbRating - a.imdbRating; }); };
 console.log('sorted by rating', sortRating(movies));
 //4. Создать новый массив, где объекты фильмов будут состоять из следующих полей: id, title, released, plot
-var getNewArrayMovies = function (array) { return array.map(function (movie) { return ({ id: movie.id, title: movie.title, released: movie.released, plot: movie.plot }); }); };
+var getNewArrayMovies = function (movies) { return movies.map(function (_a) {
+    var id = _a.id, title = _a.title, released = _a.released, plot = _a.plot;
+    return ({ id: id, title: title, released: released, plot: plot });
+}); };
 console.log(getNewArrayMovies(movies));
 //5. Создать функцию, которая бы принимала массив фильмов и число. А результатом этой функции должен быть отфильтрованный массив,
 // с фильмами где число равно году выхода фильма.
-var getMovieYear = function (array, year) { return array.filter(function (movie) { return movie.year === year; }); };
+var getMovieYear = function (movies, year) { return movies.filter(function (movie) { return movie.year === year; }); };
 console.log(getMovieYear(movies, 2021));
 // 6. Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть новый
 // отфильтрованный массив, с фильмами, где строка входит в название фильма.
-var getMovieWithString = function (array, string) { return array.filter(function (movie) { return movie.title.includes(string) === true; }); };
+var getMovieWithString = function (movies, string) { return movies.filter(function (movie) { return movie.title.includes(string); }); };
 console.log('6 task', getMovieWithString(movies, 'Harry Potter and'));
 // 7. Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть
 // отфильтрованный массив, с фильмами где строка входит в название фильма или в его сюжет.
-var getMovieWithStringInTitleOrPlot = function (array, string) {
-    return Array.from(new Set(array.filter(function (movie) { return (movie.title.includes(string) === true) || (movie.plot.includes(string) === true); })));
+var getMovieWithStringInTitleOrPlot = function (movies, string) {
+    return Array.from(new Set(movies.filter(function (movie) { return (movie.title.includes(string)) || (movie.plot.includes(string)); })));
 };
 console.log('7 task', getMovieWithStringInTitleOrPlot(movies, ''));
 // 8. Создать функцию, которая бы принимала 3 параметра: 1)массив фильмов , 2) строка(название поля, например 'title') и строку/число(значение поля "Black Widow"). А результатом
 // этой функции должен быть отфильтрованный массив, где параметры 2 и 3 равны в объекте фильма. Например: передаем (films, 'title', 'Black Widow') и на выходе получаем
 // фильм с id=1 если передаем (films, 'year', 2011) , то получаем фильм с id=2
-var getThisArray = function (array, string, parameter) {
-    return array.filter(function (movie) { return movie[string] === parameter; });
-};
+var getThisArray = function (movies, keyofMovies, parameter) { return movies.filter(function (movie) { return movie[keyofMovies] === parameter; }); };
 console.log('8 task:', getThisArray(movies, 'year', 1977));
