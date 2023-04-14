@@ -57,18 +57,17 @@ var getUsersWithEducation = function (users) {
 };
 console.log(getUsersWithEducation(users), "with education");
 // 4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
-var getUsersWithAnimals = function (array) {
-    return array.filter(function (user) { return user.animals; });
+var getUsersWithAnimals = function (users) {
+    return users.filter(function (user) { return user.animals; });
 };
 console.log(getUsersWithAnimals(users), "with animals");
 // 5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую
-var getCars = function (array) {
+var getCars = function (users) {
     var arrCars = [];
-    array.forEach(function (user) {
-        if (user.cars) {
-            arrCars.push(user.cars);
-        }
+    users.forEach(function (user) {
+        if (user.cars)
+            arrCars.push.apply(arrCars, user.cars).toString();
     });
-    return arrCars.toString();
+    return arrCars;
 };
 console.log(getCars(users));
