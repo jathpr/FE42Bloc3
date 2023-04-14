@@ -13,7 +13,7 @@ const users = [
         phone: "(09) 897 33 33",
         email: "felton@gmail.com",
         animals: ["cat"],
-        cars: ["bmw"],
+        cars: ["bmw", "ford"],
         hasChildren: false,
         hasEducation: true
     },
@@ -39,26 +39,36 @@ const getUserNames = (users: User[]) => {
     const namesStr = namesArr.join(', ')
     return namesStr
 }
-console.log(getUserNames(users))
+
+console.log('User names:', getUserNames(users))
+
 //     2. Посчитать общее количнство машин у пользователей.
 const sumCars = (users: User[]) => {
-    const carsArr = users.map(user => user.cars)
-    return carsArr.length
+    const carsArr = users.reduce((cars, user) => {
+        cars += user.cars ? user.cars.length : 0
+        return cars
+    }, 0)
+    return carsArr
 }
-console.log(sumCars(users))
+
+console.log('Sum of cars:', sumCars(users))
+
 //     3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования.
 const isEducationed = (users: User[]) => {
     const usersArr = users.filter(user => user.hasEducation)
     return usersArr
 }
-console.log(isEducationed(users));
+
+console.log('Have education:', isEducationed(users));
 
 //     4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных.
 const isHasAnimals = (users: User[]) => {
     const usersArr = users.filter(user => user.animals)
     return usersArr
 }
-console.log(isHasAnimals(users));
+
+console.log('Have animals:', isHasAnimals(users));
+
 //     5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую
 const getCarNames = (users: User[]) => {
     // const isCarArr = users.filter(user => user.cars)
@@ -69,4 +79,5 @@ const getCarNames = (users: User[]) => {
         (acc, user) => (user.cars ? [...acc, ...user.cars] : acc), []);
     return Array.from(new Set(getCars)).join(', ')
 }
-console.log(getCarNames(users));
+
+console.log('Car brands:', getCarNames(users));

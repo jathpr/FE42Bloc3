@@ -13,7 +13,7 @@ var users = [
         phone: "(09) 897 33 33",
         email: "felton@gmail.com",
         animals: ["cat"],
-        cars: ["bmw"],
+        cars: ["bmw", "ford"],
         hasChildren: false,
         hasEducation: true
     },
@@ -39,25 +39,28 @@ var getUserNames = function (users) {
     var namesStr = namesArr.join(', ');
     return namesStr;
 };
-console.log(getUserNames(users));
+console.log('User names:', getUserNames(users));
 //     2. Посчитать общее количнство машин у пользователей.
 var sumCars = function (users) {
-    var carsArr = users.map(function (user) { return user.cars; });
-    return carsArr.length;
+    var carsArr = users.reduce(function (cars, user) {
+        cars += user.cars ? user.cars.length : 0;
+        return cars;
+    }, 0);
+    return carsArr;
 };
-console.log(sumCars(users));
+console.log('Sum of cars:', sumCars(users));
 //     3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования.
 var isEducationed = function (users) {
     var usersArr = users.filter(function (user) { return user.hasEducation; });
     return usersArr;
 };
-console.log(isEducationed(users));
+console.log('Have education:', isEducationed(users));
 //     4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных.
 var isHasAnimals = function (users) {
     var usersArr = users.filter(function (user) { return user.animals; });
     return usersArr;
 };
-console.log(isHasAnimals(users));
+console.log('Have animals:', isHasAnimals(users));
 //     5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую
 var getCarNames = function (users) {
     // const isCarArr = users.filter(user => user.cars)
@@ -67,4 +70,4 @@ var getCarNames = function (users) {
     var getCars = users.reduce(function (acc, user) { return (user.cars ? __spreadArray(__spreadArray([], acc, true), user.cars, true) : acc); }, []);
     return Array.from(new Set(getCars)).join(', ');
 };
-console.log(getCarNames(users));
+console.log('Car brands:', getCarNames(users));
