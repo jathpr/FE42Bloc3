@@ -48,9 +48,9 @@ console.log("🚀 ~ file: hw-35.ts:41 ~ getNameString:", getNameString(users))
 // 2. Посчитать общее количeство машин у пользователей
 const countCars = (array: User[]) => {
     let amountCars = 0;
-    array.map(el => {
-        if (el.cars) {
-            amountCars += el.cars.length
+    array.forEach(user => {
+        if (user.cars) {
+            amountCars += user.cars.length
         }
     }
     );
@@ -59,32 +59,16 @@ const countCars = (array: User[]) => {
 console.log(countCars(users));
 
 // 3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования
-const sortUsers = (array: User[]) => {
-    const arrayUsers = []
-    array.filter((el) => {
-        if (el.hasEducation === true) { arrayUsers.push(el.name) }
-    })
-    return arrayUsers
-}
+const sortUsers = (array: User[]) => array.filter((user) => user.hasEducation)
 console.log(sortUsers(users));
 
 // 4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
-const sortUsersByAnimal = (array: User[]) => {
-    const arrayUsers = []
-    array.filter((el) => {
-        if (el.animals) { arrayUsers.push(el.name) }
-    })
-    return arrayUsers
-}
+const sortUsersByAnimal = (array: User[]) => array.filter((user) => user.animals)
 console.log(sortUsersByAnimal(users));
 
 // 5. Создать функцию, которая бы принимала массив пользователей и отдавала бы строку с названиями марок автомобилей через запятую
 const getStringOfCars = (array: User[]) => {
-    const carsArray = []
-    array.map(elem => {
-        if (elem.cars) carsArray.push(elem.cars)
-    })
-    const stringOfCars = carsArray.join(', ')
-    return stringOfCars;
+    const arr = array.reduce((acc, user) => (user.cars ? [...acc, ...user.cars] : acc), []).toString()
+    return arr;
 }
 console.log(getStringOfCars(users));
