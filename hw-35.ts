@@ -40,8 +40,8 @@ const users: User[] = [
 
 console.log("1. Создать строку из имен пользователей через запятую")
 
-const getUsers = (arr: User[]) => {
-    const newArr = arr.map((val) => val.name)
+const getUsers = (users: User[]) => {
+    const newArr = users.map((val) => val.name)
     const countruesStr = newArr.join(', ')
     return countruesStr
 }
@@ -52,8 +52,13 @@ console.log(getUsers(users))
 
 console.log("\n2. Посчитать общее количнство машин у пользователей")
 
-const totalCars = (arr: User[]): number => {
-    return arr.map(user => user.cars).length
+const totalCars = (users: User[]) => {
+    return users.reduce((acc, user) => {
+        if (user.cars) {
+            return acc + user.cars.length
+        }
+        return acc
+    }, 0)
 }
 
 console.log(totalCars(users))
@@ -62,21 +67,19 @@ console.log(totalCars(users))
 
 console.log("\n3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования")
 
-const isEducation = (arr: User[]) => {
-    const userList = [...users];
-    const result = userList.filter((user) => user.hasEducation)
+const usersEducation = (users: User[]) => {
+    const result = users.filter((user) => user.hasEducation)
     return result
 }
 
-console.log(isEducation(users))
+console.log(usersEducation(users))
 
 // 4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
 
 console.log("\n4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных")
 
-const hasAnimals = (arr: User[]) => {
-    const userList = [...users];
-    const result = userList.filter((user) => user.animals)
+const hasAnimals = (users: User[]) => {
+    const result = users.filter((user) => user.animals)
     return result
 }
 
@@ -86,10 +89,10 @@ console.log(hasAnimals(users))
 
 console.log("\n5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую")
 
-const carName = (arr: User[]) => {
+const carName = (users: User[]) => {
     const carBrands: string[] = [];
 
-    for (const user of arr) {
+    for (const user of users) {
         if (user.cars) {
             for (const car of user.cars) {
                 if (!carBrands.includes(car)) {
