@@ -1,11 +1,12 @@
-import { ReactNode } from "react"
+import styles from "./tabs.module.css"
 
 type Tabs = {
-    children: ReactNode,
     tabs?: string[],
-    activeTabName?: string 
+    activeTabName?: string
 }
 
-export const Tabs = ({children, tabs, activeTabName}: Tabs) => (
-    <div>{children}</div>
+export const Tabs = ({tabs, activeTabName }: Tabs) => (
+        <ul className={styles.tabs}>
+            {tabs?.map(el => <li>{el}</li>)}
+        </ul>
 )
