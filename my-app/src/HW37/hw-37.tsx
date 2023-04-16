@@ -2,6 +2,7 @@ import { Button } from "./buttonBurger"
 import { Title } from "./title";
 import style from "./buttonBurger.module.css"
 import { Tabs } from "./tabs";
+// import styles from "./tabs.module.css"
 
 export const Hw37 = () => (
     <div className={style.div}>
@@ -20,17 +21,8 @@ export const Hw37 = () => (
                 </div>
             </Button>
         </div>
-        <Tabs>
-            <div>
-                <ul>
-                    <li>
-                        <p>All</p></li>
-                    <li>
-                        <p>My Favorites</p></li>
-                    <li>
-                        <p>Popular</p></li>
-                </ul>
-            </div>
-        </Tabs>
+        <div>
+            <Tabs tabs={['All', 'My Favorites', 'Popular']}></Tabs>
+        </div>
     </div>
 )
