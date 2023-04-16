@@ -129,8 +129,7 @@ console.log(getGenres(movies));
 // 2. Массив актёров без повторения
 const getActors = (array: Movie[]) => {
     const arrayOfAllActors = array.map(movie => movie.actors)
-    const allActors = []
-    const actors = allActors.concat(...arrayOfAllActors)
+    const actors = [].concat(...arrayOfAllActors)
     const resultArray = Array.from(new Set(actors))
     return resultArray
 }
@@ -152,14 +151,14 @@ const filteredMoviesByYear = (array: Movie[], num: number) => array.filter(movie
 console.log(filteredMoviesByYear(movies, 2009));
 
 // 6. Функция принимает массив и строку. Строка входит в название фильма
-const filteredMoviesByName = (array: Movie[], word: string) => array.filter(movie => movie.title.toLowerCase().includes(word.toLowerCase()) === true)
+const filteredMoviesByName = (array: Movie[], word: string) => array.filter(movie => movie.title.toLowerCase().includes(word.toLowerCase()))
 console.log(filteredMoviesByName(movies, 'haRRy'));
 
 // 7. Функция принимает массив и строку. Строка входит в название фильма или сюжет
 const filteredMoviesByWords = (array: Movie[], word: string) => array.filter(movie => 
-    (movie.title.toLowerCase().includes(word.toLowerCase()) === true) || (movie.plot.toLowerCase().includes(word.toLowerCase()) === true))
+    (movie.title.toLowerCase().includes(word.toLowerCase())) || (movie.plot.toLowerCase().includes(word.toLowerCase())))
 console.log(filteredMoviesByWords(movies, 'a cocky Pilot'));
 
 // 8. Функция принимает три параметра 1.Массив фильмов, 2.Строка (ключ), 3.Строка/число (значение)
-const researchMovie = (array: Movie[], key: string, data: string | number) => array.filter(movie => movie[key] === data)
+const researchMovie = (array: Movie[], key: keyof Movie, data: string | number) => array.filter(movie => movie[key] === data)
 console.log(researchMovie(movies, 'imdbVotes', 790377));

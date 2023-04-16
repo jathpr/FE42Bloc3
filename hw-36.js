@@ -105,8 +105,7 @@ console.log(getGenres(movies));
 // 2. Массив актёров без повторения
 var getActors = function (array) {
     var arrayOfAllActors = array.map(function (movie) { return movie.actors; });
-    var allActors = [];
-    var actors = allActors.concat.apply(allActors, arrayOfAllActors);
+    var actors = [].concat.apply([], arrayOfAllActors);
     var resultArray = Array.from(new Set(actors));
     return resultArray;
 };
@@ -124,14 +123,13 @@ console.log(newMoviesArray(movies));
 var filteredMoviesByYear = function (array, num) { return array.filter(function (movie) { return movie.year === num; }); };
 console.log(filteredMoviesByYear(movies, 2009));
 // 6. Функция принимает массив и строку. Строка входит в название фильма
-var filteredMoviesByName = function (array, word) { return array.filter(function (movie) { return movie.title.toLowerCase().includes(word.toLowerCase()) === true; }); };
+var filteredMoviesByName = function (array, word) { return array.filter(function (movie) { return movie.title.toLowerCase().includes(word.toLowerCase()); }); };
 console.log(filteredMoviesByName(movies, 'haRRy'));
 // 7. Функция принимает массив и строку. Строка входит в название фильма или сюжет
 var filteredMoviesByWords = function (array, word) { return array.filter(function (movie) {
-    return (movie.title.toLowerCase().includes(word.toLowerCase()) === true) || (movie.plot.toLowerCase().includes(word.toLowerCase()) === true);
+    return (movie.title.toLowerCase().includes(word.toLowerCase())) || (movie.plot.toLowerCase().includes(word.toLowerCase()));
 }); };
 console.log(filteredMoviesByWords(movies, 'a cocky Pilot'));
 // 8. Функция принимает три параметра 1.Массив фильмов, 2.Строка (ключ), 3.Строка/число (значение)
 var researchMovie = function (array, key, data) { return array.filter(function (movie) { return movie[key] === data; }); };
 console.log(researchMovie(movies, 'imdbVotes', 790377));
-console.log(researchMovie(movies, 'id', 6));
