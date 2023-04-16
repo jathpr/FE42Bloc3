@@ -1,5 +1,4 @@
 /* TASK 1 */
-
 type Faculties = {
     id: number,
     faculty: string,
