@@ -6,7 +6,7 @@ import { SelectUserMenu } from './SelectUserMenu';
 export const Menu = () => (
 	<div className='menu__wrapper'>
 		<div className='menu'>
-			<Burger svgCollection={svgs} defaultState click={() => {
+			<Burger svgCollection={svgs} click={() => {
 				console.log('Something is working')
 			}}>
 			</Burger>
