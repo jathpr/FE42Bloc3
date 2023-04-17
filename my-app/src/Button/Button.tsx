@@ -11,8 +11,8 @@ export const Button = ({ visible, handleClick}: Props) => (
         <span className={styles.burger_line_second}></span>
         <span className={styles.burger_line_third}></span>
 
-        <span className={styles.close_line_first}></span>
-        <span className={styles.close_line_second}></span>
+        {/* <span className={styles.close_line_first}></span>
+        <span className={styles.close_line_second}></span> */}
     </button>
 )
 

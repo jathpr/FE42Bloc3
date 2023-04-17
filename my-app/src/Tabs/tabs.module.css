@@ -1,0 +1,8 @@
+.tab_list {
+    color: blue;
+    margin: 30px;
+}
+
+.active {
+    color:blueviolet;
+}
