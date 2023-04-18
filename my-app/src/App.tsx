@@ -17,7 +17,6 @@ function App() {
       <Tabs tabs={tabNames} activeTab='My favourites' />
 
       <ButtonComponent visible />
-      
     </div>
   );
 }
