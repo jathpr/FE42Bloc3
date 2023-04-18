@@ -3,14 +3,16 @@ import s from './tabs.module.css';
 
 type Props = {
     tabs: string[],
-    handleClick: () => void,
+    activeTab: string
 }
 
 
 
 
-export const Tabs = ({tabs, handleClick}: Props) => (
+export const Tabs = ({ tabs, activeTab }: Props) => (
     <div>
-        {tabs&&tabs.map(el => <span className={s.tab_list} onClick={handleClick} > {el}</span>)}
+        {tabs && tabs.map(el =>
+            <span className={(activeTab === el) ? s.active : s.tab_list}> {el}</span> 
+        )}
     </div>
 );

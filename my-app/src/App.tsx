@@ -4,17 +4,19 @@ import './App.css';
 import { Title } from './Title';
 import { Button } from './Button/Button';
 import { Tabs } from './Tabs/Tabs';
-// import { tabNames } from './Tabs/Tabs';
+import { ButtonComponent } from './Button/ButtonClass';
 
-const tabNames = ['All', 'My favourites', 'Popular']
 
 
 function App() {
+  const tabNames = ['All', 'My favourites', 'Popular']
   return (
     <div>
       <Title />
       <Button visible handleClick={() => console.log('ok')} />
-      <Tabs tabs={tabNames} handleClick={() => console.log('active')} />
+      <Tabs tabs={tabNames} activeTab='My favourites' />
+
+      <ButtonComponent visible />
       
     </div>
   );
