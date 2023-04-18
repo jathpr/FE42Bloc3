@@ -1,0 +1,58 @@
+.button {
+    width: 60px;
+    height: 60px;
+    background-color: blue;
+    margin: 10px;
+    position: relative;
+    border: none;
+}
+.burger_line_first {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    top: 22px;
+    left: 10px;
+    position: absolute;
+}
+
+.burger_line_second {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    top: 30px;
+    left: 10px;
+    position: absolute;
+}
+
+.burger_line_third {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    top: 38px;
+    left: 10px;
+    position: absolute;
+}
+
+.close_line_first {
+    display: block;
+    height: 2px;
+    width: 40px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform:  translateY(-50%) rotate(45deg);
+}
+.close_line_second {
+    display: block;
+    height: 2px;
+    width: 40px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%) rotate(-45deg);
+}
