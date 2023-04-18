@@ -4,6 +4,7 @@
 	list-style-type: none;
 	display: flex;
 	gap: 100px;
+	margin-bottom: 30px;
 }
 
 .tabs__tab {
