@@ -1,8 +1,8 @@
 import React from 'react';
-// import './App.css';
-import { Lesson } from './lesson';
-import { Ex } from './lesson'
-import { Button } from './button';
+import { Lesson } from "./Lessons/PropsAndComponents"
+import { Ex } from './Lessons/PropsAndComponents'
+import { Button } from './Lessons/Button';
+import { Auth } from './Lessons/AuthLesson2';
 
 
 export const App = () => (
@@ -13,6 +13,7 @@ export const App = () => (
         <Ex name="Polina" age={71}>WTF?!</Ex>
         <Button enabled handleClick={() => console.log('OK')}>НАЖМИ МЕНЯ</Button>
         <Button handleClick={() => console.log('OK')}>НАЖМИ МЕНЯ</Button>
+        <Auth/>
       </p>
     </header>
   </div>

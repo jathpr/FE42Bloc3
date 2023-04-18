@@ -8,12 +8,13 @@
     border-bottom: 1px solid gray;
 }
 
-.tabs li{
+.tabs li:hover{
     cursor: pointer;
+    color:rgb(55, 55, 191);
 }
 
-.tabs li:hover{
-    color:rgb(55, 55, 191);
+.tabs--active{
+    border-bottom: 2px solid black;
 }
 
 /* .tabs li:disabled{
