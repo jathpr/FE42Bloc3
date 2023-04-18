@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+<<<<<<< HEAD
+    "typescript": "^5.0.3"
+=======
+    "typescript": "^5.0.4"
+>>>>>>> 47c006d306e6ba9228fe06224a413531353fb9f0
+  }
+}
