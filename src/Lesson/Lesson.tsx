@@ -4,6 +4,7 @@ import { CounterClass } from "./Counter/CounterClass";
 import { CounterFunction } from "./Counter/CounterFunction";
 import { HWFunc } from "./HW/HWFunc";
 import { Inputs } from "./Inputs";
+import { Posts } from "./Posts";
 import { WrongStateExample } from "./WrongStateExample";
 
 export const Lesson = () => {
@@ -47,18 +48,7 @@ export const Lesson = () => {
   ];
   return (
     <>
-      <ul>
-        {arr.map((a, i) => (
-          <li key={String(a) + i}>{a}</li>
-        ))}
-      </ul>
-      <WrongStateExample />
-      <FunctionComponent name="fc">Children of FC</FunctionComponent>
-      <ClassComponent name="Class">Chd class</ClassComponent>
-      {/* <CounterFunction initialCount={4} /> */}
-      <CounterClass />
-      {/* <HWFunc />*/}
-      <Inputs />
+      <Posts />
     </>
   );
 };
