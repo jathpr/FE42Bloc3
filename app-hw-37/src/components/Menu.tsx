@@ -6,9 +6,7 @@ import { SelectUserMenu } from './SelectUserMenu';
 export const Menu = () => (
 	<div className='menu__wrapper'>
 		<div className='menu'>
-			<Burger click={() => {
-				console.log('Something is working')
-			}}>
+			<Burger click={() => console.log('Hi')}>
 			</Burger>
 			<input type="search" className='menu__search-input' placeholder='Search...' />
 			<div className='menu__btn'>
