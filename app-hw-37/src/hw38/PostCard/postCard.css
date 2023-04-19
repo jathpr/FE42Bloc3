@@ -1,0 +1,43 @@
+.card {
+	display: flex;
+	margin: 30px 0;
+	padding: 30px 15px;
+	border-bottom: 1px solid gray;
+}
+
+.card__text {
+	width: 60%;
+}
+
+.card__date {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: rgb(165, 163, 163);
+	margin-bottom: 30px;
+}
+
+.card__title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px;
+	margin-bottom: 30px;
+}
+
+.card__desc {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: rgb(165, 163, 163);
+	margin-bottom: 10px;
+}
+
+.card__img-wrapper {
+	width: 40%;
+	overflow: hidden;
+	height: 290px;
+}
+
+.card__img-wrapper img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+}
