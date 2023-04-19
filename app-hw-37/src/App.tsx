@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
-import { Container } from './components/Container';
-import { TaskNum } from './components/TaskNum';
-import { Title } from './components/Title';
-import { Menu } from './components/Menu';
-import { Tabs } from './components/Tabs';
+import './index.css';
+import { Container } from './hw37/Container/Container';
+import { TaskNum } from './hw37/TaskNum/TaskNum';
+import { Title } from './hw37/Title/Title';
+import { Menu } from './hw37/Menu/Menu';
+import { Tabs } from './hw37/Tabs/Tabs';
 
 export const App = () => (
 	<Container>

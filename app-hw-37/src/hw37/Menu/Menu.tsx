@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/menu.css';
-import { Burger } from './Burger';
-import { SelectUserMenu } from './SelectUserMenu';
+import './menu.css';
+import { Burger } from '../Burger/Burger';
+import { SelectUserMenu } from '../SelectUserMenu/SelectUserMenu';
 
 export const Menu = () => (
 	<div className='menu__wrapper'>

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import '../styles/tabs.css';
+import './tabs.css';
 type tabsProps = {
 	titles: string[],
 	activeTab: string,

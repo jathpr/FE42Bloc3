@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import '../styles/menu.css';
+import '../Menu/menu.css';
 
 type Props = {
 	defaultState?: boolean,
