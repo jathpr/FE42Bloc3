@@ -17,6 +17,12 @@
 	cursor: pointer;
 }
 
+.menu__btn svg {
+	width: 33%;
+	height: 33%;
+	fill: white;
+}
+
 #menu__toggle {
 	opacity: 0;
 	position: absolute;
