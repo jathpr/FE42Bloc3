@@ -1,0 +1,25 @@
+.table{
+    width: 500px;
+    height: 100px;
+    background-color: rgb(219, 225, 231);
+}
+
+.header{
+    font-size: 24px;
+    margin: 10px;
+}
+
+.tabs{
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.tabs:hover{
+    color: blue;
+}
+
+.tabs_active {
+    margin: 0 20px;
+    cursor: pointer;
+    text-decoration: underline;
+}
