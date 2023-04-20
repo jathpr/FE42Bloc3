@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+<<<<<<< HEAD
 import { useState } from 'react';
 import './App.css';
 import { ChangeTheme, ThemeContext } from './tools/themeContext';
@@ -15,6 +16,14 @@ function App() {
         <Wrapper />
       </ChangeTheme.Provider>
     </ThemeContext.Provider>
+=======
+import './App.css';
+import { Wrapper } from './hw_37/wrapper';
+
+function App() {
+  return (
+    <Wrapper></Wrapper>
+>>>>>>> 9861a03 (HW 37 Yury (#37))
   )
 }
 
