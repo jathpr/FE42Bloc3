@@ -4,20 +4,16 @@ import { ReactComponent as Bars } from "./bars-solid.svg"
 import { ReactComponent as Xmark } from "./xmark-solid.svg"
 
 type Props = {
-	defaultState?: boolean,
-	children: ReactNode
+	children: ReactNode,
+	btnState: boolean,
+	click: () => void
 }
-type State = { opened: boolean }
-export class Burger extends React.Component<Props, State> {
-	state = { opened: !!this.props.defaultState }
-	handleClick = () => {
-		this.setState({ opened: !this.state.opened })
-	}
+export class Burger extends React.Component<Props>  {
 	render() {
 		return (
-			<button className="menu__btn" onClick={this.handleClick}>
+			<button className="menu__btn" onClick={this.props.click}>
 				<input id="menu__toggle" type="checkbox" />
-				{changeSvg(this.state.opened)}
+				{changeSvg(this.props.btnState)}
 			</button >)
 	}
 }

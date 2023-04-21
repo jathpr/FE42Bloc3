@@ -15,7 +15,7 @@ export const App = () => (
 		<TaskNum>Task 1</TaskNum>
 		<Title></Title>
 		<TaskNum>Task 2</TaskNum>
-		<Menu></Menu>
+		<Menu defaultState></Menu>
 		<TaskNum>Task 3</TaskNum>
 		<Tabs enabled titles={['Husky', 'Akita', 'Pug']} activeTab='Husky'></Tabs>
 		<h1>HW38</h1>
