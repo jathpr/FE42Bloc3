@@ -1,9 +1,28 @@
 const DOMAIN = "https://studapi.teachmeskills.by";
 const POSTS = "/blog/posts";
 
+export type Post = {
+  author: number;
+  date: string;
+  description?: string;
+  id: number;
+  image?: string;
+  lesson_num?: number;
+  text: string;
+  title?: string;
+};
+
+type PostsResponse = {
+  count: number;
+  next: string;
+  previous?: string;
+  results: Post[];
+};
+
 export const getPosts = async (limit?: number) => {
   const postsUrl = new URL(DOMAIN + POSTS);
   if (limit) postsUrl.searchParams.set("limit", String(limit));
-  const request = await fetch(postsUrl);
-  console.log("🚀 ~ file: getPosts.ts:8 ~ getPosts ~ request:", request);
+  const response = await fetch(postsUrl);
+  const posts: PostsResponse = await response.json();
+  return posts.results;
 };

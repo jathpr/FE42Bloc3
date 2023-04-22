@@ -1,18 +1,13 @@
 import React from "react";
+import { Post, getPosts } from "../server/getPosts";
 
 type Props = { initialCount?: number };
 
-type State = { posts?: { text: string; id: number }[] };
-
-const URL = "https://studapi.teachmeskills.by/blog/posts/?limit=3";
+type State = { posts?: Post[] };
 
 export class Posts extends React.Component<Props, State> {
-  componentDidMount(): void {
-    fetch(URL)
-      .then((resp) => resp.json())
-      .then((posts) => {
-        this.setState({ posts: posts.results });
-      });
+  componentDidMount() {
+    getPosts(3).then((posts) => this.setState({ posts }));
   }
 
   render() {
