@@ -7,7 +7,7 @@ type State = { posts?: Post[] };
 
 export class Posts extends React.Component<Props, State> {
   componentDidMount() {
-    getPosts(3).then((posts) => this.setState({ posts }));
+    getPosts({ limit: 3 }).then((posts) => this.setState({ posts }));
   }
 
   render() {

@@ -19,7 +19,9 @@ type PostsResponse = {
   results: Post[];
 };
 
-export const getPosts = async (limit?: number) => {
+type PostsParams = { limit?: number };
+
+export const getPosts = async ({ limit }: PostsParams) => {
   const postsUrl = new URL(DOMAIN + POSTS);
   if (limit) postsUrl.searchParams.set("limit", String(limit));
   const response = await fetch(postsUrl);
