@@ -12,28 +12,26 @@ type Post = {
 }
 
 type Postprops = {
-	postinfo: Post
+	postinfo: Post,
+	goBack: () => void
 }
 
-type Poststate = {
-	poststate: Post
-}
-
-export class PostCard extends React.Component<Postprops, Poststate>{
+export class PostCard extends React.Component<Postprops>{
 	state = { poststate: this.props.postinfo }
 	render() {
-		return (
-			<div className='card' id={String(this.state.poststate.id)}>
-				<div className='card__text'>
-					<p className='card__date'>{this.state.poststate.date}</p>
-					<h2 className='card__title'>{this.state.poststate.title}</h2>
-					<p className='card__desc'>{this.state.poststate.description}</p>
-					<p className='card__author'>Author: {this.state.poststate.author} {this.state.poststate.text}</p>
-				</div>
+		return (<>
+			<button className='back-btn' onClick={this.props.goBack}>← Back to posts</button>
+			<div className='card' id={String(this.props.postinfo.id)}>
+				<h2 className='card__title'>{this.props.postinfo.title}</h2>
+				<p className='card__date'>{this.props.postinfo.date}</p>
 				<div className='card__img-wrapper'>
-					<img src={this.state.poststate.image} alt={this.state.poststate.text} />
+					<img src={this.state.poststate.image} alt={this.props.postinfo.text} />
+				</div>
+				<div className='card__text'>
+					<p className='card__desc'>{this.props.postinfo.description}</p>
+					<p className='card__author'>Author: {this.props.postinfo.author} {this.props.postinfo.text}</p>
 				</div>
 			</div>
-		)
+		</>)
 	}
 }

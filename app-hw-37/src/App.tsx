@@ -8,12 +8,15 @@ import { Menu } from './hw37/Menu/Menu';
 import { Tabs } from './hw37/Tabs/Tabs';
 import { PostCard } from './hw38/PostCard/PostCard';
 import { CardsList } from './hw38/CardsList/CardsList';
+import { Navigation } from './hw39/Navigation/Navigation';
+import { Auth } from './hw39/Auth/Auth';
+import { Reg } from './hw39/Reg/Reg';
 
 export const App = () => (
-	<Container>
-		<h1>HW37</h1>
+	<>
+		{/*<h1>HW37</h1>
 		<TaskNum>Task 1</TaskNum>
-		<Title></Title>
+		 <Title></Title>
 		<TaskNum>Task 2</TaskNum>
 		<Menu defaultState></Menu>
 		<TaskNum>Task 3</TaskNum>
@@ -30,39 +33,10 @@ export const App = () => (
 				<TaskNum>Task 2</TaskNum>
 				<CardsList />
 			</div>
-		</section>
-	</Container>
+		</section> */}
+		<Menu defaultState></Menu>
+		<Container>
+			<Navigation></Navigation>
+		</Container>
+	</>
 )
-
-const posts = [
-	{
-		"id": 1,
-		"image": "https://tms-studapi-dev.s3.amazonaws.com/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2021-08-04_%D0%B2_16.11.10.png",
-		"text": "фыв",
-		"date": "2021-10-06",
-		"lesson_num": 123,
-		"title": "фывфывфыв",
-		"description": "default default default default default default default default default default default default default default default default default default default default default default default default default default default",
-		"author": 7
-	},
-	{
-		"id": 2,
-		"image": "https://tms-studapi-dev.s3.amazonaws.com/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2021-08-04_%D0%B2_17.37.38.png",
-		"text": "Text",
-		"date": "2021-10-07",
-		"lesson_num": 48,
-		"title": "Title",
-		"description": "default default default default default default default default default default default default default default default default default default default default default default default default default default default",
-		"author": 7
-	},
-	{
-		"id": 3,
-		"image": "https://tms-studapi-dev.s3.amazonaws.com/media/unnamed.jpeg",
-		"text": "Hello!",
-		"date": "2021-10-07",
-		"lesson_num": 23,
-		"title": "B-52!",
-		"description": "default default default default default default default default default default default default default default default default default default default default default default default default default default default",
-		"author": 97
-	}
-]
