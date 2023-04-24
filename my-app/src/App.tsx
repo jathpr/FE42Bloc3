@@ -3,6 +3,7 @@ import { Lesson } from "./Lessons/PropsAndComponents"
 import { Ex } from './Lessons/PropsAndComponents'
 import { Button } from './Lessons/Button';
 import { Auth } from './Lessons/AuthLesson2';
+import { PostList } from './Lessons/Lesson3/PostsListLesson3';
 
 
 export const App = () => (
@@ -14,6 +15,7 @@ export const App = () => (
         <Button enabled handleClick={() => console.log('OK')}>НАЖМИ МЕНЯ</Button>
         <Button handleClick={() => console.log('OK')}>НАЖМИ МЕНЯ</Button>
         <Auth/>
+        <PostList/>
       </p>
     </header>
   </div>

@@ -10,6 +10,6 @@ export const Hw37 = () => (
         <div className={style.buttonDiv}>
             <Button touched handleClick={() => console.log('OK')}/>
         </div>
-        <Tabs active tabs={tabNames} activeTabName={'All'}/>
+        <Tabs active tabs={tabNames} activeTabName='All'/>
     </div>
 )
