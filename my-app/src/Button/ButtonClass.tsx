@@ -3,7 +3,7 @@ import styles from './button.module.css';
 
 type Props = {
     visible: boolean;
-    // handleClick: () => void;
+    handleClick: () => void;
 }
 
 type State = {
@@ -13,7 +13,7 @@ export class ButtonComponent extends React.Component<Props, State> {
     state = {opened: !!this.props.visible}
     
     click = () => {
-        // this.props.handleClick()
+        this.props.handleClick()
         this.setState({opened: !this.state.opened})
     }
 
