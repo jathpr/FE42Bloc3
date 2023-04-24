@@ -1,0 +1,60 @@
+/* null style */
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   text-decoration: none;
+   /* font-family: 'Raleway', sans-serif; */
+   outline: none;
+}
+
+body {   
+   background-color: #F3F3F3;
+}
+
+ul,
+ol, li {
+   list-style: none;
+}
+
+a {
+   display: block;
+   color: #000;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-weight: normal;
+   font-style: normal;
+}
+
+/* null style end */
+
+button {
+   display: block;
+   margin: 10px 0;
+   background-color: #2436A7;
+   padding: 15px;
+   border: 1px solid #fff;
+}
+
+button:hover {
+   cursor: pointer;
+}
+
+.menu-svg--wrapper {
+   background-color: #2436A7;
+}
+
+.menu-svg--wrapper svg {
+   width: 15px;
+   height: 15px;
+   fill: #fff;
+   stroke: #fff;
+}
+
