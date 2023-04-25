@@ -1,22 +1,21 @@
 import React from 'react';
-import { Lesson } from "./Lessons/PropsAndComponents"
-import { Ex } from './Lessons/PropsAndComponents'
-import { Button } from './Lessons/Button';
-import { Auth } from './Lessons/AuthLesson2';
-import { PostList } from './Lessons/Lesson3/PostsListLesson3';
+import { Counter } from './Lessons/Counter';
+import { Title } from './Components/Title/Title';
+import { Button } from './Components/Button/ButtonBurger';
+import { Tabs, tabNames } from './Components/Tabs/Tabs';
+import style from './Components/Button/ButtonBurger.module.css'
+import {PostsList} from './Components/PostsList'
 
 
 export const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <p>
-        <Lesson example={11} />
-        <Ex name="Polina" age={71}>WTF?!</Ex>
-        <Button enabled handleClick={() => console.log('OK')}>НАЖМИ МЕНЯ</Button>
-        <Button handleClick={() => console.log('OK')}>НАЖМИ МЕНЯ</Button>
-        <Auth/>
-        <PostList/>
-      </p>
-    </header>
+  <div>
+    {/* <Title /> */}
+    {/* <div className={style.buttonDiv}>
+      <Button touched handleClick={() => console.log('OK')} />
+    </div> */}
+    {/* <Tabs active tabs={tabNames} activeTabName='All' /> */}
+    {/* <Counter /> */}
+    {/* <Counter initialCount={3}/> */}
+    <PostsList/>
   </div>
 )
