@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Post, getPosts } from "../server/getPosts";
 
-type Props = { initialCount?: number };
+export const Posts = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
 
-type State = { posts?: Post[] };
-
-export class Posts extends React.Component<Props, State> {
-  componentDidMount() {
-    getPosts({ limit: 3 }).then((posts) => this.setState({ posts }));
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state?.posts?.map((post) => (
-          <li key={post.id}>{post.text}</li>
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {posts?.map((post) => (
+        <li key={post.id}>{post.text}</li>
+      ))}
+      <button
+        onClick={() => {
+          getPosts({ limit: 3 }).then((posts) => setPosts(posts));
+        }}
+      >
+        Get Posts
+      </button>
+    </div>
+  );
+};
