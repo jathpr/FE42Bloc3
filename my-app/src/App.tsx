@@ -9,7 +9,7 @@ import {PostsList} from './Components/PostsList'
 
 export const App = () => (
   <div>
-    {/* <Title /> */}
+    <Title />
     {/* <div className={style.buttonDiv}>
       <Button touched handleClick={() => console.log('OK')} />
     </div> */}
