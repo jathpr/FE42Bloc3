@@ -8,6 +8,10 @@
    outline: none;
 }
 
+body {   
+   background-color: #F3F3F3;
+}
+
 ul,
 ol, li {
    list-style: none;
