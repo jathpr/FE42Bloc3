@@ -45,10 +45,14 @@ code {
 .wrapper {
   margin: 0 auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
   max-width: 100%;
 =======
   max-width: 1000px;
   /* background-color: #e9e9e9; */
+=======
+  max-width: 1400px;
+>>>>>>> 3e0d9f5 (HW 38 Yury (#48))
 }
 
 .header {
