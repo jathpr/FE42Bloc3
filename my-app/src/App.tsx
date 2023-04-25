@@ -3,7 +3,7 @@ import './App.css';
 import { Title } from './Title';
 // import { Button } from './Button/Button';
 import { Tabs } from './Tabs/Tabs';
-import { ButtonComponent } from './Button/ButtonClass';
+import { Button } from './Button/ButtonClass';
 import { RenderPostsList } from './hw-38/RenderPostsList';
 import { postsList } from './hw-38/PostsList';
 
@@ -16,8 +16,7 @@ function App() {
       <Title />
       {/* <Button visible handleClick={() => console.log('ok')} /> */}
       <Tabs tabs={tabNames} activeTab='My favourites' />
-      <ButtonComponent visible handleClick={() => console.log('ok')} />
-
+      <Button visible handleClick={() => console.log('ok')} />
       <RenderPostsList array={postsList}/>
     </div>
   );
