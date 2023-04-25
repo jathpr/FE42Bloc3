@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './Title.css';
 
-export const Title = () => (<h1 className='title'>Sign In</h1>)
+export const Title = (text: { children: string }) => (<h1 className='title'>{text.children}</h1>)
 
