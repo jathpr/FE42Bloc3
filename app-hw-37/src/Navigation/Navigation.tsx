@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { Auth } from '../Auth/Auth';
 import { Reg } from '../Reg/Reg';
-import { CardsList } from '../../hw38/CardsList/CardsList';
-import { PostCard } from '../../hw38/PostCard/PostCard';
+import { CardsList } from '../CardsList/CardsList';
+import { PostCard } from '../PostCard/PostCard';
 
 const LOGIN = 'CoolDude'
 const PASSWORD = 'react'

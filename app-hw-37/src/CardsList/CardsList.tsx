@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Title } from '../../hw37/Title/Title';
+import { Title } from '../Title/Title';
 import { Card } from './Card';
 import './card.css';
 import { PostCard } from '../PostCard/PostCard';

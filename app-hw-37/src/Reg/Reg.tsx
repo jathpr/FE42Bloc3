@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Title } from '../../hw37/Title/Title';
+import { Title } from '../Title/Title';
 import './reg.css'
 
 type Props = {
