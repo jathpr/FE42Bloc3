@@ -39,3 +39,19 @@ const ClosedButton = () => (
     <span className={style.close_line_second}></span>
   </div>
 );
+
+
+// export class ButtonComponent ({enabled, handleClick}: Props) =>{
+//   const [isCollapsed, setIsCollapsed] = useState(collapsed)
+//   const click = () => {
+//     handleClick()
+//     setIsCollapsed(!isCollapsed)
+//   };
+
+// if (!isCollapsed){
+//     return (
+//       <button className={style.burger} onClick={click}>
+//       </button>
+//     );
+// }
+// }
