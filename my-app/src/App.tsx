@@ -55,6 +55,8 @@ export const App = () => {
       <Title />
       {/* <Button visible handleClick={() => console.log('ok')} /> */}
       <Title />
+      {/* <Button visible handleClick={() => console.log('ok')} /> */}
+      <Tabs tabs={tabNames} activeTab='My favourites' />
       <Button visible handleClick={() => console.log('ok')} />
       <Tabs tabs={tabNames} activeTab='My favourites' />
       <RenderPostsList />
