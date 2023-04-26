@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './button.module.css';
 
 type Props = {
@@ -15,7 +15,7 @@ export const Button = ({ visible, handleClick }: Props) => {
     }
 
     return (
-        <button className={styles.button} onClick={click}>{visible ? <Burger /> : <Close />}  </button>
+        <button className={styles.button} onClick={click}>{isVisible ? <Burger /> : <Close />}  </button>
     )
 }
 

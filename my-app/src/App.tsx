@@ -5,7 +5,7 @@ import { Title } from './Title';
 import { Tabs } from './Tabs/Tabs';
 import { Button } from './Button/ButtonClass';
 import { RenderPostsList } from './hw-38/RenderPostsList';
-import { postsList } from './hw-38/PostsList';
+import { postsList } from './hw-38/posts';
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Post, postsList } from './PostsList'
+import { Post, postsList } from './posts'
 import { RenderPost } from './RenderPost'
 
 

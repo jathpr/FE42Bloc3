@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './RenderPost.module.css'
-import { Post } from './PostsList'
+import { Post } from './posts'
 
 
 
