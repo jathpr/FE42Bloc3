@@ -1,0 +1,11 @@
+.wrapper {
+    width: 500px;
+    min-height: 400px;
+    background-color: darkgray;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
