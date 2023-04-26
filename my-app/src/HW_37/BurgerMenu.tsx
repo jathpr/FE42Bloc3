@@ -1,28 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./BurgerMenu.module.css";
 
 type Props = {
   enabled: boolean;
 };
 
-type State = {
-  opened: boolean;
-};
+export const ButtonComponent = ({enabled}: Props) => {
 
-export class ButtonComponent extends React.Component<Props, State> {
-  state = { opened: !!this.props.enabled };
-  click = () => {
-    this.setState({ opened: !this.state.opened });
+  const [isEnabled, setIsEnabled]=useState(enabled)
+  
+  const click = () => {
+    setIsEnabled(!isEnabled)
   };
 
-  render() {
     return (
-      <button className={style.burger} onClick={this.click}>
-        {this.state.opened ? <Burger /> : <ClosedButton />}
+      <button className={style.burger} onClick={click}>
+        {isEnabled ? <Burger /> : <ClosedButton />}
       </button>
     );
   }
-}
+
 
 const Burger = () => (
   <div className={style.line}>
@@ -39,3 +36,19 @@ const ClosedButton = () => (
     <span className={style.close_line_second}></span>
   </div>
 );
+
+
+// export class ButtonComponent ({enabled, handleClick}: Props) =>{
+//   const [isCollapsed, setIsCollapsed] = useState(collapsed)
+//   const click = () => {
+//     handleClick()
+//     setIsCollapsed(!isCollapsed)
+//   };
+
+// if (!isCollapsed){
+//     return (
+//       <button className={style.burger} onClick={click}>
+//       </button>
+//     );
+// }
+// }
