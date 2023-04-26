@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Title } from './Title';
-import { Button } from './Button/Button';
+// import { Button } from './Button/Button';
 import { Tabs } from './Tabs/Tabs';
-import { ButtonComponent } from './Button/ButtonClass';
+import { Button } from './Button/ButtonClass';
+import { RenderPostsList } from './hw-38/RenderPostsList';
+import { postsList } from './hw-38/posts';
 
 
 
@@ -13,10 +14,10 @@ function App() {
   return (
     <div>
       <Title />
-      <Button visible handleClick={() => console.log('ok')} />
+      {/* <Button visible handleClick={() => console.log('ok')} /> */}
       <Tabs tabs={tabNames} activeTab='My favourites' />
-
-      <ButtonComponent visible />
+      <Button visible handleClick={() => console.log('ok')} />
+      <RenderPostsList array={postsList}/>
     </div>
   );
 }
