@@ -15,27 +15,22 @@ type Cardprops = {
 	cardinfo: PostCard,
 	showFullScreen: (id: number) => void
 }
-type CardState = {
-	cardstate: PostCard
-}
-export class Card extends React.Component<Cardprops, CardState>{
-	state = { cardstate: this.props.cardinfo }
-	handleClick = () => {
-		this.props.showFullScreen(this.props.cardinfo.id)
+
+export const Card = (props: Cardprops) => {
+	const handleClick = () => {
+		props.showFullScreen(props.cardinfo.id)
 	}
-	render() {
-		return (
-			<button className='post' id={String(this.state.cardstate.id) + '-1'} onClick={this.handleClick}>
-				<div className="post__img-wrapper">
-					<img src={this.state.cardstate.image} alt={this.state.cardstate.text} />
-				</div>
-				<div className="post__text">
-					<p className="post__date">{this.state.cardstate.date}</p>
-					<h3 className="post__title">{this.state.cardstate.title}</h3>
-					<p className='post__desc'>{this.state.cardstate.description}</p>
-					<p className='post__author'>Author: {this.state.cardstate.author} {this.state.cardstate.text}</p>
-				</div>
-			</button>
-		)
-	}
+	return (
+		<button className='post' id={String(props.cardinfo.id) + '-1'} onClick={handleClick}>
+			<div className="post__img-wrapper">
+				<img src={props.cardinfo.image} alt={props.cardinfo.text} />
+			</div>
+			<div className="post__text">
+				<p className="post__date">{props.cardinfo.date}</p>
+				<h3 className="post__title">{props.cardinfo.title}</h3>
+				<p className='post__desc'>{props.cardinfo.description}</p>
+				<p className='post__author'>Author: {props.cardinfo.author} {props.cardinfo.text}</p>
+			</div>
+		</button>
+	)
 }
