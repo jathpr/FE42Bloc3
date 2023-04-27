@@ -1,0 +1,26 @@
+.burger-btn {
+   /* display: block; */
+   width: 5%;
+   /* margin: 10px 0; */
+   border: 0;
+   /* border-right: 1px solid #fff; */
+   background-color: #2436A7;
+   padding: 15px;
+   border: 1px solid #fff;
+}
+
+.burger-btn:hover {
+   cursor: pointer;
+   /* background-color: #3e4ca1; */
+}
+
+.menu-svg--wrapper {
+   background-color: #2436A7;
+}
+
+.menu-svg--wrapper svg {
+   width: 15px;
+   height: 15px;
+   fill: #fff;
+   stroke: #fff;
+}

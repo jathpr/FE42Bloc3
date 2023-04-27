@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import styles from "./css/Title.module.css";
+import styles from "../css/Title.module.css";
 
 type Props = {
    children: ReactNode
@@ -7,6 +7,6 @@ type Props = {
 
 export const Title = ({ children }: Props) => (
    <div className={styles.title}>
-      <p className={styles.text}>{children}</p>
+      <h2 className={styles.text}>{children}</h2>
    </div>
 )
