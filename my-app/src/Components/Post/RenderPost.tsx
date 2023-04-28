@@ -1,5 +1,6 @@
+
 import { Post } from '../getPosts'
-import './Post.css'
+import './Posts.css'
 
 export const RenderPost = (props: { post: Post }) => (
     <div className="mainDiv">
