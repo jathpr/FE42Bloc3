@@ -1,11 +1,17 @@
 .wrapper {
-    width: 500px;
-    min-height: 400px;
-    background-color: darkgray;
+    width: 700px;
+    height: 300px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.image {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+.text {
+    width: 350px;
+    margin-bottom: 5px;
 }
+.image {
+    width: 350px;
+    /* height: 300px; */
+}
+
