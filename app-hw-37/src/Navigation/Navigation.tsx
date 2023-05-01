@@ -1,64 +1,35 @@
 import React, { ReactNode } from 'react';
+import { useState } from 'react';
 import { Auth } from '../Auth/Auth';
 import { Reg } from '../Reg/Reg';
-import { CardsList } from '../CardsList/CardsList';
-import { PostCard } from '../PostCard/PostCard';
+import { Main } from '../Main/Main';
 
 const LOGIN = 'CoolDude'
 const PASSWORD = 'react'
 
-type Post = {
-	id: number,
-	image?: string,
-	text: string,
-	date: string,
-	lesson_num: number,
-	title: string,
-	description: string,
-	author: number
-}
+export const Navigation = () => {
+	const [page, setPage] = useState('Auth')
+	const [userLogin, setUserLogin] = useState('')
+	const [userPass, setUserPass] = useState('')
 
-type State = {
-	page: string,
-	userAccount: {
-		login: string,
-		password: string
-	},
-	posts: Post[],
-	id: number
-}
-
-export class Navigation extends React.Component {
-	state: State = { page: 'Auth', userAccount: { login: '', password: '' }, posts: [], id: 0 }
-	componentDidMount() {
-		fetch('https://studapi.teachmeskills.by/blog/posts/')
-			.then(response => response.json())
-			.then(data => this.setState({ posts: data.results }))
-			.catch((error) => console.log(error))
-	}
-	authCheck = (login: string, password: string) => {
+	const authCheck = (login: string, password: string) => {
 		if (login === LOGIN && password === PASSWORD) {
-			this.setState({ page: 'Success', userAccount: { login, password } })
+			setPage('Success')
+			setUserLogin(login)
+			setUserPass(password)
 		} else {
-			this.setState({ page: 'Fail', userAccount: { login, password } })
+			setPage('Fail')
 		}
 	}
-	movetoOtherPage = (page: string) => {
-		this.setState({ page: page, userAccount: { login: '', password: '' } })
+	const movetoOtherPage = (page: string) => {
+		setPage(page)
+		setUserLogin('')
+		setUserPass('')
 	}
-	showFullScreenPost = (id: number) => {
-		this.setState({ page: 'FullScreen', id: id })
-	}
-	movetoMain = () => {
-		this.setState({ page: 'Main' })
-	}
-	render() {
-		return <>
-			{this.state.page === 'Auth' && <Auth check={this.authCheck}></Auth>}
-			{this.state.page === 'Success' && <Reg wasSuccessed={true} animateBtn={this.movetoOtherPage}></Reg>}
-			{this.state.page === 'Fail' && <Reg wasSuccessed={false} animateBtn={this.movetoOtherPage}></Reg>}
-			{this.state.page === 'Main' && <CardsList showFullScreenCard={this.showFullScreenPost} posts={this.state.posts} />}
-			{this.state.page === 'FullScreen' && <PostCard goBack={this.movetoMain} postinfo={this.state.posts[this.state.id - 1]}></PostCard>}
-		</>
-	}
+	return <>
+		{page === 'Auth' && <Auth check={authCheck}></Auth>}
+		{page === 'Success' && <Reg wasSuccessed={true} animateBtn={movetoOtherPage}></Reg>}
+		{page === 'Fail' && <Reg wasSuccessed={false} animateBtn={movetoOtherPage}></Reg>}
+		{page === 'Main' && <Main />}
+	</>
 }
