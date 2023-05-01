@@ -5,10 +5,14 @@ import { Body } from "./body";
 type Props = { children?: ReactNode }
 
 export const Wrapper = (props: Props) => {
+
+
+    // StyleSheet
+
     return (
         <div className="wrapper">
-            <Header></Header>
-            <Body></Body>
+            <Header />
+            <Body />
             {props.children}
         </div>
     );

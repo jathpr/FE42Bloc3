@@ -1,7 +1,22 @@
+:root {
+  --var-bgcolor: #fff;
+  --var-fontcolor: #646464;
+  --var-primaryColor: #ffae00;
+  --var-buttonColor: #fff2d6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --var-bgcolor: #303030;
+    --var-fontcolor: #fff;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: var(--var-bgcolor);
 }
 
 body {
@@ -11,6 +26,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--var-bgcolor);
+  color: var(--var-fontcolor);
 }
 
 code {
@@ -20,20 +37,21 @@ code {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1400px;
+  max-width: 100%;
 }
 
 .header {
-  padding: 0 20px;
+  border-bottom: 1px solid var(--var-fontcolor);
+}
+
+.header-wrapper {
+  margin: 0 auto;
+  padding: 5px 10px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
-  /* background-color: #d4f3ff; */
-  /* background: rgb(75, 75, 75); */
-  border-bottom: 2px solid linear-gradient(90deg, rgba(75, 75, 75, 0) 0%, rgba(75, 75, 75, 0.4234068627450981) 10%, rgba(75, 75, 75, 0.6587009803921569) 50%, rgba(75, 75, 75, 0.40379901960784315) 90%, rgba(75, 75, 75, 0) 100%);
-
+  max-width: 1440px;
 }
 
 .header__title {
@@ -44,17 +62,15 @@ code {
   padding: 0 20px;
   font-size: 1.7rem;
   font-weight: 200;
-  color: #646464;
-  cursor: pointer;
-  transition: 0.2s;
+  cursor: default;
 }
 
 .header__lambdaTitle {
-  color: #ffae00;
+  color: var(--var-primaryColor);
 }
 
 .header__posttitle {
-  color: #ffae00;
+  color: var(--var-primaryColor);
   font-size: 1rem;
 }
 
@@ -72,6 +88,7 @@ code {
   font-weight: 700;
   cursor: pointer;
   transition: 0.3s;
+
 }
 
 .header__button:active {
@@ -115,4 +132,22 @@ code {
   background-color: #d4f3ff;
   color: #000;
   transition: 0.3s;
+}
+
+.button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  width: 50%;
+  background-color: var(--var-buttonColor);
+}
+
+.button__spanText {
+  background-color: var(--var-buttonColor);
+  font-size: 0.8rem;
+  font-weight: 700;
 }

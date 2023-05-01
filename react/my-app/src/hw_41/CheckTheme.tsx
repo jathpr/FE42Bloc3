@@ -9,7 +9,7 @@ export const CheckTheme = ({ changeTheme }: ChangeProps) => {
 
         return (
             <div className="toggle__wrapper">
-                <span className="toggle__text">light? or a dark?</span>
+                <span className="toggle__text">light or a dark?</span>
                 <input className="toggle" type="checkbox" onChange={() => changeTheme()} />
             </div>
         )

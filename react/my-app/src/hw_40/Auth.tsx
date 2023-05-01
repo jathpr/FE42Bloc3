@@ -16,7 +16,7 @@ export const Auth = ({ onAuth, onReg }: AuthProps) => {
             <p className="auth__title">Sign in!</p>
             <input className="auth__inputs auth__items" placeholder="login" value={login} onChange={(e) => setLogin(e.target.value)} />
             <input className="auth__inputs auth__items" placeholder="password" value={pass} onChange={(e) => setPass(e.target.value)} />
-            <button className="button reg auth__items" onClick={() => onReg()}>You doesn't have account?<span className="reg-text">Registration</span></button>
+            <button className="button checkToReg auth__items" onClick={() => onReg()}>You doesn't have account?<span className="button__spanText">Registration</span></button>
             <button className="button auth__button auth__items" onClick={() => onAuth(login, pass)}>Let me in!</button>
         </div>
     )

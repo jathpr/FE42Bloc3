@@ -1,0 +1,8 @@
+.header__search {
+    padding: 5px;
+    width: 30%;
+    border: 1px solid var(--var-primaryColor);
+    background: url(../images/header__search.png) no-repeat 10px;
+    font-size: 1.5rem;
+    text-align: center;
+}

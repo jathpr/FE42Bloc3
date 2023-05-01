@@ -1,14 +1,7 @@
+import { Post } from "../classwork_40/getPosts";
 import "./cards.css";
 
-export type PostProps = {
-    image?: string,
-    text: string,
-    date: string,
-    title: string,
-    description: string
-}
-
-export const CardPost = (cardProps: { post: PostProps }) => (
+export const CardPost = (cardProps: { post: Post }) => (
     <div className="card-item">
         <h3 className="card__title">{cardProps.post.title}</h3>
         <img className="card__image" src={cardProps.post.image} />

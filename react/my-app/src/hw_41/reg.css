@@ -18,7 +18,6 @@
     margin: 0 auto 20px;
     font-size: 2rem;
     font-weight: 100;
-    color: #a1a1a1;
 }
 
 .reg__items {
@@ -30,30 +29,15 @@
     height: 50px;
     padding: 0 20px;
     font-size: 1.3rem;
-    border: 1px solid #74828f;
-    background-color: #f0f8ff;
+    border: 1px solid var(--var-primaryColor);
 }
 
-.button {
-    cursor: pointer;
-    background-color: #f0f8ff;
-    border: none;
-    text-align: center;
-    height: 40px;
-    width: 50%;
-}
-
-.reg {
+.checkToAuth {
     width: 25%;
     font-size: 0.7rem;
 }
 
-.reg-text {
-    font-size: 0.9rem;
-    font-weight: 700;
-}
-
 .reg__button {
-    background-color: #8f8f8f;
+    background-color: var(--var-primaryColor);
     font-size: 1.3rem;
 }

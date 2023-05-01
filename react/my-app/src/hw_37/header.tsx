@@ -1,19 +1,23 @@
 import { useContext, useState } from "react"
-import { CheckTheme } from "../sandbox/CheckTheme"
+import { CheckTheme } from "../hw_41/CheckTheme"
 import { ButtonMenu } from "./ButtonHeader"
-import { ChangeTheme, ThemeContext } from "../sandbox/themeContext"
-
-type themePages = "light" | "dark"
+import { ChangeTheme } from "../hw_41/themeContext"
+import { Search } from "../hw_41/Search"
 
 export const Header = () => {
 
     const changeTheme = useContext(ChangeTheme)
 
+
     return (
         <header className="header">
-            <CheckTheme changeTheme={() => changeTheme()} />
-            {/* <ButtonMenu defaultState handleClick={() => console.log('aaaaaaa')}/> */}
-            <Title />
+            <div className="header-wrapper">
+                <CheckTheme changeTheme={() => changeTheme()} />
+                {/* {page ===} */}
+                <Search />
+                {/* <ButtonMenu defaultState handleClick={() => console.log('aaaaaaa')}/> */}
+                <Title />
+            </div>
         </header>
     )
 }
