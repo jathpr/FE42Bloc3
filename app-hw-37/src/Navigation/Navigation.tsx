@@ -7,7 +7,10 @@ import { Main } from '../Main/Main';
 const LOGIN = 'CoolDude'
 const PASSWORD = 'react'
 
-export const Navigation = () => {
+type Props = {
+	searchValue: string
+}
+export const Navigation = ({ searchValue }: Props) => {
 	const [page, setPage] = useState('Auth')
 	const [userLogin, setUserLogin] = useState('')
 	const [userPass, setUserPass] = useState('')
@@ -30,6 +33,6 @@ export const Navigation = () => {
 		{page === 'Auth' && <Auth check={authCheck}></Auth>}
 		{page === 'Success' && <Reg wasSuccessed={true} animateBtn={movetoOtherPage}></Reg>}
 		{page === 'Fail' && <Reg wasSuccessed={false} animateBtn={movetoOtherPage}></Reg>}
-		{page === 'Main' && <Main />}
+		{page === 'Main' && <Main searchValue={searchValue} />}
 	</>
 }
