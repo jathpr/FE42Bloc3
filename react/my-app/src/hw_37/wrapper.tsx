@@ -6,7 +6,7 @@ type Props = { children?: ReactNode }
 
 export const Wrapper = (props: Props) => (
     <div className="wrapper">
-        <Header></Header>
+        {/* <Header></Header> */}
         <Body></Body>
         {props.children}
     </div>
