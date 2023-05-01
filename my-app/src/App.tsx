@@ -7,6 +7,9 @@ import { Tabs } from './Tabs/Tabs';
 import { RenderPostsList } from './hw-38/RenderPostsList';
 import { Registration } from './Registration';
 import { Auth } from './Auth';
+import { Search } from './Search';
+import { Post, getPosts } from './hw-38/posts';
+import { RenderPost } from './hw-38/RenderPost';
 
 type User = {
   login: string,
@@ -21,6 +24,8 @@ export const App = () => {
   const [users, setUsers] = useState<User[]>([])
   const [page, setPage] = useState<Pages>('reg')
 
+  useEffect(() => { getPosts({}).then(posts => setCards(posts)) }, [])
+
   const addUser = (login: string, password: string) => {
     setUsers([...users, { login, password }])
   }
@@ -30,11 +35,12 @@ export const App = () => {
     console.log("🚀 ~ file: App.tsx:28 ~ checkUser ~ result:", result)
   }
 
-useEffect(()=>{setPage('auth')}, [users])
+  useEffect(() => { setPage('auth') }, [users])
 
-const navToReg = () => {
-  setPage('reg')
-}
+  const navToReg = () => {
+    setPage('reg')
+  }
+
 
   return (
     <div>
