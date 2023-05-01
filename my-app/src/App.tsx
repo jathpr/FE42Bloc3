@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css'
-import { Button } from './Components/Button/ButtonBurger';
+import { Button } from './Components/BurgerMenu/ButtonBurger';
 import { Registration } from './Components/Registration/Registration';
 import { Authorization } from './Components/Authorization/Authorization';
 import { LanguageContext } from './Lessons/languageContext';
 import { PostsList } from './Components/Post/PostsList';
+import { Search } from './Components/Search/Search';
 
 
 
@@ -15,21 +16,23 @@ type User = {
 
 type Pages = 'Auth' | 'Reg' | 'Posts'
 
+type SearchResult = { result: string }
+
 export const App = () => {
   const [users, setUsers] = useState<User[]>([])
   const [page, setPage] = useState<Pages>('Reg')
+  const [searchResult, setSearchResult] = useState('')
 
   const addUser = (login: string, password: string) => {
     setUsers([...users, { login, password }])
-    // setPage('Auth')
   }
 
   const checkUser = (login: string, password: string) => {
     const findUser = users.find(user => user.login === login && user.password === password)
-    if (findUser){
+    // if (findUser) {
       setPage('Posts')
-    }
-    else alert('Wrong data')
+    // }
+    // else alert('Wrong data')
   }
 
   const navToReg = () => {
@@ -38,26 +41,20 @@ export const App = () => {
 
   useEffect(() => { setPage('Auth') }, [users])
 
-  function TextInputWithFocusButton() {
-  const inputEl = useRef<HTMLInputElement>(null);
-  const onButtonClick = () => {
-    // `current` указывает на смонтированный элемент `input`
-    inputEl.current?.focus();
-  };
-  return (
-    <>
-      <input ref={inputEl} type="text" />
-      <button onClick={onButtonClick}>Установить фокус на поле ввода</button>
-    </>
-  );
-}
+  const changeSearchResult = (result: string) => {
+    setSearchResult(result)
+  }
+
+  // useEffect(() => {setSearchResult('')})
 
   return (
     <>
-    {TextInputWithFocusButton()}
       <header className='header'>
         <div>
           <Button touched handleClick={() => console.log('OK')} />
+        </div>
+        <div>
+          <Search onSearch={changeSearchResult} />
         </div>
       </header>
       <body>
@@ -67,7 +64,7 @@ export const App = () => {
             {page === 'Auth' && <Authorization onAuth={checkUser} onSignUp={navToReg} />}
           </div>
           <div>
-            {page === 'Posts' && <PostsList />}
+            {page === 'Posts' && <PostsList searchResult={searchResult} />}
           </div>
         </div>
       </body>

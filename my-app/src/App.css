@@ -23,8 +23,11 @@ body {
 
 .header {
     background: rgb(55, 55, 191);
+    height: 50px;
     width: 100%;
     position: relative;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: space-between;
 }
