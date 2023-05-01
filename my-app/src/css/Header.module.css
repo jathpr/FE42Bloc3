@@ -8,12 +8,13 @@
    outline: none;
 }
 
-body {   
+body {
    background-color: #F3F3F3;
 }
 
 ul,
-ol, li {
+ol,
+li {
    list-style: none;
 }
 
@@ -35,26 +36,6 @@ h6 {
 
 /* null style end */
 
-button {
-   display: block;
-   margin: 10px 0;
-   background-color: #2436A7;
-   padding: 15px;
-   border: 1px solid #fff;
+.header {
+   display: flex;
 }
-
-button:hover {
-   cursor: pointer;
-}
-
-.menu-svg--wrapper {
-   background-color: #2436A7;
-}
-
-.menu-svg--wrapper svg {
-   width: 15px;
-   height: 15px;
-   fill: #fff;
-   stroke: #fff;
-}
-

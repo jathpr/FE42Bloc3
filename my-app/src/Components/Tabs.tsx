@@ -1,4 +1,4 @@
-import styles from "./css/Tabs.module.css";
+import styles from "../css/Tabs.module.css";
 
 type Props = {
    tabsArr: string[],

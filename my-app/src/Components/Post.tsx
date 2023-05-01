@@ -1,16 +1,6 @@
 import React from "react";
-import styles from "./css/Post.module.css";
-
-export type OnePost = {
-   id: number,
-   image: string,
-   text: string,
-   date: string,
-   lesson_num: number,
-   title: string,
-   description: string,
-   author: number
-}
+import styles from "../css/Post.module.css";
+import { OnePost } from "../server/getPosts";
 
 type Props = {
    post: OnePost
