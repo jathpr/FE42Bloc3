@@ -1,0 +1,59 @@
+.reg-wrapper {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 25%;
+    box-shadow: 10px 3px 20px -1px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 10px 3px 20px -1px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 10px 3px 20px -1px rgba(0, 0, 0, 0.45);
+
+}
+
+.reg__title {
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    font-weight: 100;
+    color: #a1a1a1;
+}
+
+.reg__items {
+    margin: 10px;
+}
+
+.reg__inputs {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 1.3rem;
+    border: 1px solid #74828f;
+    background-color: #f0f8ff;
+}
+
+.button {
+    cursor: pointer;
+    background-color: #f0f8ff;
+    border: none;
+    text-align: center;
+    height: 40px;
+    width: 50%;
+}
+
+.reg {
+    width: 25%;
+    font-size: 0.7rem;
+}
+
+.reg-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.reg__button {
+    background-color: #8f8f8f;
+    font-size: 1.3rem;
+}
