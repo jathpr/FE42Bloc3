@@ -10,7 +10,7 @@ type Props = {
 
 
 export const Tabs = ({ tabs, activeTab }: Props) => (
-    <div>
+    <div className={s.tabs_wrapper}>
         {tabs && tabs.map(el =>
             <span className={(activeTab === el) ? s.active : s.tab_list}> {el}</span> 
         )}
