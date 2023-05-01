@@ -1,0 +1,21 @@
+.registr_wrapper {
+    width: 400px;
+    height: 250px;
+    border: 1px solid blue;
+    padding-top: 30px;
+}
+.registr_login {
+    margin: 15px 23px;
+}
+.registr_input {
+    width: 270px;
+    margin: 10px;
+}
+
+.registr_password {
+    margin: 10px;
+}
+.registr_button {
+    width: 320px;
+    margin: 15px 40px 0 ;
+}
