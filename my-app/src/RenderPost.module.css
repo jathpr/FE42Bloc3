@@ -1,5 +1,4 @@
 .wrapper {
-    width: 700px;
     height: 300px;
     margin: 20px;
     display: flex;
@@ -7,8 +6,7 @@
 }
 
 .text {
-    width: 350px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .image {
     width: 350px;
