@@ -15,28 +15,12 @@ export const Button = ({ visible, handleClick }: Props) => {
     }
 
     return (
+        <div className={styles.button_wrapper}>
         <button className={styles.button} onClick={click}>{isVisible ? <Burger /> : <Close />}  </button>
+        </div>
     )
 }
 
-
-// type State = {
-//     opened: boolean
-// }
-// export class ButtonComponent extends React.Component<Props, State> {
-//     state = {opened: !!this.props.visible}
-
-//     click = () => {
-//         this.props.handleClick()
-//         this.setState({opened: !this.state.opened})
-//     }
-
-//     render () {
-//         return (
-//             <button className={styles.button} onClick={this.click}>{this.state.opened ? <Burger /> : <Close />}  </button>
-//         )
-//     }
-// }
 
 function Burger() {
     return (
