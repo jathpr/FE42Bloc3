@@ -9,19 +9,22 @@ const PASSWORD = 'react'
 
 export const Navigation = () => {
 	const [page, setPage] = useState('Auth')
-	const [account, setAccount] = useState({ login: '', password: '' })
+	const [userLogin, setUserLogin] = useState('')
+	const [userPass, setUserPass] = useState('')
 
 	const authCheck = (login: string, password: string) => {
 		if (login === LOGIN && password === PASSWORD) {
 			setPage('Success')
-			setAccount({ login, password })
+			setUserLogin(login)
+			setUserPass(password)
 		} else {
 			setPage('Fail')
 		}
 	}
 	const movetoOtherPage = (page: string) => {
 		setPage(page)
-		setAccount({ login: '', password: '' })
+		setUserLogin('')
+		setUserPass('')
 	}
 	return <>
 		{page === 'Auth' && <Auth check={authCheck}></Auth>}
