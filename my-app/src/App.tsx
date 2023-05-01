@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Title } from './Title';
-// import { Button } from './Button/Button';
-import { Button } from './Button/ButtonClass';
-import { Tabs } from './Tabs/Tabs';
-import { RenderPostsList } from './hw-38/RenderPostsList';
+import { Button } from './ButtonClass';
+import { Tabs } from './Tabs';
+import { RenderPostsList } from './RenderPostsList';
 import { Registration } from './Registration';
 import { Auth } from './Auth';
-import { Search } from './Search';
-import { Post, getPosts } from './hw-38/posts';
-import { RenderPost } from './hw-38/RenderPost';
+import { Post, getPosts } from './posts';
 
 type User = {
   login: string,
@@ -23,6 +20,7 @@ const tabNames = ['All', 'My favourites', 'Popular']
 export const App = () => {
   const [users, setUsers] = useState<User[]>([])
   const [page, setPage] = useState<Pages>('reg')
+  const [cards, setCards] = useState<Post[]>([])
 
   useEffect(() => { getPosts({}).then(posts => setCards(posts)) }, [])
 
