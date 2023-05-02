@@ -11,13 +11,14 @@
     box-shadow: 10px 3px 20px -1px rgba(0, 0, 0, 0.45);
     -webkit-box-shadow: 10px 3px 20px -1px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 10px 3px 20px -1px rgba(0, 0, 0, 0.45);
-
+    transition: 0.2s;
 }
 
 .auth__title {
     margin: 0 auto 20px;
     font-size: 2rem;
     font-weight: 100;
+    transition: 0.2s;
 }
 
 .auth__items {

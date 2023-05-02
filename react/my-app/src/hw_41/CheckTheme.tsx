@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import "./checkTheme.css"
+import { ThemeContext } from "./themeContext"
 
 type ChangeProps = {
     changeTheme: () => void
@@ -7,10 +8,16 @@ type ChangeProps = {
 
 export const CheckTheme = ({ changeTheme }: ChangeProps) => {
 
-        return (
-            <div className="toggle__wrapper">
-                <span className="toggle__text">light or a dark?</span>
-                <input className="toggle" type="checkbox" onChange={() => changeTheme()} />
-            </div>
-        )
+    const theme = useContext(ThemeContext)
+    const lightBack = { background: "var(--var-lightBack)" }
+    const darkBack = { background: "var(--var-darkBack)" }
+    const lightToggle = { background: "var(--var-fontcolor)" }
+    const darkToggle = { background: "var(--var-primaryColor)" }
+
+    return (
+        <div style={theme === "light" ? lightBack : darkBack} className="toggle__wrapper">
+            <span style={theme === "light" ? lightBack : darkBack} className="toggle__text">light or a dark?</span>
+            <input style={theme === "light" ? lightToggle : darkToggle} className="toggle" type="checkbox" onChange={() => changeTheme()} />
+        </div>
+    )
 }

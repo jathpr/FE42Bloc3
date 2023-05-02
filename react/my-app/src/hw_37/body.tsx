@@ -1,10 +1,10 @@
 // import { Posts } from "../hw_38/Posts"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { CardsWrapper } from "../hw_38/PostsWrapper"
 import { Auth } from "../hw_40/Auth"
 import { setConstantValue } from "typescript"
 import { Reg } from "../hw_41/Reg"
-import { Search } from "../hw_41/Search"
+import { ThemeContext } from "../hw_41/themeContext"
 
 type User = {
     login: string,
@@ -15,11 +15,15 @@ type Pages = "auth" | "reg" | "content"
 
 export const Body = () => {
 
-    const [users, setUsers] = useState<User[]>([])
+    const [users, setUsers] = useState<User[]>([{ login: "", password: "" }])
     const [page, setPage] = useState<Pages>("auth")
 
     const goToReg = () => setPage("reg")
     const goToAuth = () => setPage("auth")
+
+    const theme = useContext(ThemeContext)
+    const lightStyle = { background: "var(--var-lightBack)" }
+    const darkStyle = { background: "var(--var-darkBack)" }
 
     const regUser = (login: string, password: string) => {
         setUsers([...users, { login, password }])
@@ -36,7 +40,7 @@ export const Body = () => {
     }
 
     return (
-        <div className="body">
+        <div style={theme === "light" ? lightStyle : darkStyle} className="body">
             {page === "auth" && <Auth onAuth={checkUser} onReg={() => goToReg()} />}
             {page === "reg" && <Reg onReg={regUser} onAuth={() => goToAuth()} />}
             {page === "content" && <CardsWrapper />}

@@ -7,11 +7,12 @@
     text-align: center;
     justify-content: center;
     margin: 10px;
-    
+    transition: 0.2s;
 }
 
 .toggle__text {
     font-size: 0.9rem;
+    transition: 0.2s;
 }
 
 .toggle:before,
@@ -52,6 +53,7 @@
     -webkit-appearance: none;
     appearance: none;
     -webkit-tap-highlight-color: transparent;
+    transition: 0.2s;
 }
 
 .toggle:before,
