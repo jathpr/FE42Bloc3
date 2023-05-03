@@ -1,27 +1,21 @@
 import React from "react";
 import style from "./BurgerMenu.module.css";
+import { useState } from "react";
 
 type Props = {
   enabled: boolean;
 };
 
-type State = {
-  opened: boolean;
-};
-
-export class ButtonComponent extends React.Component<Props, State> {
-  state = { opened: !!this.props.enabled };
-  click = () => {
-    this.setState({ opened: !this.state.opened });
+export const ButtonComponent  = ({ enabled }: Props) => {  
+  const [isEnabled, setIsEnabled] = useState(enabled)
+  const click = () => {
+    setIsEnabled(!isEnabled)
   };
-
-  render() {
     return (
-      <button className={style.burger} onClick={this.click}>
-        {this.state.opened ? <Burger /> : <ClosedButton />}
+      <button className={style.burger} onClick={click}>
+        {isEnabled ? <Burger /> : <ClosedButton />}
       </button>
     );
-  }
 }
 
 const Burger = () => (
