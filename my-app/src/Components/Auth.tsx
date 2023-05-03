@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../css/Auth.module.css";
 import { Title } from "./Title";
 import { Header } from "./Header";
 
 type Props = {
-   onAuth: (login: string, pass: string) => void
+   onAuth: (login: string, pass: string) => void,
+   onRegClick: () => void
 }
+export const Auth = ({ onAuth, onRegClick }: Props) => {
 
-export class Auth extends React.Component<Props> {
-   state = { login: '', pass: '' }
+   const [login, setLogin] = useState('');
+   const [pass, setPass] = useState('');
 
-   handleAuth = () => {
-      this.props.onAuth(this.state.login, this.state.pass)
+   const handleAuth = () => {
+      onAuth(login, pass)
    }
 
-   render(): React.ReactNode {
-      return <>
-         <Header username={null} />
-         <div className={styles.auth}>
-            <Title>Sign In</Title>
-            <input placeholder="Enter email" className={styles['auth__input']} value={this.state.login} type="text" onChange={(e) => {
-               this.setState({ login: e.target.value })
-            }} />
-            <input placeholder="Enter password" className={styles['auth__input']} value={this.state.pass} type="text" onChange={(e) => {
-               this.setState({ pass: e.target.value })
-            }} />
-            {/* <button onClick={this.handleReg}>Register</button> */}
-            <button className={styles['auth__submit-btn']} onClick={this.handleAuth}>Sign in</button>
-         </div>
-      </>
+   const handleReg = () => {
+      onRegClick();
    }
+
+   return <>
+      <Header username={null} />
+      <div className={styles.auth}>
+         <Title>Sign In</Title>
+         <input placeholder="Enter email" className={styles['auth__input']} value={login} type="text" onChange={(e) => {
+            setLogin(e.target.value)
+         }} />
+         <input placeholder="Enter password" className={styles['auth__input']} value={pass} type="text" onChange={(e) => {
+            setPass(e.target.value)
+         }} />
+         <button className={styles['auth__btn']} onClick={handleAuth}>Sign in</button>
+         <button className={styles['auth__btn']} onClick={handleReg}>Register</button>
+      </div>
+   </>
 }
