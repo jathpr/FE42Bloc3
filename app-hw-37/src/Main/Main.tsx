@@ -13,9 +13,11 @@ type Post = {
 	description: string,
 	author: number
 }
+type Props = {
+	searchValue: string
+}
 
-
-export const Main = () => {
+export const Main = ({ searchValue }: Props) => {
 	const [page, setPage] = useState('List')
 	const [fullScreenPostId, setFullScreenPostId] = useState(0)
 
@@ -27,7 +29,7 @@ export const Main = () => {
 		setPage('List')
 	}
 	return (<>
-		{page === 'List' && <CardsList showFullScreenCard={handleFullScreenPost}></CardsList>}
+		{page === 'List' && <CardsList searchValue={searchValue} showFullScreenCard={handleFullScreenPost}></CardsList>}
 		{page === 'FullScreen' && <FullScreenCard id={fullScreenPostId} goBack={returnToList}></FullScreenCard>}
 	</>)
 }

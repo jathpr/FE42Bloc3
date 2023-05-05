@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(238, 236, 236);
+  background: rgb(238, 236, 236);
+  height: 100%;
 }
 
 * {
@@ -15,13 +16,17 @@ body {
 }
 
 #root {
-  margin: 20px;
+  height: 100%;
+}
+
+.context__wrapper {
+  height: 100%;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 20px 15px 0;
 }
 
 .task-title {

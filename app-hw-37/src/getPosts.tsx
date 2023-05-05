@@ -19,8 +19,9 @@ type PostsResponse = {
 	results: Post[];
 }
 
-export const getPosts = async (limit: number) => {
+export const getPosts = async (limit: number, searchValue: string) => {
 	const postsUrl = new URL(POSTSURL);
+	if (searchValue) postsUrl.searchParams.set("search", searchValue);
 	if (limit) postsUrl.searchParams.set("limit", String(limit));
 	const response = await fetch(postsUrl);
 	const posts: PostsResponse = await response.json();

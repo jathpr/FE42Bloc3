@@ -46,7 +46,21 @@
 	color: white;
 }
 
+.theme__btn {
+	height: 100%;
+	width: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background: rgb(94, 94, 211);
+	border: none;
+	color: white;
+}
 
+.theme__btn:hover {
+	cursor: pointer;
+}
 
 .menu__user-info {
 	height: 100%;

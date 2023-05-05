@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getPost } from '../getPosts';
 import './fullScreenCard.css';
+import { ThemeContext } from '../ThemeContext';
+
 type Post = {
 	id: number,
 	image?: string,
@@ -29,17 +31,18 @@ export const FullScreenCard = (props: Props) => {
 		author: 0
 	})
 	useEffect(() => { getPost(props.id).then(post => setPost(post)) }, [])
+	const theme = useContext(ThemeContext)
 	return (<>
 		<button className='back-btn' onClick={props.goBack} >← Back to posts</button>
 		<div className='card' id={String(post.id)}>
-			<h2 className='card__title'>{post.title}</h2>
+			<h2 className='card__title' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>{post.title}</h2>
 			<p className='card__date'>{post.date}</p>
 			<div className='card__img-wrapper'>
 				<img src={post.image} alt={post.text} />
 			</div>
 			<div className='card__text'>
 				<p className='card__desc'>{post.description}</p>
-				<p className='card__author'>Author: {post.author} {post.text}</p>
+				<p className='card__author' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Author: {post.author} {post.text}</p>
 			</div>
 		</div>
 	</>)
