@@ -1,0 +1,25 @@
+.registration_wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    height: 200px;
+    background-color: azure;
+    margin: 100px auto;
+    border: 2px;
+    border-style: double;
+    border-color: blue;
+    box-shadow: 5px 5px 5px gray;
+    padding: 10px;
+
+}
+
+.button_registration{
+    display: block;
+    width: 100px;
+    margin: auto;
+}
+
+.input {
+    margin: 10px;
+}
