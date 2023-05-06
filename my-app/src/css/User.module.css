@@ -9,6 +9,7 @@
    color: #fff;
    /* margin: 10px 0; */
    /* margin: 0 -10px; */
+   cursor: default;
 }
 
 .user__initials-block {

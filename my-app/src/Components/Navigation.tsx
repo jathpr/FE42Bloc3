@@ -1,95 +1,97 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styles from "../css/Navigation.module.css";
 import { Registration } from "./Registration";
 import { PostsList } from "./PostsList";
 import { Auth } from "./Auth";
 import { OnePost } from "../server/getPosts";
 import { PostPage } from "./PostPage";
-
-type Props = {}
+import { ChangeThemeContext, ThemeContext } from "./Context/themeContext";
+import { SearchPostsList } from "./SearchPostsList";
+import { Header } from "./Header";
 
 type User = {
-   login: string,
-   pass: string,
-   username: string
+   login: string | null,
+   pass: string | null,
+   username: string | null
 }
 
-type State = {
-   page: 'auth' | 'reg' | 'postsList' | 'postPage',
-   user: User,
-   selectedPost: OnePost
-}
+export const Navigation = () => {
+   const changeTheme = useContext(ChangeThemeContext);
+   const theme = useContext(ThemeContext);
 
-const LOGIN = 'user'
-const PASS = 'user'
-const DEFAULT_USER = {
-   login: 'user',
-   pass: 'user',
-   username: 'Artem Malkin'
-}
+   const [users, setUsers] = useState<User[]>([])
 
-export class Navigation extends React.Component {
-   // page: 'auth',
-   state = {
-      page: 'auth',
-      user: {
-         login: null,
-         pass: null,
-         username: null
-      },
-      selectedPost: null
+   const [page, setPage] = useState('auth');
+   const [user, setUser] = useState<User>({ login: null, pass: null, username: null });
+   const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
+   const [searchInputValue, setSearchInputValue] = useState('')
 
-   }
 
-   // (login: string, pass: string, username: string) 
-   onReg = (login: string, pass: string) => {
+   const onReg = (login: string, pass: string, username: string) => {
       if (!login) return
       if (!pass) return
+      if (!username) return
 
-      // change username - we need to get it from registration
-      this.setState({
-         ...this.state,
-         page: 'postsList',
-         user: {
-            login: login,
-            pass: pass,
-            username: DEFAULT_USER.username
-         }
-      })
+      const newUser: User = {
+         login: login,
+         pass: pass,
+         username: username
+      }
+
+      setUsers([...users, newUser])
+
+      setPage('auth');
+      setUser(newUser)
    }
 
-   onAuth = (login: string, pass: string) => {
-      // change username - we need to get it from server by login and password
-      if (login === LOGIN && pass === PASS) this.setState({
-         ...this.state,
-         page: 'postsList',
-         user: {
-            login: login,
-            pass: pass,
-            username: DEFAULT_USER.username
+   const onAuth = (login: string, pass: string) => {
+
+      const userFound = users.find(user => user.login === login);
+
+      if (userFound) {
+         if (pass === userFound.pass) {
+
+            setPage('postsList');
+            setUser(userFound)
          }
-      })
+      }
 
       return
    }
 
-   onPostClick = (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-      this.setState({
-         ...this.state,
-         page: 'postPage',
-         selectedPost: post
-      })
+   const onPostClick = (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+
+      setPage('postPage');
+      setSelectedPost(post);
    }
 
-   // console.log()
-
-   render(): React.ReactNode {
-      return <>
-         {this.state.page === 'auth' && <Auth onAuth={this.onAuth} />}
-         {/* {this.state.page === 'reg' && <Registration onReg={this.onReg} />} */}
-         {this.state.page === 'postsList' && <PostsList username={this.state.user.username} onPostClick={this.onPostClick} />}
-         {this.state.selectedPost && <PostPage username={this.state.user.username} post={this.state.selectedPost} />}
-         {/* {(this.state.page === 'postsList' && this.state.selectedPost) ? <PostPage username={this.state.user.username} post={this.state.selectedPost} /> : <PostsList username={this.state.user.username} onPostClick={this.onPostClick} />} */}
-      </>
+   const onRegClick = () => {
+      setPage('reg')
    }
+
+   const onAuthClick = () => {
+      setPage('auth')
+   }
+
+   const onSearchClick = (inputValue: string) => {
+
+      if (page !== 'auth' && page !== 'reg') {
+         setPage('searchPosts')
+         setSearchInputValue(inputValue)
+         console.log(inputValue)
+      }
+
+   }
+
+   document.body.style.backgroundColor = theme === 'light' ? '#F3F3F3' : '#141414';
+
+   return <>
+      <Header username={(page !== 'auth' && page !== 'reg') ? user.username : null} clickSearch={onSearchClick} />
+      {page === 'auth' && <Auth onAuth={onAuth} onRegClick={onRegClick} />}
+      {page === 'reg' && <Registration onReg={onReg} onAuthClick={onAuthClick} />}
+      {page === 'postsList' && <PostsList onPostClick={onPostClick} />}
+      {page === 'searchPosts' && <SearchPostsList searchInputValue={searchInputValue} onPostClick={onPostClick}></SearchPostsList>}
+      {selectedPost && <PostPage post={selectedPost} />}
+      <button onClick={changeTheme}>Change theme</button>
+   </>
 }

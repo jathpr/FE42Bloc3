@@ -7,3 +7,7 @@
 .text {
    font-weight: 700;
 }
+
+.dark-theme-text {
+   color: #fff;
+}
