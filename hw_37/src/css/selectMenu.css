@@ -1,0 +1,15 @@
+.select-menu {
+	width: 200px;
+	height: 80px;
+	background: rgb(48, 48, 219);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid white;
+	list-style-type: none;
+	visibility: hidden;
+}
+
+.select-menu--active {
+	visibility: visible;
+}
