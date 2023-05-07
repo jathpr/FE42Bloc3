@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { useState, useEffect } from 'react';
 import { CardsList } from '../CardsList/CardsList';
 import { FullScreenCard } from '../FullScreenCard/FullScreenCard';
+import { Routes, Route } from 'react-router-dom';
 
 type Post = {
 	id: number,
@@ -29,7 +30,13 @@ export const Main = ({ searchValue }: Props) => {
 		setPage('List')
 	}
 	return (<>
-		{page === 'List' && <CardsList searchValue={searchValue} showFullScreenCard={handleFullScreenPost}></CardsList>}
-		{page === 'FullScreen' && <FullScreenCard id={fullScreenPostId} goBack={returnToList}></FullScreenCard>}
+		<Routes>
+			<Route path='/'>
+				<Route index element={<CardsList searchValue={searchValue} showFullScreenCard={handleFullScreenPost}></CardsList>}></Route>
+				<Route path=':postId' element={<FullScreenCard id={fullScreenPostId} goBack={returnToList}></FullScreenCard>}></Route>
+			</Route>
+		</Routes>
+		{/* {page === 'List' && <CardsList searchValue={searchValue} showFullScreenCard={handleFullScreenPost}></CardsList>}
+		{page === 'FullScreen' && <FullScreenCard id={fullScreenPostId} goBack={returnToList}></FullScreenCard>} */}
 	</>)
 }

@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { Auth } from '../Auth/Auth';
 import { Reg } from '../Reg/Reg';
@@ -8,31 +9,30 @@ const LOGIN = 'CoolDude'
 const PASSWORD = 'react'
 
 type Props = {
-	searchValue: string
+	searchValue: string,
+	getAuthorised: () => void,
+	isAuthorised: boolean
 }
-export const Navigation = ({ searchValue }: Props) => {
-	const [page, setPage] = useState('Auth')
+export const Navigation = ({ searchValue, getAuthorised, isAuthorised }: Props) => {
 	const [userLogin, setUserLogin] = useState('')
 	const [userPass, setUserPass] = useState('')
 
 	const authCheck = (login: string, password: string) => {
 		if (login === LOGIN && password === PASSWORD) {
-			setPage('Success')
 			setUserLogin(login)
 			setUserPass(password)
+			getAuthorised()
+			return '/success'
 		} else {
-			setPage('Fail')
+			return '/fail'
 		}
 	}
-	const movetoOtherPage = (page: string) => {
-		setPage(page)
-		setUserLogin('')
-		setUserPass('')
-	}
 	return <>
-		{page === 'Auth' && <Auth check={authCheck}></Auth>}
-		{page === 'Success' && <Reg wasSuccessed={true} animateBtn={movetoOtherPage}></Reg>}
-		{page === 'Fail' && <Reg wasSuccessed={false} animateBtn={movetoOtherPage}></Reg>}
-		{page === 'Main' && <Main searchValue={searchValue} />}
+		<Routes>
+			<Route index element={<Auth check={authCheck} isAuthorised={isAuthorised}></Auth>}></Route>
+			<Route path='success' element={<Reg wasSuccessed={true} ></Reg>}></Route>
+			<Route path='fail' element={<Reg wasSuccessed={false}></Reg>}></Route>
+			<Route path='posts/*' element={<Main searchValue={searchValue} />}></Route>
+		</Routes>
 	</>
 }

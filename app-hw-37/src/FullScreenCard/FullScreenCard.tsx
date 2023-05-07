@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { getPost } from '../getPosts';
 import './fullScreenCard.css';
 import { ThemeContext } from '../ThemeContext';
+import { Link, useParams } from 'react-router-dom';
 
 type Post = {
 	id: number,
@@ -30,10 +31,11 @@ export const FullScreenCard = (props: Props) => {
 		description: '',
 		author: 0
 	})
-	useEffect(() => { getPost(props.id).then(post => setPost(post)) }, [])
+	const params = useParams()
+	useEffect(() => { params.postId && getPost(params.postId).then(post => setPost(post)) }, [])
 	const theme = useContext(ThemeContext)
 	return (<>
-		<button className='back-btn' onClick={props.goBack} >← Back to posts</button>
+		<Link to='/posts'><button className='back-btn' onClick={props.goBack} >← Back to posts</button></Link>
 		<div className='card' id={String(post.id)}>
 			<h2 className='card__title' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>{post.title}</h2>
 			<p className='card__date'>{post.date}</p>

@@ -4,10 +4,14 @@
 	gap: 10px;
 }
 
+.card-item {
+	width: 32.5%;
+}
+
 .post {
 	padding: 30px 15px;
 	display: flex;
-	width: 32.5%;
+	width: 100%;
 	border: none;
 	border-bottom: 1px solid gray;
 }

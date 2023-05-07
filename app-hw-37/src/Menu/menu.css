@@ -1,3 +1,7 @@
+.menu__wrapper {
+	position: relative;
+}
+
 .menu {
 	height: 80px;
 	width: 100%;
