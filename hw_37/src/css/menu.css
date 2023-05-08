@@ -1,0 +1,49 @@
+.menu {
+	height: 60px;
+	width: 100%;
+	background: rgb(26, 26, 192);
+	display: flex;
+}
+
+.menu__btn {
+	height: 100%;
+	width: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background: rgb(26, 26, 192);
+	border: none;
+	cursor: pointer;
+}
+
+#menu__toggle {
+	opacity: 0;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	z-index: 5;
+	width: 24px;
+	height: 18px;
+	cursor: pointer;
+}
+
+.menu__search-input {
+	background-color: rgba(105, 105, 211, 0.986);
+	flex-grow: 1;
+	color: white;
+	border: none;
+	padding: 20px 30px;
+}
+
+.menu__search-input::placeholder {
+	color: white;
+}
+
+.menu__user-info {
+	height: 100%;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
