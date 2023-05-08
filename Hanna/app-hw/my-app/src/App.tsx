@@ -1,9 +1,9 @@
 import React from 'react';
-// import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Title } from './hw37/title/title';
 import { Menu } from './hw37/menu-burger/menu';
 import  { Tabs } from './hw37/tabs/tabs';
+import { PostList } from './hw38/PostList/Posts/PostList';
 
 function App() {
 return (
@@ -12,6 +12,8 @@ return (
 		<Title></Title>
 		<Menu></Menu>
 		<Tabs></Tabs>
+		<h1>HW38</h1>
+		<PostList></PostList>
 	</>
 );
 }
