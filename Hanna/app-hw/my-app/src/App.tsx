@@ -4,6 +4,7 @@ import { Title } from './hw37/title/title';
 import { Menu } from './hw37/menu-burger/menu';
 import  { Tabs } from './hw37/tabs/tabs';
 import { PostList } from './hw38/PostList/Posts/PostList';
+import { Navigation } from './hw39/Navigation/Navigation';
 
 function App() {
 return (
@@ -14,6 +15,8 @@ return (
 		<Tabs></Tabs>
 		<h1>HW38</h1>
 		<PostList></PostList>
+		<h1>HW39</h1>
+		<Navigation></Navigation>
 	</>
 );
 }
