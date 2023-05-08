@@ -8,8 +8,8 @@ import './css/app.css';
 
 export const App = () => (
   <div className='container'>
-    <Title></Title>
-    <Menu></Menu>
+    <Title/>
+    <Menu/>
     <Tabs tabsArray = {[
       { title: 'All', active: true },
       { title: 'My favorite' },
