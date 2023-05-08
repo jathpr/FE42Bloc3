@@ -11,25 +11,21 @@ export const Tabs = ({ tabsArray }: { tabsArray: TabsProps[] }) => {
         return null;
     }
     return (<ul className="tabs">
-        {tabsArray.reduce((acc: any[] = [], arr) => {
+        {tabsArray.map((arr) => {
+            let tabClassNames: string = `tabs__tab ${arr.active ? "tabs__tab--active" : ""}`;
 
-            
-            let tabClassNames : string = `tabs__tab ${arr.active ? "tabs__tab--active" : ""}`;
-            
-            if(arr.disabled){
-                tabClassNames += `tabs__tab--disabled`
+            if (arr.disabled) {
+                tabClassNames += `tabs__tab--disabled`;
             }
 
-            acc.push(
+            return (
                 <li className={tabClassNames}>
                     <button className="tab__btn" disabled={arr.disabled}>
                         {arr.title}
                     </button>
                 </li>
             );
-
-            return acc
-        }, [])}
+        })}
     </ul>)
 
 };
