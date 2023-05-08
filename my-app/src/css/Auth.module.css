@@ -13,7 +13,7 @@
    padding: 5px;
 }
 
-.auth__submit-btn {
+.auth__btn {
    display: block;
    margin: 0 auto;
    background-color: #2436A7;
@@ -23,9 +23,10 @@
    border-radius: 3px;
    font-size: 20px;
    padding: 5px;
+   margin-bottom: 10px;
 }
 
-.auth__submit-btn:hover {
+.auth__btn:hover {
    cursor: pointer;
    background-color: #3e4ca1;
 }

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import styles from "../css/PostsList.module.css";
 import { Post } from "./Post";
 import { OnePost, getPosts } from "../server/getPosts";
@@ -10,27 +10,21 @@ type Props = {
    onPostClick: (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
 }
 
-export class PostsList extends React.Component<Props> {
+export const PostsList = ({ username, onPostClick }: Props) => {
 
-   state: { posts: OnePost[] } = { posts: [] };
+   const [posts, setPosts] = useState<OnePost[]>([]);
 
-   componentDidMount() {
+   useEffect(() => {
       getPosts({ limit: 8 })
          .then((serverPosts: OnePost[]) => {
-            this.setState({ posts: serverPosts })
+            setPosts(serverPosts)
          })
-   }
+   }, [])
 
-   handlePostClick = (e: MouseEventHandler<HTMLLIElement>) => {
-      // this.props.onPostClick(post)
-   }
-
-   render() {
-      return <>
-         <Header username={this.props.username} />
-         <ul className={styles['posts-list']}>
-            {this.state.posts.map((post: OnePost) => <li onClick={(e) => this.props.onPostClick(post, e)} key={post.id} className={styles['one-post']}><Post post={post} /></li>)}
-         </ ul>
-      </>
-   }
+   return <>
+      <Header username={username} />
+      <ul className={styles['posts-list']}>
+         {posts.map((post: OnePost) => <li onClick={(e) => onPostClick(post, e)} key={post.id} className={styles['one-post']}><Post post={post} /></li>)}
+      </ul>
+   </>
 }

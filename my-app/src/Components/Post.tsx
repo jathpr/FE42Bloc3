@@ -6,18 +6,15 @@ type Props = {
    post: OnePost
 }
 
-export class Post extends React.Component<Props> {
-
-   render() {
-      return <div className={styles.post}>
-         <div className={styles['post__text']}>
-            <p>{this.props.post.date}</p>
-            <h2>{this.props.post.title}</h2>
-            <p>{this.props.post.text}</p>
-         </div>
-         <div className={styles['post__img--wrapper']}>
-            <img src={this.props.post.image} alt="" />
-         </div>
+export const Post = ({ post }: Props) => {
+   return <div className={styles.post}>
+      <div className={styles['post__text']}>
+         <p>{post.date}</p>
+         <h2>{post.title}</h2>
+         <p>{post.text}</p>
       </div>
-   }
+      <div className={styles['post__img--wrapper']}>
+         <img src={post.image} alt="" />
+      </div>
+   </div>
 }
