@@ -21,7 +21,6 @@ export const Auth = ({ onAuth, onRegClick }: Props) => {
    }
 
    return <>
-      <Header username={null} />
       <div className={styles.auth}>
          <Title>Sign In</Title>
          <input placeholder="Enter email" className={styles['auth__input']} value={login} type="text" onChange={(e) => {

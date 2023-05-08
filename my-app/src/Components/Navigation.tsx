@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../css/Navigation.module.css";
 import { Registration } from "./Registration";
 import { PostsList } from "./PostsList";
 import { Auth } from "./Auth";
 import { OnePost } from "../server/getPosts";
 import { PostPage } from "./PostPage";
-
-type Props = {}
+import { ChangeThemeContext, ThemeContext } from "./Context/themeContext";
+import { SearchPostsList } from "./SearchPostsList";
+import { Header } from "./Header";
 
 type User = {
    login: string | null,
@@ -14,25 +15,17 @@ type User = {
    username: string | null
 }
 
-type State = {
-   page: 'auth' | 'reg' | 'postsList' | 'postPage',
-   user: User,
-   selectedPost: OnePost
-}
-
-let users: User[] = [];
-
-const DEFAULT_USER = {
-   login: 'user',
-   pass: 'user',
-   username: 'Artem Malkin'
-}
-
 export const Navigation = () => {
+   const changeTheme = useContext(ChangeThemeContext);
+   const theme = useContext(ThemeContext);
+
+   const [users, setUsers] = useState<User[]>([])
 
    const [page, setPage] = useState('auth');
    const [user, setUser] = useState<User>({ login: null, pass: null, username: null });
    const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
+   const [searchInputValue, setSearchInputValue] = useState('')
+
 
    const onReg = (login: string, pass: string, username: string) => {
       if (!login) return
@@ -45,14 +38,10 @@ export const Navigation = () => {
          username: username
       }
 
-      users.push(newUser);
+      setUsers([...users, newUser])
 
       setPage('auth');
-      setUser({
-         login: login,
-         pass: pass,
-         username: username
-      })
+      setUser(newUser)
    }
 
    const onAuth = (login: string, pass: string) => {
@@ -63,11 +52,7 @@ export const Navigation = () => {
          if (pass === userFound.pass) {
 
             setPage('postsList');
-            setUser({
-               login: login,
-               pass: pass,
-               username: userFound.username
-            })
+            setUser(userFound)
          }
       }
 
@@ -86,13 +71,27 @@ export const Navigation = () => {
 
    const onAuthClick = () => {
       setPage('auth')
+   }
+
+   const onSearchClick = (inputValue: string) => {
+
+      if (page !== 'auth' && page !== 'reg') {
+         setPage('searchPosts')
+         setSearchInputValue(inputValue)
+         console.log(inputValue)
+      }
 
    }
 
+   document.body.style.backgroundColor = theme === 'light' ? '#F3F3F3' : '#141414';
+
    return <>
+      <Header username={(page !== 'auth' && page !== 'reg') ? user.username : null} clickSearch={onSearchClick} />
       {page === 'auth' && <Auth onAuth={onAuth} onRegClick={onRegClick} />}
       {page === 'reg' && <Registration onReg={onReg} onAuthClick={onAuthClick} />}
-      {page === 'postsList' && <PostsList username={user.username} onPostClick={onPostClick} />}
-      {selectedPost && <PostPage username={user.username} post={selectedPost} />}
+      {page === 'postsList' && <PostsList onPostClick={onPostClick} />}
+      {page === 'searchPosts' && <SearchPostsList searchInputValue={searchInputValue} onPostClick={onPostClick}></SearchPostsList>}
+      {selectedPost && <PostPage post={selectedPost} />}
+      <button onClick={changeTheme}>Change theme</button>
    </>
 }

@@ -27,8 +27,5 @@ my-app/yarn-error.log*
 my-app/.gitignore
 
 # files for future
-my-app/src/server/searchPosts.ts
-my-app/src/Components/ClassComponents
-my-app/src/Components/Context
 my-app/src/Components/Lesson9
 my-app/src/langContext.ts

@@ -1,22 +1,29 @@
-import React from "react";
+import { useContext } from "react";
 import styles from "../css/PostPage.module.css";
 import { OnePost } from "../server/getPosts";
 import { Header } from "./Header";
+import { ThemeContext } from "./Context/themeContext";
 
 type Props = {
-   username: string | null
    post: OnePost
 }
 
-export const PostPage = ({ username, post }: Props) => {
+export const PostPage = ({ post }: Props) => {
+
+   const theme = useContext(ThemeContext);
+
+   const dateClassName = theme === 'light' ? styles['post__date'] : `${styles['post__date']} ${styles['dark-theme-text']}`
+   const titleClassName = theme === 'light' ? styles['post__title'] : `${styles['post__title']} ${styles['dark-theme-text']}`
+   const textClassName = theme === 'light' ? styles['post__text'] : `${styles['post__text']} ${styles['dark-theme-text']}`
+   const authorClassName = theme === 'light' ? styles['post__author'] : `${styles['post__author']} ${styles['dark-theme-text']}`
+
    return <>
-      <Header username={username} />
       <div className={styles.post}>
-         <p className={styles['post__date']}>{post.date}</p>
-         <h2 className={styles['post__title']}>{post.title}</h2>
+         <p className={dateClassName}>{post.date}</p>
+         <h2 className={titleClassName}>{post.title}</h2>
          <div className={styles['post__img--wrapper']}><img className={styles['post__img']} src={post.image} alt="post image" /></div>
-         <p className={styles['post__text']}>{post.text}</p>
-         <p className={styles['post__author']}>{post.author}</p>
+         <p className={textClassName}>{post.text}</p>
+         <p className={authorClassName}>{post.author}</p>
       </div>
    </>
 }

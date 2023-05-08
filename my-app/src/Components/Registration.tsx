@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../css/Registration.module.css";
-import { Header } from "./Header";
 import { Title } from "./Title";
 
 type Props = {
    onReg: (login: string, pass: string, username: string) => void,
    onAuthClick: () => void
-}
-
-type State = {
-   login: string,
-   pass: string
 }
 
 export const Registration = ({ onReg, onAuthClick }: Props) => {
@@ -28,7 +22,6 @@ export const Registration = ({ onReg, onAuthClick }: Props) => {
    }
 
    return <>
-      <Header username={null} />
       <div className={styles.reg}>
          <Title>Registration</Title>
          <input placeholder="Enter email" value={login} type="text" className={styles['reg__input']} onChange={(e) => {
