@@ -8,22 +8,34 @@ import { PostsList } from './Components/Post/PostsList';
 import { Search } from './Components/Search/Search';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { RenderPost } from './Components/Post/RenderPost';
+import { User } from './Components/User/User';
+import { Menu } from './Components/BurgerMenu/Menu';
 
 
 
 type User = {
-  login: string,
-  password: string
+  login: string | null,
+  password: string | null,
+  username: string | null
 }
 
 export const App = () => {
   const [users, setUsers] = useState<User[]>([])
   const [searchResult, setSearchResult] = useState('')
+  const [user, setUser] = useState<User>({ login: null, password: null, username: null })
 
   const navigate = useNavigate()
 
-  const addUser = (login: string, password: string) => {
-    setUsers([...users, { login, password }])
+  const addUser = (login: string, password: string, username: string) => {
+
+    const newUser: User = {
+      login: login,
+      password: password,
+      username: username
+    }
+
+    setUsers([...users, newUser])
+    setUser(newUser)
   }
 
   const checkUser = (login: string, password: string) => {
@@ -47,9 +59,15 @@ export const App = () => {
         <div>
           <Search onSearch={changeSearchResult} />
         </div>
+        <div>
+          <User username={user.username} />
+        </div>
       </header>
       <body>
         <div className='container'>
+          <div>
+            <Menu isRegistred={true}/>
+          </div>
           <div>
             <Routes>
               <Route path='Reg' element={<Registration onReg={addUser} />} />
