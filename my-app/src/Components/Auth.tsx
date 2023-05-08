@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../css/Auth.module.css";
 import { Title } from "./Title";
 import { Header } from "./Header";
+import { Link } from "react-router-dom";
 
 type Props = {
    onAuth: (login: string, pass: string) => void,
@@ -29,8 +30,8 @@ export const Auth = ({ onAuth, onRegClick }: Props) => {
          <input placeholder="Enter password" className={styles['auth__input']} value={pass} type="text" onChange={(e) => {
             setPass(e.target.value)
          }} />
-         <button className={styles['auth__btn']} onClick={handleAuth}>Sign in</button>
-         <button className={styles['auth__btn']} onClick={handleReg}>Register</button>
+         <Link to='/posts'><button className={styles['auth__btn']} onClick={handleAuth}>Sign in</button></Link>
+         <Link to='/reg'><button className={styles['auth__btn']}>Register</button></Link>
       </div>
    </>
 }

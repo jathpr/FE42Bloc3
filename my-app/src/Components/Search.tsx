@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../css/Search.module.css";
 
 type Props = {
-   username: string | null,
+   username?: string,
    clickSearch: (inputValue: string) => void
 }
 
@@ -11,6 +11,8 @@ export const Search = ({ username, clickSearch }: Props) => {
    const [searchValue, setSearchValue] = useState('');
 
    const handleSearch = () => {
+      console.log('Component Search: ', searchValue);
+
       clickSearch(searchValue);
    }
 

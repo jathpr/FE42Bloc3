@@ -1,14 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../css/PostPage.module.css";
-import { OnePost } from "../server/getPosts";
+import { OnePost, getPost } from "../server/getPosts";
 import { Header } from "./Header";
 import { ThemeContext } from "./Context/themeContext";
+import { useParams } from "react-router-dom";
 
 type Props = {
-   post: OnePost
+   post?: OnePost
 }
 
-export const PostPage = ({ post }: Props) => {
+export const PostPage = ({ post: postNotServer }: Props) => {
 
    const theme = useContext(ThemeContext);
 
@@ -16,6 +17,20 @@ export const PostPage = ({ post }: Props) => {
    const titleClassName = theme === 'light' ? styles['post__title'] : `${styles['post__title']} ${styles['dark-theme-text']}`
    const textClassName = theme === 'light' ? styles['post__text'] : `${styles['post__text']} ${styles['dark-theme-text']}`
    const authorClassName = theme === 'light' ? styles['post__author'] : `${styles['post__author']} ${styles['dark-theme-text']}`
+
+   const { postId } = useParams();
+   const [post, setPost] = useState(postNotServer)
+   // console.log(postId);
+
+   useEffect(() => {
+      postId && getPost(postId)
+         .then(postFromServer => {
+            setPost(postFromServer)
+         })
+   }, [postId])
+
+   if (!post) return null
+
 
    return <>
       <div className={styles.post}>

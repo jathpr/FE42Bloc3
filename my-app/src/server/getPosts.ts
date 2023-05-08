@@ -1,5 +1,5 @@
 const DOMAIN = "https://studapi.teachmeskills.by";
-const POSTS = "/blog/posts";
+const POSTS = "/blog/posts/";
 
 export type OnePost = {
    author: number;
@@ -38,4 +38,12 @@ export const getPosts = async ({ limit }: PostsParams) => {
    const response = await fetch(postsUrl);
    const posts: PostsResponse = await response.json();
    return posts.results;
+};
+
+export const getPost = async (postId?: string) => {
+   const postsUrl = new URL(DOMAIN + POSTS + postId);
+   // if (limit) postsUrl.searchParams.set("limit", String(limit));
+   const response = await fetch(postsUrl);
+   const post: OnePost = await response.json();
+   return post;
 };
