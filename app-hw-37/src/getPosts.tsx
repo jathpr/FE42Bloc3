@@ -28,7 +28,7 @@ export const getPosts = async (limit: number, searchValue: string) => {
 	return posts.results;
 };
 
-export const getPost = async (id: number) => {
+export const getPost = async (id: string) => {
 	const postUrl = new URL(POSTSURL + '/' + id);
 	const response = await fetch(postUrl);
 	const post = await response.json();

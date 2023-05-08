@@ -3,19 +3,24 @@ import { useState, useContext } from 'react';
 import { Title } from '../Title/Title';
 import './auth.css'
 import { ThemeContext } from '../ThemeContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {
-	check: (login: string, password: string) => void
+	check: (login: string, password: string) => string
+	isAuthorised: boolean
 }
 
 export const Auth = (props: Props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
+	const navigate = useNavigate()
 
-	const handleAuth = () => {
-		props.check(login, password)
+	const handleAuth = async () => {
+		const res = await props.check(login, password)
+		props.isAuthorised ? navigate(res) : navigate(res)
 	}
 	const theme = useContext(ThemeContext)
+
 	return (
 		<>
 			<Title>Sign In</Title>

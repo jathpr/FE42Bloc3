@@ -10,4 +10,4 @@ export const darkTheme = {
 }*/
 
 export const ThemeContext = React.createContext('light');
-export const ChangeThemeContext = React.createContext(() => { })
+export const ChangeThemeContext = React.createContext((btnValue: 'light' | 'dark') => { })
