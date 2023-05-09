@@ -6,6 +6,9 @@ type SearchProps = { value: string }
 export const Search = () => {
 
     return (
-        <input className="header__search" type="text" placeholder="search" />
+        <div className="header-search">
+            <input className="header-search__input" type="text" placeholder="search" />
+            <button className="header-search__button"></button>
+        </div>
     )
 }
