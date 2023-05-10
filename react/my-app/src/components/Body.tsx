@@ -1,10 +1,8 @@
-// import { Posts } from "../hw_38/Posts"
 import { useContext, useState } from "react"
-import { CardsWrapper } from "../hw_38/PostsWrapper"
-import { Auth } from "../hw_40/Auth"
-import { setConstantValue } from "typescript"
-import { Reg } from "../hw_41/Reg"
-import { ThemeContext } from "../hw_41/themeContext"
+import { CardsWrapper } from "./PostsWrapper"
+import { Auth } from "./Auth"
+import { Reg } from "./Reg"
+import { ThemeContext } from "../tools/themeContext"
 
 type User = {
     login: string,

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { CardPost } from "./CardPost";
-import "./cards.css";
-import { Post, getPosts } from "../classwork_40/getPosts";
+import { useEffect, useState } from "react";
+import { CardPost } from "./Post";
+import "../styles/post.css";
+import { Post, getPosts } from "../tools/getPosts";
 
 export const Posts = () => {
 

@@ -1,5 +1,5 @@
-import { Post } from "../classwork_40/getPosts";
-import "./cards.css";
+import { Post } from "../tools/getPosts";
+import "../styles/post.css";
 
 export const CardPost = (cardProps: { post: Post }) => (
     <div className="card-item">

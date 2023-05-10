@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { ThemeContext } from "../hw_41/themeContext"
-import "./header.css"
+import { ThemeContext } from "../tools/themeContext"
+import "../styles/header.css"
 
 
 export const Title = () => {

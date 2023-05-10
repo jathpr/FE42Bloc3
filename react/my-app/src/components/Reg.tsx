@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
-import "./reg.css"
-import { ThemeContext } from "./themeContext"
+import "../styles/reg.css"
+import { ThemeContext } from "../tools/themeContext"
 
 type RegProps = {
     onReg: (login: string, password: string) => void

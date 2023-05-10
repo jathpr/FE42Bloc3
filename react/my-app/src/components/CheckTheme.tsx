@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
-import "./checkTheme.css"
-import { ThemeContext } from "./themeContext"
+import "../styles/checkTheme.css"
+import { ThemeContext } from "../tools/themeContext"
 
 type ChangeProps = {
     changeTheme: () => void

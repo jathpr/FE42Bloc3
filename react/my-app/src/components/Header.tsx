@@ -1,10 +1,9 @@
 import { useContext, useState } from "react"
-import { CheckTheme } from "../hw_41/CheckTheme"
-import { ButtonMenu } from "./ButtonHeader"
-import { ChangeTheme, ThemeContext } from "../hw_41/themeContext"
-import { Search } from "../hw_41/Search"
-import "./header.css"
-import { Title } from "./Title"
+import { CheckTheme } from "./CheckTheme"
+import { ChangeTheme, ThemeContext } from "../tools/themeContext"
+import { Search } from "./Search"
+import "../styles/header.css"
+import { Title } from "../components/Title"
 
 export const Header = () => {
 

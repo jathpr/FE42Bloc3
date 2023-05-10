@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import "./auth.css";
-import { ThemeContext } from "../hw_41/themeContext";
+import "../styles/auth.css";
+import { ThemeContext } from "../tools/themeContext";
 import "../index.css"
 
 type AuthProps = {

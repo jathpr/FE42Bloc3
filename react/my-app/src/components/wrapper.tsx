@@ -1,6 +1,6 @@
-import { ReactNode, useContext } from "react"
-import { Header } from "./header";
-import { Body } from "./body";
+import { ReactNode } from "react"
+import { Header } from "./Header";
+import { Body } from "./Body";
 
 
 type Props = { children?: ReactNode }

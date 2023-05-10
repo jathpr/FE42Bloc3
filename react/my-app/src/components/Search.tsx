@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./search.css";
+import "../styles/search.css";
 
 type SearchProps = { value: string }
 
