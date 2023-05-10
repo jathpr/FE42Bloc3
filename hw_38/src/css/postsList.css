@@ -1,0 +1,38 @@
+.post {
+	display: flex;
+	height: 250px;
+	padding: 30px 15px;
+	border-bottom: 1px solid gray;
+}
+
+.post__text {
+	width: 70%;
+}
+
+.post__date {
+	font-size: 18px;
+	color: gray;
+	margin-bottom: 20px;
+}
+
+.post__title {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.post__desc {
+	font-size: 14px;
+	color: gray;
+	margin-bottom: 20px;
+}
+
+.post__author {
+	font-size: 14px;
+}
+
+.post__img-wrapper img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+}
