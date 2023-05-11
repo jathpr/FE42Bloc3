@@ -2,8 +2,8 @@ import { useContext, useState } from "react"
 import { CheckTheme } from "./CheckTheme"
 import { ChangeTheme, ThemeContext } from "../tools/themeContext"
 import { Search } from "./Search"
-import "../styles/header.css"
 import { Title } from "../components/Title"
+import "../styles/header.css"
 
 export const Header = () => {
 

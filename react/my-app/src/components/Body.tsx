@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { CardsWrapper } from "./PostsWrapper"
+import { CardsWrapper } from "./CardsWrapper"
 import { Auth } from "./Auth"
 import { Reg } from "./Reg"
 import { ThemeContext } from "../tools/themeContext"

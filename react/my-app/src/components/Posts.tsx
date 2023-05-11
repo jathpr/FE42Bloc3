@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { CardPost } from "./Post";
-import "../styles/post.css";
 import { Post, getPosts } from "../tools/getPosts";
+import { CardPost } from "./CardPost";
+import "../styles/post.css";
 
 export const Posts = () => {
 

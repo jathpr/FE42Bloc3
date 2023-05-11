@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import "../styles/auth.css";
 import { ThemeContext } from "../tools/themeContext";
 import "../index.css"
+import "../styles/auth.css";
 
 type AuthProps = {
     onAuth: (login: string, password: string) => void
