@@ -26,7 +26,3 @@ input::-webkit-search-results-decoration { display: none; }
     border: none;
     cursor: pointer;
 }
-
-.searchButton svg{
-    fill:white;
-}

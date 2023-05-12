@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { RenderPost } from "./RenderPost";
-import { OnePost, getPosts } from "./getPosts";
-import { useNavigate } from "react-router-dom";
+import { getPosts } from "./getPosts";
+import { Link} from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../Store/store";
+import { setPosts } from "../../Store/post";
 
 type Props = { searchResult: string }
 
 export const PostsList = ({ searchResult }: Props) => {
-    const [cards, setCards] = useState<OnePost[]>([])
+    const postsList = useAppSelector(state => state.posts.posts)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        getPosts({ 'limit': 4, 'search': searchResult }).then((resp) => setCards(resp))
+        getPosts({ 'limit': 4, 'search': searchResult }).then((resp) => dispatch(setPosts(resp)))
     }, [searchResult])
 
-    const navigate = useNavigate()
-
     return <>
-        {cards.map(post => <li onClick={() => navigate('/Posts/' + post.id)}><RenderPost post={post} key={post.id} /></li>)}
+        {postsList.map(post => <Link to={'/Posts/' + post.id}><RenderPost post={post} key={post.id} /></Link>)}
     </>
 }

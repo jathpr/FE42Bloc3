@@ -3,32 +3,32 @@ import { User } from '../User/User';
 import './Menu.css'
 
 type Props = {
-    isRegistred: boolean
+    username: string | null
 }
 
-export const Menu = ({ isRegistred }: Props) => {
+export const Menu = ({ username }: Props) => {
 
-    if (isRegistred) {
+    if (username) {
         return (
             <div className='menu'>
                 <div>
-                    <User username='Polina Mashukova'/>
+                    <User username={username}/>
                     <Link className='linkButton' to=''>Home</Link>
                     <Link className='linkButton' to=''>Add Post</Link>
                 </div>
                 <div>
-                    <Link className='linkButton' to=''>Log Out</Link>
+                    <Link className='linkButtonDark' to='/Auth'>Log Out</Link>
                 </div>
             </div>
         )
     }
     else return (
-        <div>
+        <div className='menu'>
             <div>
-                    <Link to=''>Home</Link>
+                    <Link className='linkButton' to=''>Home</Link>
                 </div>
                 <div>
-                    <Link to='/Auth'>Sign In</Link>
+                    <Link className='linkButtonDark' to='/Auth'>Sign In</Link>
                 </div>
         </div>
     )
