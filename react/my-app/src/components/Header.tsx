@@ -16,12 +16,10 @@ export const Header = () => {
     return (
         <header style={theme === "light" ? lightStyle : darkStyle} className="header">
             <div style={theme === "light" ? lightStyle : darkStyle} className="header-wrapper">
+                <Title />
                 <nav style={theme === "light" ? lightStyle : darkStyle} className="header__nav">
-                    <Title />
                     <CheckTheme changeTheme={() => changeTheme()} />
-                    {/* <ButtonMenu defaultState handleClick={() => console.log('aaaaaaa')} /> */}
                 </nav>
-                <Search />
             </div>
         </header>
     )
