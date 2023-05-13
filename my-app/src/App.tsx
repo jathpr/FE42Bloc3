@@ -1,16 +1,12 @@
 import { useContext, useState } from 'react';
 import './App.css'
 import { Button } from './Components/BurgerMenu/ButtonBurger';
-import { Registration } from './Components/Registration/Registration';
-import { Authorization } from './Components/Authorization/Authorization';
-import { PostsList } from './Components/Post/PostsList';
 import { Search } from './Components/Search/Search';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import { User } from './Components/User/User';
 import { Menu } from './Components/BurgerMenu/Menu';
-import { RenderOnePost } from './Components/Post/OnePost';
 import { ChangeThemeContext, ThemeContext } from './Components/Context/themeContext';
 import { ThemeButton } from './Components/ThemeButton/ThemeButton';
+import { Navigation } from './Components/Navigation/Navigation';
 
 
 
@@ -21,32 +17,9 @@ type User = {
 }
 
 export const App = () => {
-  const [users, setUsers] = useState<User[]>([])
   const [searchResult, setSearchResult] = useState('')
   const [user, setUser] = useState<User>({ login: null, password: null, username: null })
   const [showMenu, setShowMenu] = useState(false)
-
-  const navigate = useNavigate()
-
-  const addUser = (login: string, password: string, username: string) => {
-
-    const newUser: User = {
-      login: login,
-      password: password,
-      username: username
-    }
-
-    setUsers([...users, newUser])
-    setUser(newUser)
-  }
-
-  const navigateFromUser = (login: string, password: string) => {
-    const findUser = users.find(user => user.login === login && user.password === password)
-    if (findUser) {
-      navigate('/Posts')
-    }
-    else alert('Wrong data')
-  }
 
   const recreateSearchResult = (result: string) => {
     setSearchResult(result)
@@ -70,17 +43,8 @@ export const App = () => {
       <body>
         <div className='container'>
           <ThemeButton changeThemeClick={changeTheme} />
-          {showMenu ? <Menu username={user.username} /> : ''}
-          <div>
-            <Routes>
-              <Route path='Reg' element={<Registration onReg={addUser} />} />
-              <Route path='Auth' element={<Authorization onAuth={navigateFromUser} />} />
-              <Route path='Posts/*'>
-                <Route index element={<PostsList searchResult={searchResult} />} />
-                <Route path=':postId' element={<RenderOnePost />} />
-              </Route>
-            </Routes>
-          </div>
+          {showMenu && <Menu username={user.username} />}
+          <Navigation searchResult={searchResult} setUser={setUser}/>
         </div>
       </body>
     </>
