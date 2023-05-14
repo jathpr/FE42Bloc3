@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
 import { useEffect, useState } from "react";
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  reset,
+} from "../features/counterSlice";
+import { use42Selector, use42Dispatch } from "../store/store";
 
-type CounterProps = {
-  initialCount: number;
-};
+export const Counter = () => {
+  const count = use42Selector((state) => state.counter.value);
+  const dispatch = use42Dispatch();
 
-export const Counter = (props: CounterProps) => {
-  const [count, setCount] = useState(props.initialCount || 0);
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
@@ -19,14 +23,14 @@ export const Counter = (props: CounterProps) => {
   return (
     <>
       <span>{count}</span>
-      <button onClick={() => setCount(count + 1)}>++</button>
-      <button onClick={() => setCount(count - 1)}>--</button>
-      <button onClick={() => setCount(0)}>reset</button>
+      <button onClick={() => dispatch(increment())}>++</button>
+      <button onClick={() => dispatch(decrement())}>--</button>
+      <button onClick={() => dispatch(reset())}>reset</button>
       <input
         type="text"
         onChange={(event) => setInputValue(event.target.value)}
       ></input>
-      <button onClick={() => setCount(count + Number(inputValue))}>
+      <button onClick={() => dispatch(incrementByAmount(Number(inputValue)))}>
         add from input
       </button>
     </>

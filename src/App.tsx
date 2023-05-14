@@ -10,7 +10,7 @@ export const App = () => {
       <Link to="/count">Count</Link>
       <Routes>
         <Route path="/" element={<Lesson />} />
-        <Route path="count" element={<Counter initialCount={0} />} />
+        <Route path="count" element={<Counter />} />
       </Routes>
     </>
   );
