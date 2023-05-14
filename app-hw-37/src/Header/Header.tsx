@@ -4,18 +4,18 @@ import { SelectedUser } from '../SelectedUser/SelectedUser';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Light } from "./light-btn.svg";
 import { ReactComponent as Dark } from "./dark-btn.svg";
-import { useContext } from 'react';
-import { ChangeThemeContext, ThemeContext } from '../ThemeContext';
+import { useAppDispatch, useAppSelector } from '../Store/store';
+import { changeTheme } from '../Store/theme';
+import { handleAuth, handleLogOut } from '../Store/auth';
 
 type Props = {
-	menuState: boolean,
-	isAuthorised: boolean,
-	handleLogOut: () => void
+	menuState: boolean
 }
 
-export const Header = ({ menuState, isAuthorised, handleLogOut }: Props) => {
-	const changeTheme = useContext(ChangeThemeContext)
-	const theme = useContext(ThemeContext)
+export const Header = ({ menuState }: Props) => {
+	const theme = useAppSelector((state) => state.theme.themeColor)
+	const isAuthorised = useAppSelector(((state) => state.auth.isAuthorised))
+	const dispatch = useAppDispatch()
 	return (
 		<div style={theme === 'light' ? { background: 'white' } : { background: 'rgb(36, 35, 35)' }} className={'header' + (!menuState ? ' header--active' : '')}>
 			{isAuthorised ? <SelectedUser></SelectedUser> : null}
@@ -25,10 +25,10 @@ export const Header = ({ menuState, isAuthorised, handleLogOut }: Props) => {
 			</ul>
 			<div className='other-compon-wrapper'>
 				<div className='themes-btn-wrapper'>
-					<button className='themes-btn' style={theme === 'light' ? { background: 'white' } : { background: 'rgb(36, 35, 35)' }} onClick={() => changeTheme('light')}><Light style={theme === 'light' ? { fill: 'gray' } : { fill: 'white' }} /></button>
-					<button className='themes-btn' style={theme === 'light' ? { background: 'white' } : { background: 'rgb(36, 35, 35)' }} onClick={() => changeTheme('dark')}><Dark style={theme === 'dark' ? { fill: 'gray' } : { fill: 'black' }} /></button>
+					<button className='themes-btn' style={theme === 'light' ? { background: 'white' } : { background: 'rgb(36, 35, 35)' }} onClick={() => dispatch(changeTheme('light'))}><Light style={theme === 'light' ? { fill: 'gray' } : { fill: 'white' }} /></button>
+					<button className='themes-btn' style={theme === 'light' ? { background: 'white' } : { background: 'rgb(36, 35, 35)' }} onClick={() => dispatch(changeTheme('dark'))}><Dark style={theme === 'dark' ? { fill: 'gray' } : { fill: 'black' }} /></button>
 				</div>
-				<Link to='/' className='auth-btn' onClick={() => isAuthorised ? handleLogOut() : null}>{isAuthorised ? 'Log Out' : 'Log In'}</Link>
+				<Link to='/' className='auth-btn' onClick={() => isAuthorised ? dispatch(handleLogOut()) : null}>{isAuthorised ? 'Log Out' : 'Log In'}</Link>
 			</div>
 		</div>)
 } 

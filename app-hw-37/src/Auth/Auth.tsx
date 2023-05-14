@@ -1,25 +1,21 @@
-import React, { ReactNode } from 'react';
-import { useState, useContext } from 'react';
+import React, { ReactNode, useEffect } from 'react';
+import { useState } from 'react';
 import { Title } from '../Title/Title';
 import './auth.css'
-import { ThemeContext } from '../ThemeContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../Store/store';
+import { useDispatch } from 'react-redux';
+import { setUserLogin, setUserPassword } from '../Store/auth';
 
 type Props = {
-	check: (login: string, password: string) => string
-	isAuthorised: boolean
+	check: (login: string, password: string) => void
 }
 
-export const Auth = (props: Props) => {
+export const Auth = ({ check }: Props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
-	const navigate = useNavigate()
 
-	const handleAuth = async () => {
-		const res = await props.check(login, password)
-		props.isAuthorised ? navigate(res) : navigate(res)
-	}
-	const theme = useContext(ThemeContext)
+	const theme = useAppSelector((state) => state.theme.themeColor)
 
 	return (
 		<>
@@ -29,7 +25,7 @@ export const Auth = (props: Props) => {
 				<input className="auth__input" type="text" id="login" placeholder='Your Login' value={login} onChange={(event) => setLogin(event.target.value)} />
 				<label className="auth__label" htmlFor='password' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Password</label>
 				<input className="auth__input" type="password" id="password" placeholder='Your Password' value={password} onChange={(event) => setPassword(event.target.value)} />
-				<button className="auth__button" type="submit" value="Submit" onClick={handleAuth}>Submit</button>
+				<button className="auth__button" type="submit" value="Submit" onClick={() => check(login, password)}>Submit</button>
 			</form>
 		</>)
 }

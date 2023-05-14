@@ -1,41 +1,20 @@
 import React, { ReactNode } from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { getPost } from '../getPosts';
 import './fullScreenCard.css';
-import { ThemeContext } from '../ThemeContext';
 import { Link, useParams } from 'react-router-dom';
+import { useAppSelector } from '../Store/store';
 
-type Post = {
-	id: number,
-	image?: string,
-	text: string,
-	date: string,
-	lesson_num?: number,
-	title: string,
-	description: string,
-	author: number
-}
-
-type Props = {
-	id: number,
-	goBack: () => void
-}
-export const FullScreenCard = (props: Props) => {
-	const [post, setPost] = useState<Post>({
-		id: props.id,
-		image: '',
-		text: '',
-		date: '',
-		title: '',
-		lesson_num: 0,
-		description: '',
-		author: 0
-	})
+export const FullScreenCard = () => {
 	const params = useParams()
-	useEffect(() => { params.postId && getPost(params.postId).then(post => setPost(post)) }, [])
-	const theme = useContext(ThemeContext)
+	const post = useAppSelector((state) => state.posts.posts.find((post) => String(post.id) === params.postId))
+	const theme = useAppSelector((state) => state.theme.themeColor)
+
+	if (!post) {
+		return <h2>Post not found</h2>
+	}
 	return (<>
-		<Link to='/posts'><button className='back-btn' onClick={props.goBack} >← Back to posts</button></Link>
+		<Link to='/posts'><button className='back-btn'>← Back to posts</button></Link>
 		<div className='card' id={String(post.id)}>
 			<h2 className='card__title' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>{post.title}</h2>
 			<p className='card__date'>{post.date}</p>

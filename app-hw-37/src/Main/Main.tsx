@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { useState, useEffect } from 'react';
 import { CardsList } from '../CardsList/CardsList';
 import { FullScreenCard } from '../FullScreenCard/FullScreenCard';
+import { FullScreenImg } from '../FullScreenImg/FullScreanImg';
 import { Routes, Route } from 'react-router-dom';
 
 type Post = {
@@ -14,29 +15,17 @@ type Post = {
 	description: string,
 	author: number
 }
-type Props = {
-	searchValue: string
-}
 
-export const Main = ({ searchValue }: Props) => {
-	const [page, setPage] = useState('List')
+export const Main = () => {
 	const [fullScreenPostId, setFullScreenPostId] = useState(0)
 
-	const handleFullScreenPost = (postId: number) => {
-		setPage('FullScreen')
-		setFullScreenPostId(postId)
-	}
-	const returnToList = () => {
-		setPage('List')
-	}
 	return (<>
 		<Routes>
 			<Route path='/'>
-				<Route index element={<CardsList searchValue={searchValue} showFullScreenCard={handleFullScreenPost}></CardsList>}></Route>
-				<Route path=':postId' element={<FullScreenCard id={fullScreenPostId} goBack={returnToList}></FullScreenCard>}></Route>
+				<Route index element={<CardsList showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
+				<Route path=':postId' element={<FullScreenCard />}></Route>
+				<Route path='img' element={<FullScreenImg id={fullScreenPostId} />}></Route>
 			</Route>
 		</Routes>
-		{/* {page === 'List' && <CardsList searchValue={searchValue} showFullScreenCard={handleFullScreenPost}></CardsList>}
-		{page === 'FullScreen' && <FullScreenCard id={fullScreenPostId} goBack={returnToList}></FullScreenCard>} */}
 	</>)
 }

@@ -4,32 +4,27 @@ import { Burger } from '../Burger/Burger';
 import { MenuInput } from './MenuInput';
 import { SelectedUser } from '../SelectedUser/SelectedUser';
 import { Header } from '../Header/Header';
+import { useAppSelector } from '../Store/store';
+
 type Props = {
-	defaultState?: boolean,
-	giveSearchValue: (value: string) => void,
-	isAuthorised: boolean,
-	handleLogOut: () => void
+	defaultState?: boolean
 }
 
-export const Menu = ({ defaultState, giveSearchValue, isAuthorised, handleLogOut }: Props) => {
+export const Menu = ({ defaultState }: Props) => {
 	const [btnState, setBtnState] = useState(!!defaultState)
-	const handleClick = () => {
-		setBtnState(!btnState)
-	}
-	const getSearchResults = (value: string) => {
-		giveSearchValue(value)
-	}
+	const isAuthorised = useAppSelector(((state) => state.auth.isAuthorised))
+
 	return (
 		<div className='menu__wrapper'>
 			<div className='menu'>
-				<Burger btnState={btnState} click={handleClick} >
+				<Burger btnState={btnState} click={() => setBtnState(!btnState)} >
 				</Burger>
-				<MenuInput giveSearchValueResults={getSearchResults}></MenuInput>
+				<MenuInput></MenuInput>
 				<div className='menu__user-info'>
 					{isAuthorised ? <SelectedUser /> : null}
 				</div>
 			</div>
-			<Header menuState={btnState} isAuthorised={isAuthorised} handleLogOut={handleLogOut}></Header>
+			<Header menuState={btnState}></Header>
 		</div>
 	)
 }
