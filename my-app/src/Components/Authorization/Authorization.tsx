@@ -16,7 +16,7 @@ export const Authorization = ({ onAuth }: Props) => {
         <Title />
         <div className="authWrapper">
             <input className="authInput" type='text' placeholder="Your Name" value={login} onChange={(e) => { setLogin(e.currentTarget.value) }} />
-            <input className="authInput" type='text' placeholder="Your Password" value={password} onChange={(e) => { setPassword(e.currentTarget.value) }} />
+            <input className="authInput" type='password' placeholder="Your Password" value={password} onChange={(e) => { setPassword(e.currentTarget.value) }} />
             <button className="authButton" onClick={() => onAuth(login, password)}>Authorization</button>
             <Link to='/Reg' className="authButton">Sign up</Link>
         </div>

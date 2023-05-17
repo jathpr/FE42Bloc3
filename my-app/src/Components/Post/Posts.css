@@ -1,3 +1,7 @@
+* {
+    text-decoration: none;
+}
+
 .mainDiv {
     display: flex;
     margin: 50px;
@@ -6,6 +10,12 @@
 
 .textDiv {
     width: 60%;
+    color: black;
+}
+
+.textDivLight{
+    width: 60%;
+    color: rgb(236, 236, 236);
 }
 
 .imgDiv {

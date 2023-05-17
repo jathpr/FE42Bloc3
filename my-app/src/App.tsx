@@ -1,69 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import './App.css'
 import { Button } from './Components/BurgerMenu/ButtonBurger';
-import { Registration } from './Components/Registration/Registration';
-import { Authorization } from './Components/Authorization/Authorization';
-import { LanguageContext } from './Lessons/languageContext';
-import { PostsList } from './Components/Post/PostsList';
 import { Search } from './Components/Search/Search';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { RenderPost } from './Components/Post/RenderPost';
+import { User } from './Components/User/User';
+import { Menu } from './Components/BurgerMenu/Menu';
+import { ChangeThemeContext, ThemeContext } from './Components/Context/themeContext';
+import { ThemeButton } from './Components/ThemeButton/ThemeButton';
+import { Navigation } from './Components/Navigation/Navigation';
 
 
 
 type User = {
-  login: string,
-  password: string
+  login: string | null,
+  password: string | null,
+  username: string | null
 }
 
 export const App = () => {
-  const [users, setUsers] = useState<User[]>([])
   const [searchResult, setSearchResult] = useState('')
+  const [user, setUser] = useState<User>({ login: null, password: null, username: null })
+  const [showMenu, setShowMenu] = useState(false)
 
-  const navigate = useNavigate()
-
-  const addUser = (login: string, password: string) => {
-    setUsers([...users, { login, password }])
-  }
-
-  const checkUser = (login: string, password: string) => {
-    const findUser = users.find(user => user.login === login && user.password === password)
-    if (findUser) {
-      navigate('/Posts')
-    }
-    else alert('Wrong data')
-  }
-
-  const changeSearchResult = (result: string) => {
+  const recreateSearchResult = (result: string) => {
     setSearchResult(result)
   }
+
+  const onBurgerButtonClick = (isTouched: boolean) => {
+    setShowMenu(isTouched)
+  }
+
+  const theme = useContext(ThemeContext)
+  const changeTheme = useContext(ChangeThemeContext);
+  document.body.style.backgroundColor = theme === 'light' ? 'rgb(236, 236, 236)' : 'rgb(45, 45, 45)';
 
   return (
     <>
       <header className='header'>
-        <div>
-          <Button touched handleClick={() => console.log('OK')} />
-        </div>
-        <div>
-          <Search onSearch={changeSearchResult} />
-        </div>
+        <Button touched handleClick={onBurgerButtonClick} />
+        <Search onSearch={recreateSearchResult} />
+        <User username={user.username} />
       </header>
       <body>
         <div className='container'>
-          <div>
-            <Routes>
-              <Route path='Reg' element={<Registration onReg={addUser} />} />
-              <Route path='Auth' element={<Authorization onAuth={checkUser} />} />
-            </Routes>
-          </div>
-          <div>
-            <Routes>
-              <Route path='Posts'>
-                <Route index element={<PostsList searchResult={searchResult} />} />
-                <Route path=':postId' element={<RenderPost />} />
-              </Route>
-            </Routes>
-          </div>
+          <ThemeButton changeThemeClick={changeTheme} />
+          {showMenu && <Menu username={user.username} />}
+          <Navigation searchResult={searchResult} setUser={setUser}/>
         </div>
       </body>
     </>

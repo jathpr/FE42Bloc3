@@ -2,21 +2,23 @@
 import { useParams } from 'react-router-dom'
 import { OnePost } from './getPosts'
 import './Posts.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getPost } from './getPosts'
+import { ThemeContext } from '../Context/themeContext'
 
 export const RenderPost = (props: { post?: OnePost }) => {
     const { postId } = useParams()
-    const [onePost, setPost] = useState(props.post)
+    const [onePost, setOnePost] = useState(props.post)
+    const theme = useContext(ThemeContext)
 
     useEffect(() => {
-        postId && getPost(postId).then(resp => setPost(resp))
+        postId && getPost(postId).then(resp => setOnePost(resp))
     }, [postId])
 
     if (!onePost) return null
 
     return <div className="mainDiv">
-        <div className="textDiv">
+        <div className={theme === 'light' ? 'textDiv' : 'textDivLight'}>
             <time>{onePost.date}</time>
             <h3>{onePost.title}</h3>
             <p>{onePost.description}</p>
