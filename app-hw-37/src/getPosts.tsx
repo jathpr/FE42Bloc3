@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 const POSTSURL = "https://studapi.teachmeskills.by/blog/posts"
 
-type Post = {
+export type Post = {
 	id: number,
 	image?: string,
 	text: string,

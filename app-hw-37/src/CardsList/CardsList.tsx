@@ -4,7 +4,10 @@ import { getPosts } from '../getPosts';
 import { Title } from '../Title/Title';
 import { Card } from './Card';
 import './card.css';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../Store/store';
+import { setPosts } from '../Store/post';
+import { setImages } from '../Store/images';
 
 type Post = {
 	id: number,
@@ -16,22 +19,26 @@ type Post = {
 	description: string,
 	author: number
 }
+
 type Props = {
-	showFullScreenCard: (id: number) => void,
-	searchValue: string
+	showFullScreenCard: (id: number) => void
 }
 
-export const CardsList = ({ showFullScreenCard, searchValue }: Props) => {
-	const [postList, setPostList] = useState<Post[]>([])
+export const CardsList = ({ showFullScreenCard }: Props) => {
+	const dispatch = useAppDispatch()
 
-	useEffect(() => { getPosts(6, searchValue).then(data => setPostList(data)) }, [searchValue])
-	const navigate = useNavigate()
+	const postsList = useAppSelector((state) => state.posts.posts)
+	const searchInputValue = useAppSelector((state) => state.search.searchValue)
+
+	useEffect(() => { getPosts(6, searchInputValue).then(data => dispatch(setPosts(data))) }, [searchInputValue])
+
+	const images = postsList.map((post: Post) => post.image ? post.image : '#')
+	dispatch(setImages(images))
+
 	return (<>
-		<Title>{searchValue === '' ? 'Blog' : 'Search results "' + searchValue + '"'}</Title>
+		<Title>{searchInputValue === '' ? 'Blog' : 'Search results "' + searchInputValue + '"'}</Title>
 		<ul className='cards-list' >
-			{postList.map((post: Post) => <li className='card-item' onClick={() => {
-				navigate('/posts/' + post.id)
-				/* console.log('Ok') */
-			}}><Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card></li>)}
-		</ul></>)
+			{postsList.map((post: Post) => <Link to={'/posts/' + post.id} className='card-item'><Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card></Link>)}
+		</ul>
+	</>)
 }

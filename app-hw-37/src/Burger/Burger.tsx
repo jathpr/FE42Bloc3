@@ -8,20 +8,18 @@ type Props = {
 	btnState: boolean,
 	click: () => void
 }
-export class Burger extends React.Component<Props>  {
-	render() {
-		return (
-			<button className="menu__btn" onClick={this.props.click}>
-				<input id="menu__toggle" type="checkbox" />
-				{changeSvg(this.props.btnState)}
-			</button >)
-	}
-}
 
-const changeSvg = (defaultState: boolean | undefined) => {
-	if (defaultState) {
-		return <Bars />
-	} else {
-		return <Xmark />
+export const Burger = (props: Props) => {
+	const changeSvg = (defaultState: boolean | undefined) => {
+		if (defaultState) {
+			return <Bars />
+		} else {
+			return <Xmark />
+		}
 	}
+	return (
+		<button className="menu__btn" onClick={props.click}>
+			<input id="menu__toggle" type="checkbox" />
+			{changeSvg(props.btnState)}
+		</button >)
 }

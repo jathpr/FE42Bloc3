@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import './card.css';
-import { useContext } from 'react';
-import { ThemeContext } from '../ThemeContext';
+import { useAppDispatch, useAppSelector } from '../Store/store';
+import { Link } from 'react-router-dom';
+import { setCurrentImg } from '../Store/images';
 
 type PostCard = {
 	id: number,
@@ -20,14 +21,13 @@ type Cardprops = {
 }
 
 export const Card = ({ cardinfo, showFullScreen }: Cardprops) => {
-	const handleClick = () => {
-		showFullScreen(cardinfo.id)
-	}
-	const theme = useContext(ThemeContext)
+	const dispatch = useAppDispatch()
+	const theme = useAppSelector((state) => state.theme.themeColor)
+
 	return (
-		<button className='post' id={String(cardinfo.id) + '-1'} onClick={handleClick} style={theme === 'light' ? { background: 'white' } : { background: '#423e3e' }}>
+		<button className='post' onClick={() => showFullScreen(cardinfo.id)} style={theme === 'light' ? { background: 'white' } : { background: '#423e3e' }}>
 			<div className="post__img-wrapper">
-				<img src={cardinfo.image} alt={cardinfo.text} />
+				<Link to='/posts/img'><img src={cardinfo.image} alt={cardinfo.text} onClick={() => dispatch(setCurrentImg(cardinfo.image ? cardinfo.image : '#'))} /></Link>
 			</div>
 			<div className="post__text">
 				<p className="post__date">{cardinfo.date}</p>
