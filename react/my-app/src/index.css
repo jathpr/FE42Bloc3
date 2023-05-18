@@ -1,8 +1,25 @@
+:root {
+  --var-bgcolor: #fff;
+  --var-fontcolor: #646464;
+  --var-primaryColor: #ffae00;
+  --var-buttonColor: #fff2d6;
+
+  --var-lightBack: #eee;
+  --var-darkBack: #646464;
+
+  --var-lightFont : #646464;
+  --var-darkFont: #eee;
+
+  --var-lightButton: #fff2d6;
+  --var-darkButton: #c5c5c5;
+
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #f8feff;
+  background-color: var(--var-bgcolor);
 }
 
 body {
@@ -21,56 +38,13 @@ code {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1400px;
-}
-
-.header {
-  padding: 0 20px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-width: 100%;
-  background-color: #d4f3ff;
-}
-
-.header__title {
-  padding: 0 20px;
-  font-size: 24px;
-  font-weight: 200;
-  color: #646464;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.header__title:hover {
-  color: #000;
-  transition: 0.2s;
-}
-
-.header__button {
-  background-color: #a0ffc7;
-  border: none;
-  width: 150px;
-  height: 40px;
-  font-size: 24px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.header__button:active {
-  background-color: #47f3ff;
-  transition: 0.3s;
-}
-
-.burger__line {
-  width: 30px;
-  height: 3px;
 }
 
 .body {
   padding: 20px;
+  width: 100%;
+  height: 100vh;
 }
 
 .body__title {
@@ -100,4 +74,23 @@ code {
   background-color: #d4f3ff;
   color: #000;
   transition: 0.3s;
+}
+
+.button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  width: 50%;
+  background-color: var(--var-buttonColor);
+  transition: 0.2s;
+}
+
+.button__spanText {
+  background-color: var(--var-buttonColor);
+  font-size: 0.8rem;
+  font-weight: 700;
 }
