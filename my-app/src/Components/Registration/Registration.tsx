@@ -16,7 +16,7 @@ export const Registration = ({ onReg }: Props) => {
     const navigate = useNavigate()
 
     return <>
-        <Title />
+        <Title text="Sign In"/>
         <div className="regWrapper">
             <input className="regInput" type='text' placeholder="Your Username" value={username} onChange={(e) => { setUsername(e.currentTarget.value) }} />
             <input className="regInput" type='text' placeholder="Your Login" value={login} onChange={(e) => { setLogin(e.currentTarget.value) }} />
