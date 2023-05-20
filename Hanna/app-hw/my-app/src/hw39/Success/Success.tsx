@@ -1,5 +1,4 @@
 import React from 'react';
-import { Menu } from '../../hw37/menu-burger/menu';
 import { Posts } from '../../hw38/PostList/Posts/Posts';
 
 type Props = {
