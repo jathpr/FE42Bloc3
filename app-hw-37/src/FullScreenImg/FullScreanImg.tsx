@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { useAppSelector, useAppDispatch } from '../Store/store';
 import { Link, useParams } from 'react-router-dom';
 import './fullScreenImg.css';
-import { listImages, setCurrentImg } from '../Store/images';
+import { listImages, setCurrentImg } from '../Store/post';
 
 type Props = {
 	id: number
@@ -10,7 +10,7 @@ type Props = {
 export const FullScreenImg = ({ id }: Props) => {
 	const dispatch = useAppDispatch()
 	const post = useAppSelector((state) => state.posts.posts.find((post) => post.id === id))
-	const img = useAppSelector((state) => state.postsImages.currentImg)
+	const img = useAppSelector((state) => state.posts.currentImg)
 
 	if (!post) {
 		return (<>

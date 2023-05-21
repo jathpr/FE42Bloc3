@@ -23,6 +23,8 @@ export const Main = () => {
 		<Routes>
 			<Route path='/'>
 				<Route index element={<CardsList showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
+				<Route path='favourites' element={<CardsList isFavourites showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
+				<Route path='popular' element={<CardsList isPopular showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
 				<Route path=':postId' element={<FullScreenCard />}></Route>
 				<Route path='img' element={<FullScreenImg id={fullScreenPostId} />}></Route>
 			</Route>

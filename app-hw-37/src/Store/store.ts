@@ -4,7 +4,7 @@ import { postsReducer } from './post'
 import { themeReducer } from './theme'
 import { searchReducer } from './search'
 import { authReducer } from './auth'
-import { postImagesReducer } from './images'
+import { favsPostsReducer } from './favorites'
 
 
 export const store = configureStore({
@@ -13,7 +13,7 @@ export const store = configureStore({
 		theme: themeReducer,
 		search: searchReducer,
 		auth: authReducer,
-		postsImages: postImagesReducer
+		favsPosts: favsPostsReducer
 	},
 })
 

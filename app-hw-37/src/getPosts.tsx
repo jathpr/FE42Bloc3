@@ -9,7 +9,9 @@ export type Post = {
 	lesson_num: number,
 	title: string,
 	description: string,
-	author: number
+	author: number,
+	likes?: number,
+	dislikes?: number
 }
 
 type PostsResponse = {

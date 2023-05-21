@@ -6,6 +6,7 @@ import { Reg } from '../Reg/Reg';
 import { Main } from '../Main/Main';
 import { useAppDispatch, useAppSelector } from '../Store/store';
 import { handleAuth, setUserLogin, setUserPassword } from '../Store/auth';
+import { Registration } from '../Registration/Registration';
 
 const LOGIN = 'CoolDude'
 const PASSWORD = 'react'
@@ -14,7 +15,7 @@ export const Navigation = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
-	const authCheck = (login: string, password: string) => {
+	/* const authCheck = (login: string, password: string) => {
 		if (login === LOGIN && password === PASSWORD) {
 			dispatch(setUserLogin(login))
 			dispatch(setUserPassword(password))
@@ -23,12 +24,13 @@ export const Navigation = () => {
 		} else {
 			navigate('/fail')
 		}
-	}
+	} */
 	return <>
 		<Routes>
-			<Route index element={<Auth check={authCheck}></Auth>}></Route>
+			<Route index element={<Auth></Auth>}></Route>
 			<Route path='success' element={<Reg />}></Route>
 			<Route path='fail' element={<Reg />}></Route>
+			<Route path='registration' element={<Registration></Registration>}></Route>
 			<Route path='posts/*' element={<Main />}></Route>
 		</Routes>
 	</>

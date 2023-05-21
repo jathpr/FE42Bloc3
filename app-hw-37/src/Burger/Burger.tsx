@@ -10,16 +10,9 @@ type Props = {
 }
 
 export const Burger = (props: Props) => {
-	const changeSvg = (defaultState: boolean | undefined) => {
-		if (defaultState) {
-			return <Bars />
-		} else {
-			return <Xmark />
-		}
-	}
 	return (
 		<button className="menu__btn" onClick={props.click}>
 			<input id="menu__toggle" type="checkbox" />
-			{changeSvg(props.btnState)}
+			{props.btnState ? <Bars /> : <Xmark />}
 		</button >)
 }
