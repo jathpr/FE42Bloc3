@@ -1,0 +1,18 @@
+.search_input {
+    background-color: #5757f8fe;
+    border: none;
+    color: white;
+}
+
+.search_input::placeholder {
+    color: white;
+}
+
+.button_search {
+    display: inline-block;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 0;
+    background-color: blue;
+}
