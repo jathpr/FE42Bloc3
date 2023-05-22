@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
-import { Title } from './Title';
-import { Button } from './ButtonClass';
-import { Tabs } from './Tabs';
-import { RenderPostsList } from './RenderPostsList';
-import { Registration } from './Registration';
-import { Auth } from './Auth';
-import { Post, getPosts } from './posts';
+import { Title } from './Components/Title/Title';
+import { Tabs } from './Components/Tabs/Tabs';
+import { Registration } from './Components/Registration/Registration';
+import { Auth } from './Components/Authorization/Auth';
+import { Post, getPosts } from './Components/Posts/posts';
+import { Link, Route, Routes } from "react-router-dom"
+import { RenderPostsList } from './Components/Posts/RenderPostsList';
+import { Header } from './Components/Header/Header';
+import { Search } from './Components/Header/Search';
 
 type User = {
   login: string,
   password: string
 }
 
-type Pages = 'auth' | 'reg'
+type Pages = 'auth' | 'reg' | 'content';
 
 const tabNames = ['All', 'My favourites', 'Popular']
 
@@ -21,6 +23,7 @@ export const App = () => {
   const [users, setUsers] = useState<User[]>([])
   const [page, setPage] = useState<Pages>('reg')
   const [cards, setCards] = useState<Post[]>([])
+  const [searchString, setSearchString] = useState('')
 
   useEffect(() => { getPosts({}).then(posts => setCards(posts)) }, [])
 
@@ -29,8 +32,7 @@ export const App = () => {
   }
 
   const checkUser = (login: string, password: string) => {
-    const result = users.find(user => (user.login === login) && (user.password === password))
-    console.log("🚀 ~ file: App.tsx:28 ~ checkUser ~ result:", result)
+    (users.find(user => (user.login === login) && (user.password === password))) ? setPage('content') : setPage('reg')
   }
 
   useEffect(() => { setPage('auth') }, [users])
@@ -39,15 +41,25 @@ export const App = () => {
     setPage('reg')
   }
 
-
+    
   return (
     <div>
-        <Title />
-        <Button visible handleClick={() => console.log('ok')} />
-        <Tabs tabs={tabNames} activeTab='My favourites' />
-        <RenderPostsList />
-        {page === 'reg' && <Registration onReg={addUser} />}
-        {page === 'auth' && <Auth onAuth={checkUser} onSignUp={navToReg} />}
+      {/* <Link to ='/reg'>link reg</Link>
+      <Link to ='/auth'>link auth</Link>
+      <Routes >
+        <Route path='reg' element={<Registration onReg={addUser} />}/>
+        <Route path='auth' element= {<Auth onAuth={checkUser} onSignUp={navToReg} />}/>
+      </Routes> */}
+
+      {page === 'reg' && <Registration onReg={addUser} />}
+      {page === 'auth' && <Auth onAuth={checkUser} onSignUp={navToReg} />}
+
+      {page === 'content' && <> 
+      <Title />
+      <Header onSearch={setSearchString}/>
+      <Tabs tabs={tabNames} activeTab='My favourites' />
+      <RenderPostsList search={searchString}/>
+      </>}
 
     </div>
   );
