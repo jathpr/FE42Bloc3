@@ -1,8 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { OnePost, getPosts } from '../Components/Post/getPosts'
-import { accessSync } from 'fs'
 
-const initialState: { posts: OnePost[], favorites: OnePost[] } = { posts: [], favorites: [] }
+const initialState: { posts: OnePost[] } = { posts: [] }
 
 export const postsSlice = createSlice({
     name: 'posts',
@@ -21,18 +20,11 @@ export const postsSlice = createSlice({
             if (!post) return
             post.dislikes = post.dislikes ? post.dislikes + 1 : 1
         },
-        setFavoritesPosts: (state, action: PayloadAction<number>) => {
+        toggleFavoritesPosts: (state, action: PayloadAction<number>) => {
             const post = state.posts.find(post => post.id === action.payload)
             if (!post) return
-            state.favorites = [...state.favorites, post]
-            state.favorites.filter(el => el.id !== action.payload)
-                // if (el.id !== action.payload){
-                //     state.favorites = [...state.favorites, post]
-                // }
-                // else {
-                //     state.favorites = [...state.favorites, post]
-                // }
-            // })
+            post.favorite = !post.favorite
+            // post.favorite = post.favorite ? !post.favorite : post.favorite
         },
     },
     extraReducers(builder) {
@@ -42,7 +34,7 @@ export const postsSlice = createSlice({
     },
 })
 
-export const { setPosts, increaseLike, increaseDislike, setFavoritesPosts } = postsSlice.actions
+export const { setPosts, increaseLike, increaseDislike, toggleFavoritesPosts } = postsSlice.actions
 
 export const postsReducer = postsSlice.reducer
 

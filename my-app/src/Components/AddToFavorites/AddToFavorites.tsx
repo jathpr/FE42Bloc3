@@ -1,5 +1,8 @@
-import { setFavoritesPosts } from "../../Store/post"
-import { useAppDispatch, useAppSelector } from "../../Store/store"
+import { toggleFavoritesPosts } from "../../Store/post"
+import { useAppDispatch } from "../../Store/store"
+import { ReactComponent as BookMark } from "../AddToFavorites/bookmark.svg"
+import './AddToFavorites.css'
+
 
 type Props = {
     postId: number,
@@ -8,9 +11,9 @@ type Props = {
 export const AddToFavorites = ({ postId }: Props) => {
     const dispatch = useAppDispatch()
 
-    return <div className=''>
-        <button onClick={() => {
-            return dispatch(setFavoritesPosts(postId))
-        }}>Add to Favorites</button>
+    return <div>
+        <button className='bookmark' onClick={() => {
+            return dispatch(toggleFavoritesPosts(postId))
+        }}><BookMark/></button>
     </div>
 }

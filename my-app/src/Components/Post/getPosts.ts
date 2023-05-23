@@ -11,7 +11,8 @@ export type OnePost = {
     text?: string;
     title?: string;
     likes?: number;
-    dislikes?: number
+    dislikes?: number;
+    favorite?: boolean;
 };
 
 type PostsResponse = {

@@ -28,7 +28,7 @@ export const RenderPost = (props: { post?: OnePost }) => {
                     <p>{onePost.description}</p>
                 </div>
             </Link>
-            <div>
+            <div className='likesDiv'>
                 {onePost.id && <Likes postId={onePost.id} />}
                 {onePost.id && <AddToFavorites postId={onePost.id}/>}
             </div>
