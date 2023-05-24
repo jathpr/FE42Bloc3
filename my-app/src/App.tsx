@@ -56,9 +56,9 @@ export const App = () => {
 
       {page === 'content' && <> 
       <Title />
-      <Header onSearch={setSearchString}/>
+      <Header />
       <Tabs tabs={tabNames} activeTab='My favourites' />
-      <RenderPostsList search={searchString}/>
+      <RenderPostsList />
       </>}
 
     </div>
