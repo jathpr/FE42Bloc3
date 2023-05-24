@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Search.module.css';
+import { SearchContext } from '../SearchProvider';
 
-type Props = { onSearch: (search: string) => void }
 
-export const Search = ({onSearch}: Props) => {
+export const Search = () => {
 
-    const [searchString, setSearchString] = useState('')
+    const [search, setSearch] = useState('')
 
-    return <><input value={searchString} className={styles.search_input} placeholder='Search...' onChange={(e) => setSearchString(e.currentTarget.value)} />
-    <button className={styles.button_search} onClick={()=>onSearch(searchString)}>Search</button></>
+    const {setSearchString} = useContext(SearchContext)
+
+    return <><input value={search} className={styles.search_input} placeholder='Search...' onChange={(e) => setSearch(e.currentTarget.value)} />
+    <button className={styles.button_search} onClick={()=>setSearchString(search)}>Search</button></>
 }
