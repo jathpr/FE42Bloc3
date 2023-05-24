@@ -13,9 +13,9 @@
     color:rgb(55, 55, 191);
 }
 
-.tabs--active{
+/* .tabs--active{
     border-bottom: 2px solid black;
-}
+} */
 
 /* .tabs li:disabled{
     color: gray;
