@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
 import { useAppSelector, useAppDispatch } from '../Store/store';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './fullScreenImg.css';
-import { listImages, setCurrentImg } from '../Store/post';
+import { listImages } from '../Store/post';
 
 type Props = {
 	id: number

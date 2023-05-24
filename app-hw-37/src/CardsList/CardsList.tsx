@@ -1,12 +1,9 @@
-import React, { ReactNode } from 'react';
-import { useState, useEffect } from 'react';
-import { getPosts } from '../getPosts';
+import { useEffect } from 'react';
 import { Title } from '../Title/Title';
 import { Card } from './Card';
 import './card.css';
-import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../Store/store';
-import { getPostsThunk, setPosts } from '../Store/post';
+import { getPostsThunk } from '../Store/post';
 import { Tabs } from '../Tabs/Tabs';
 
 type Post = {

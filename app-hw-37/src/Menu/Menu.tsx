@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './menu.css';
 import { Burger } from '../Burger/Burger';
 import { MenuInput } from './MenuInput';
@@ -21,7 +21,7 @@ export const Menu = ({ defaultState }: Props) => {
 				</Burger>
 				<MenuInput></MenuInput>
 				<div className='menu__user-info'>
-					{isAuthorised ? <SelectedUser /> : null}
+					{isAuthorised && <SelectedUser />}
 				</div>
 			</div>
 			<Header menuState={btnState}></Header>

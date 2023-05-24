@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Title } from '../Title/Title';
 import './reg.css'

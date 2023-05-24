@@ -1,5 +1,4 @@
-import React, { ReactNode } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CardsList } from '../CardsList/CardsList';
 import { FullScreenCard } from '../FullScreenCard/FullScreenCard';
 import { FullScreenImg } from '../FullScreenImg/FullScreanImg';

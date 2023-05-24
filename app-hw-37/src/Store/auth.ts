@@ -1,6 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { redirect } from 'react-router-dom'
-import { store } from './store'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 type Auth = {
 	isAuthorised: boolean,
@@ -11,6 +9,9 @@ type Auth = {
 type User = {
 	login: string,
 	pass: string
+}
+type Redirect = {
+	redirect: (isAuthorised: boolean) => void
 }
 const initialState: Auth = {
 	isAuthorised: false,
@@ -35,6 +36,8 @@ export const authSlice = createSlice({
 				state.userLogin = action.payload.login
 				state.userPassword = action.payload.pass
 				state.isAuthorised = true
+			} else {
+				state.isAuthorised = false
 			}
 		},
 		handleLogOut: (state) => {
@@ -43,24 +46,8 @@ export const authSlice = createSlice({
 		addUser: (state, action: PayloadAction<User>) => {
 			state.users.push(action.payload)
 		}
-	},
-	extraReducers(builder) {
-		builder.addCase(authRedirection.fulfilled, (state, action: PayloadAction<boolean>) => {
-			if (action.payload) {
-				console.log('success')
-				redirect('success')
-			} else {
-				console.log('fail')
-				redirect('fail')
-			}
-		})
-	},
+	}
 })
 
-export const authRedirection = createAsyncThunk('auth/redirect', async () => {
-	const result = await store.getState()
-	const isAuthorised = await result.auth.isAuthorised
-	return isAuthorised
-})
 export const { handleAuth, handleLogOut, setUserLogin, setUserPassword, addUser } = authSlice.actions
 export const authReducer = authSlice.reducer

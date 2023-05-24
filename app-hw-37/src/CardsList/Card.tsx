@@ -1,5 +1,3 @@
-import React, { ReactNode } from 'react';
-import { useState } from 'react';
 import './card.css';
 import { useAppDispatch, useAppSelector } from '../Store/store';
 import { Link } from 'react-router-dom';
@@ -35,9 +33,10 @@ export const Card = ({ cardinfo, showFullScreen }: Cardprops) => {
 	return (
 		<div className='post' onClick={() => showFullScreen(cardinfo.id)} style={theme === 'light' ? { background: 'white' } : { background: '#423e3e' }}>
 			<Link to={'/posts/' + cardinfo.id} className='card-item'>
-				{cardinfo.image ? <div className="post__img-wrapper">
-					<Link to='/posts/img'><img src={cardinfo.image} alt={cardinfo.text} onClick={() => dispatch(setCurrentImg(cardinfo.image ? cardinfo.image : '#'))} /></Link>
-				</div> : null}
+				{cardinfo.image && <div className="post__img-wrapper">
+					{/* @ts-ignore */}
+					<Link to='/posts/img'><img src={cardinfo.image} alt={cardinfo.text} onClick={() => dispatch(setCurrentImg(cardinfo.image))} /></Link>
+				</div>}
 				<div className="post__text">
 					<p className="post__date">{cardinfo.date}</p>
 					<h3 className="post__title" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>{cardinfo.title}</h3>

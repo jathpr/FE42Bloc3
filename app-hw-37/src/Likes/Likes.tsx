@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react';
 import { useAppDispatch, useAppSelector } from '../Store/store';
 import { increaseDislikes, increaseLikes } from '../Store/post';
 import { ReactComponent as Like } from "./like.svg"
