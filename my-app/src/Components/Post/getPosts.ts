@@ -10,9 +10,6 @@ export type OnePost = {
     lesson_num?: number;
     text?: string;
     title?: string;
-    likes?: number;
-    dislikes?: number;
-    favorite?: boolean;
 };
 
 type PostsResponse = {

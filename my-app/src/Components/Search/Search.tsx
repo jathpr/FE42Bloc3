@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import './Search.css'
 import { ReactComponent as MagicGlass } from './magicGlass.svg';
-import { useAppDispatch } from '../../Store/store';
-import { getPostsThunk } from '../../Store/post';
 
-export const Search = () => {
+
+type Props = {
+    onSearch: (search: string) => void
+}
+
+export const Search = ({ onSearch }: Props) => {
     const [searchResult, setSearchResult] = useState('')
-
-const dispatch = useAppDispatch()
 
     return <div>
         <input className='searchInput' type='search' placeholder="Search..." value={searchResult} onChange={(e) => { setSearchResult(e.currentTarget.value) }}></input>
-        <button className='searchButton' onClick={() => dispatch(getPostsThunk(searchResult))}>
+        <button className='searchButton' onClick={() => onSearch(searchResult)}>
             <MagicGlass/>
         </button>
     </div>

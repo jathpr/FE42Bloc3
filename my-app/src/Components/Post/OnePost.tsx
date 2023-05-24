@@ -4,7 +4,6 @@ import { OnePost } from "./getPosts"
 import './OnePost.css'
 import { useContext } from "react"
 import { ThemeContext } from "../Context/themeContext"
-import { Likes } from "../Likes/Likes"
 
 export const RenderOnePost = (props: { post?: OnePost }) => {
     const { postId } = useParams()
@@ -22,6 +21,5 @@ const theme = useContext(ThemeContext)
             <h3>{onePost.title}</h3>
             <p>{onePost.description}</p>
         </div>
-        {onePost.id && <Likes postId={onePost.id} />}
     </div>
 }

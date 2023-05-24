@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@emotion/styled": "^11.11.0",
     "typescript": "^5.0.3"
   },
   "devDependencies": {

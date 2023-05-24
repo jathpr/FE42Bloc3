@@ -1,23 +1,17 @@
-import { ReactNode, useState } from "react"
+import React from "react"
 import "./Tabs.css"
 
+export const tabNames = ['All', 'My Favorites', 'Popular']
 
 type Tabs = {
-    tabs: {
-        tabComponent: ReactNode,
-        tabName: string
-    }[],
+    tabs: string[],
+    activeTabName: string,
+    active: boolean,
 }
 
-export const Tabs = ({ tabs }: Tabs) => {
-    const [tab, setTab] = useState(tabs[0].tabComponent);
+export const Tabs = ({tabs, activeTabName}: Tabs) => (
+    <ul className='tabs'>
+        {tabs.map(tab=><li key={tab} className={tab===activeTabName ? 'tabs--active': ''}>{tab}</li>)}
+    </ul>
+)
 
-    return <>
-        <ul className="tabs">
-            {tabs.map((tab) => (
-                <li onClick={() => setTab(tab.tabComponent)}>{tab.tabName}</li>
-            ))}
-        </ul>
-        {tab}
-    </>
-}

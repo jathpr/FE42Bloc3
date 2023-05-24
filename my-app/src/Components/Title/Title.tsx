@@ -2,10 +2,8 @@ import { useContext } from 'react'
 import { ThemeContext } from '../Context/themeContext'
 import './Title.css'
 
-type Props = {text: string}
-
-export const Title = ({text}: Props) => {
+export const Title = () => {
     const theme = useContext(ThemeContext)
 
-    return <h1 className={theme === 'light' ? 'titleDark' : 'titleLight'}>{text}</h1>
+    return <h1 className={theme === 'light' ? 'titleDark' : 'titleLight'}>Sign In</h1>
 }

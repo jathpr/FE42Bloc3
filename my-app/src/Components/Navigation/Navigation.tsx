@@ -1,11 +1,13 @@
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { Authorization } from "../Authorization/Authorization"
 import { RenderOnePost } from "../Post/OnePost"
+import { PostsList } from "../Post/PostsList"
 import { Registration } from "../Registration/Registration"
 import { useState } from "react"
-import { AllTabs } from '../Tabs/AllTabs'
 
-type Props = {setUser: (newUser: any) => void
+type Props = {
+    searchResult: string,
+    setUser: (newUser: any) => void
 }
 
 type User = {
@@ -14,7 +16,7 @@ type User = {
     username: string | null
 }
 
-export const Navigation = ({setUser}: Props) => {
+export const Navigation = ({searchResult, setUser}: Props) => {
 
     const [users, setUsers] = useState<User[]>([])
 
@@ -45,7 +47,7 @@ export const Navigation = ({setUser}: Props) => {
             <Route path='Reg' element={<Registration onReg={addUser} />} />
             <Route path='Auth' element={<Authorization onAuth={navigateFromUser} />} />
             <Route path='Posts/*'>
-                <Route index element={<AllTabs/>} />
+                <Route index element={<PostsList searchResult={searchResult} />} />
                 <Route path=':postId' element={<RenderOnePost />} />
             </Route>
         </Routes>
