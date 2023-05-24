@@ -33,12 +33,13 @@
     border: 1px solid var(--var-primaryColor);
 }
 
+.auth__button,
 .checkToReg {
-    width: 25%;
-    font-size: 0.7rem;
-}
-
-.auth__button {
+    width: 100%;
     background-color: var(--var-primaryColor);
     font-size: 1.3rem;
+}
+
+.checkToReg {
+    font-size: 0.7rem;
 }

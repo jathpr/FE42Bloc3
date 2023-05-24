@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 :root {
   --var-bgcolor: #fff;
   --var-fontcolor: #646464;
@@ -16,20 +15,15 @@
 
 }
 
-=======
->>>>>>> 9861a03 (HW 37 Yury (#37))
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  background-color: var(--var-bgcolor);
-=======
->>>>>>> 9861a03 (HW 37 Yury (#37))
-=======
-  background-color: #f8feff;
->>>>>>> 6fe29b1 (HW 40 Yury (#60))
+  background-color: var(--var-lightBack);
+}
+
+a {
+  text-decoration:none;
 }
 
 body {
@@ -48,70 +42,12 @@ code {
 
 .wrapper {
   margin: 0 auto;
-<<<<<<< HEAD
-<<<<<<< HEAD
   max-width: 100%;
-=======
-  max-width: 1000px;
-  /* background-color: #e9e9e9; */
-=======
-  max-width: 1400px;
->>>>>>> 3e0d9f5 (HW 38 Yury (#48))
-}
-
-.header {
-  padding: 0 20px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 100%;
-  background-color: #d4f3ff;
-}
-
-.header__title {
-  padding: 0 20px;
-  font-size: 24px;
-  font-weight: 200;
-  color: #646464;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.header__title:hover {
-  color: #000;
-  transition: 0.2s;
-}
-
-.header__button {
-  background-color: #a0ffc7;
-  border: none;
-  width: 150px;
-  height: 40px;
-  font-size: 24px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.header__button:active {
-  background-color: #47f3ff;
-  transition: 0.3s;
-}
-
-.burger__line {
-  width: 30px;
-  height: 3px;
->>>>>>> 9861a03 (HW 37 Yury (#37))
 }
 
 .body {
-  padding: 20px;
-<<<<<<< HEAD
   width: 100%;
-  height: 100vh;
-=======
->>>>>>> 9861a03 (HW 37 Yury (#37))
+  background-color: var(--var-lightBack);
 }
 
 .body__title {
@@ -142,7 +78,6 @@ code {
   color: #000;
   transition: 0.3s;
 }
-<<<<<<< HEAD
 
 .button {
   display: flex;
@@ -152,15 +87,13 @@ code {
   cursor: pointer;
   border: none;
   height: 40px;
-  width: 50%;
+  width: 30%;
   background-color: var(--var-buttonColor);
   transition: 0.2s;
 }
 
-.button__spanText {
-  background-color: var(--var-buttonColor);
-  font-size: 0.8rem;
-  font-weight: 700;
+
+.link {
+  /* padding: 0; */
+  width: 40%;
 }
-=======
->>>>>>> 9861a03 (HW 37 Yury (#37))

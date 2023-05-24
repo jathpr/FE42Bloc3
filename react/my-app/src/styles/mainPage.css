@@ -1,0 +1,12 @@
+.main-page {
+        border: 2px solid red;
+    
+    margin: 0 auto;
+    padding: 40px;
+    display: flex;
+    width: 400px;
+}
+
+.main-page-button__auth {
+    background-color: var(--var-primaryColor);
+}

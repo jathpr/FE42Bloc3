@@ -1,0 +1,17 @@
+.body-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.tabs__button {
+    width: 120px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.tabs__button:hover {
+    background-color: var(--var-primaryColor);
+    transition: 0.2s;
+}

@@ -1,6 +1,8 @@
 import { useContext, useState } from "react"
 import { ThemeContext } from "../tools/themeContext"
+import "../index.css"
 import "../styles/reg.css"
+import { Link } from "react-router-dom"
 
 type RegProps = {
     onReg: (login: string, password: string) => void
@@ -29,7 +31,9 @@ export const Reg = ({ onReg, onAuth }: RegProps) => {
             <input className="reg__inputs reg__items" placeholder="some input" />
             <input className="reg__inputs reg__items" placeholder="some input" />
             <input className="reg__inputs reg__items" placeholder="some input" />
-            <button style={theme === "light" ? lightButtonStyle : darkButtonStyle} className="button checkToAuth auth__items" onClick={() => onAuth()}>You have account?<span className="button__spanText">Sign in!</span></button>
+            <Link to={"/auth"} className="link reg__items">
+                <button style={theme === "light" ? lightButtonStyle : darkButtonStyle} className="button checkToAuth " onClick={() => onAuth()}>You have account? Sign in!</button>
+            </Link>
             <button className="button reg__button reg__items" onClick={() => onReg(login, password)}>Registration</button>
         </div >
     )

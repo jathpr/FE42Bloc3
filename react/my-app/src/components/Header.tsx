@@ -1,9 +1,10 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { CheckTheme } from "./CheckTheme"
 import { ChangeTheme, ThemeContext } from "../tools/themeContext"
 import { Search } from "./Search"
 import { Title } from "../components/Title"
 import "../styles/header.css"
+import { SignIn } from "./SignIn"
 
 export const Header = () => {
 
@@ -19,6 +20,7 @@ export const Header = () => {
                 <Title />
                 <nav style={theme === "light" ? lightStyle : darkStyle} className="header__nav">
                     <CheckTheme changeTheme={() => changeTheme()} />
+                    <SignIn />
                 </nav>
             </div>
         </header>
