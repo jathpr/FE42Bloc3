@@ -9,6 +9,7 @@ import { Link, Route, Routes } from "react-router-dom"
 import { RenderPostsList } from './Components/Posts/RenderPostsList';
 import { Header } from './Components/Header/Header';
 import { Search } from './Components/Header/Search';
+import React from 'react';
 
 type User = {
   login: string,

@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import styles from './Search.module.css';
 import { SearchContext } from '../SearchProvider';
+import React from 'react';
 
 
 export const Search = () => {
