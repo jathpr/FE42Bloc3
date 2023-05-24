@@ -9,11 +9,11 @@
 
 .tabs__tab {
 	height: 90px;
-	width: 80px;
+	width: 120px;
 }
 
 .tabs__tab--active {
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid blue;
 }
 
 .tab__btn {

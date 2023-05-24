@@ -15,6 +15,7 @@ body {
   box-sizing: border-box;
   text-decoration: none;
   list-style-type: none;
+  transition: all 0.3 ease-out;
 }
 
 #root {

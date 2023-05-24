@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { useAppDispatch } from '../Store/store';
 import { setSearchValue } from '../Store/search';
