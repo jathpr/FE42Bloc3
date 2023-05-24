@@ -7,11 +7,11 @@ import { on } from 'events';
 
 type Props = {onSearch: (str: string)=> void}
 
-export const Header = ({onSearch}: Props) => {
+export const Header = () => {
      
 
     return <div className={styles.header_wrapper}>
         <Button visible handleClick={() => console.log('ok')} />
-        <Search onSearch={onSearch} />
+        <Search />
     </div>
 }

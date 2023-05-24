@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Post, getPosts } from './posts'
 import { RenderPost } from './RenderPost'
+import { SearchContext } from '../SearchProvider'
+import { usePost } from '../../usePost'
 
-type Props = {search: string}
-
-export const RenderPostsList = ({search}: Props) => {
-
-    const [cards, setCards] = useState<Post[]>([])
-  
-    useEffect(() => { getPosts({ 'limit': 3, 'search': search }).then(posts => setCards(posts)) }, [search])
+export const RenderPostsList = () => {
+    const cards = usePost()
    
     return <>
     <h3>POSTS</h3>
