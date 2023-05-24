@@ -4,6 +4,7 @@ import { Search } from './Search';
 import styles from './button.module.css';
 import { Post, getPosts } from '../Posts/posts';
 import { on } from 'events';
+import React from 'react';
 
 type Props = {onSearch: (str: string)=> void}
 
