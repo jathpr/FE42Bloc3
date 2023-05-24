@@ -3,7 +3,7 @@ import styles from "../css/ButtonHamburger.module.css";
 
 type Props = {
    collapsed?: boolean,
-   handleClick: () => void
+   handleClick: (isCollapsed: boolean) => void
 }
 
 export const ButtonHamburger = ({ collapsed, handleClick }: Props) => {
@@ -26,8 +26,8 @@ c0.976,0.977,2.256,1.464,3.535,1.464s2.56-0.487,3.535-1.464c1.953-1.953,1.953-5.
    </svg></div>
 
    const toggleSvg = () => {
-      handleClick();
       setIsCollapsed(!isCollapsed)
+      handleClick(!!isCollapsed)
    }
 
    return <button className={styles['burger-btn']} onClick={toggleSvg}>{!isCollapsed ? burgerSvg : closeCrossSvg}</button>

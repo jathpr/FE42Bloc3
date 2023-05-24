@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../css/Registration.module.css";
 import { Title } from "./Title";
+import { Link } from "react-router-dom";
 
 type Props = {
    onReg: (login: string, pass: string, username: string) => void,
@@ -34,7 +35,8 @@ export const Registration = ({ onReg, onAuthClick }: Props) => {
             setPass(e.target.value)
          }} />
          <button className={styles['reg__btn']} onClick={handleReg}>Register</button>
-         <button className={styles['reg__btn']} onClick={goToAuthGage}>Sign In</button>
+         <Link to='/auth'><button className={styles['reg__btn']} onClick={goToAuthGage}>Sign In</button></Link>
+         {/* <button className={styles['reg__btn']} onClick={goToAuthGage}>Sign In</button> */}
       </div>
 
    </>

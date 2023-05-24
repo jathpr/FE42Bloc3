@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../css/Navigation.module.css";
 import { Registration } from "./Registration";
 import { PostsList } from "./PostsList";
@@ -8,21 +8,28 @@ import { PostPage } from "./PostPage";
 import { ChangeThemeContext, ThemeContext } from "./Context/themeContext";
 import { SearchPostsList } from "./SearchPostsList";
 import { Header } from "./Header";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 type User = {
-   login: string | null,
-   pass: string | null,
-   username: string | null
+   login?: string,
+   pass?: string,
+   username?: string
+}
+
+const TEST_USER = {
+   login: 'user',
+   pass: 'user',
+   username: 'Artem Malkin'
 }
 
 export const Navigation = () => {
    const changeTheme = useContext(ChangeThemeContext);
    const theme = useContext(ThemeContext);
 
-   const [users, setUsers] = useState<User[]>([])
+   const [users, setUsers] = useState<User[]>([TEST_USER])
 
    const [page, setPage] = useState('auth');
-   const [user, setUser] = useState<User>({ login: null, pass: null, username: null });
+   const [user, setUser] = useState<User>({});
    const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
    const [searchInputValue, setSearchInputValue] = useState('')
 
@@ -31,6 +38,9 @@ export const Navigation = () => {
       if (!login) return
       if (!pass) return
       if (!username) return
+
+      const userFound = users.find(user => user.login === login);
+      if (userFound) return
 
       const newUser: User = {
          login: login,
@@ -73,12 +83,17 @@ export const Navigation = () => {
       setPage('auth')
    }
 
-   const onSearchClick = (inputValue: string) => {
+   const navigate = useNavigate()
 
-      if (page !== 'auth' && page !== 'reg') {
-         setPage('searchPosts')
-         setSearchInputValue(inputValue)
-         console.log(inputValue)
+   const onSearchClick = (inputValue: string) => {
+      // console.log('Component Navigation, onSearchClick:', inputValue);
+      setPage('postsList')
+      setSearchInputValue(inputValue)
+      // console.log(' 2 Component Navigation, onSearchClick:', inputValue);
+      if (inputValue) {
+         // console.log('if (searchInputValue)');
+
+         navigate('/posts')
       }
 
    }
@@ -86,12 +101,14 @@ export const Navigation = () => {
    document.body.style.backgroundColor = theme === 'light' ? '#F3F3F3' : '#141414';
 
    return <>
-      <Header username={(page !== 'auth' && page !== 'reg') ? user.username : null} clickSearch={onSearchClick} />
-      {page === 'auth' && <Auth onAuth={onAuth} onRegClick={onRegClick} />}
-      {page === 'reg' && <Registration onReg={onReg} onAuthClick={onAuthClick} />}
-      {page === 'postsList' && <PostsList onPostClick={onPostClick} />}
-      {page === 'searchPosts' && <SearchPostsList searchInputValue={searchInputValue} onPostClick={onPostClick}></SearchPostsList>}
-      {selectedPost && <PostPage post={selectedPost} />}
-      <button onClick={changeTheme}>Change theme</button>
+      <Header username={(page !== 'auth' && page !== 'reg') ? user.username : undefined} clickSearch={onSearchClick} />
+      <Routes>
+         <Route path="auth" element={<Auth onAuth={onAuth} onRegClick={onRegClick} />} />
+         <Route path="reg" element={<Registration onReg={onReg} onAuthClick={onAuthClick} />} />
+         <Route path="posts">
+            <Route index element={<PostsList searchInputValue={searchInputValue} onPostClick={onPostClick} />} />
+            <Route path=":postId" element={<PostPage />} />
+         </Route>
+      </Routes>
    </>
 }

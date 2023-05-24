@@ -1,0 +1,75 @@
+.menu {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   z-index: 3;
+   width: 15%;
+   height: 70vh;
+   /* height: 100%; */
+   border-right: 2px solid #e4e4e4;
+   border-bottom: 2px solid #e4e4e4;
+   justify-content: space-between;
+   background-color: #fff;
+}
+
+.menu__item {
+   border-bottom: 2px solid #e4e4e4;
+   padding: 10px;
+   text-align: center;
+   font-weight: 700;
+}
+
+.menu__change-theme-btn {
+   display: flex;
+   width: 100%;
+   cursor: pointer;
+   border: 1px solid #c6c6c6;
+   background-color: transparent;
+   /* margin-bottom: 5px; */
+}
+
+.menu__change-theme-btn div {
+   padding: 5px;
+   width: 50%;
+}
+
+.menu__change-theme-btn div:first-child {
+   border-right: 1px solid #c6c6c6;
+}
+
+.disabled-theme-btn {
+   opacity: 0.4;
+}
+
+.dark-theme-text {
+   color: #fff;
+}
+
+.dark-theme-menu-bg {
+   background-color: #141414;
+}
+
+.menu__auth-btn {
+   padding: 10px;
+   text-align: center;
+   font-weight: 700;
+   border: none;
+   width: 100%;
+   cursor: pointer;
+}
+
+.sun-icon path {
+   fill: #000;
+}
+
+.moon-icon path {
+   stroke: #000;
+}
+
+.sun-icon-dark-theme path {
+   fill: #e4e4e4;
+}
+
+.moon-icon-dark-theme path {
+   stroke: #fff;
+}

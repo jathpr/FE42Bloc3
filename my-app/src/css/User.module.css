@@ -1,5 +1,6 @@
 .user {
    display: flex;
+   /* max-width: 100%; */
    width: 15%;
    /* justify-content: center; */
    /* width: 210px; */
@@ -35,4 +36,9 @@
    width: 5%;
    background-color: #2436A7;
    border-left: 1px solid #fff;
+}
+
+.user__no-auth.menu-item,
+.user.menu-item {
+   width: 100%;
 }

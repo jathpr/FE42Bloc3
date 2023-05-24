@@ -38,4 +38,14 @@ h6 {
 
 .header {
    display: flex;
+   justify-content: stretch;
+   height: 60px;
+}
+
+.user-auth {
+   width: 15%;
+}
+
+.user-no-auth {
+   width: 5%;
 }
