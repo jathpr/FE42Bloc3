@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import {
   decrement,
+  fetchPosts,
   increment,
   incrementByAmount,
   reset,
 } from "../features/counterSlice";
 import { use42Selector, use42Dispatch } from "../store/store";
+import styled from "@emotion/styled";
 
 export const Counter = () => {
   const count = use42Selector((state) => state.counter.value);
@@ -25,14 +27,25 @@ export const Counter = () => {
       <span>{count}</span>
       <button onClick={() => dispatch(increment())}>++</button>
       <button onClick={() => dispatch(decrement())}>--</button>
-      <button onClick={() => dispatch(reset())}>reset</button>
+      <button
+        onClick={() => {
+          // dispatch(reset());
+          dispatch(fetchPosts());
+        }}
+      >
+        reset
+      </button>
       <input
         type="text"
         onChange={(event) => setInputValue(event.target.value)}
       ></input>
-      <button onClick={() => dispatch(incrementByAmount(Number(inputValue)))}>
+      <Button onClick={() => dispatch(incrementByAmount(Number(inputValue)))}>
         add from input
-      </button>
+      </Button>
     </>
   );
 };
+
+const Button = styled.button`
+  background-color: red;
+`;
