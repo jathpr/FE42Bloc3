@@ -1,9 +1,10 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Post, getPosts } from '../getPosts'
-import { useAppSelector } from './store'
 
-type PostState = { posts: Post[], currentImg: string }
-const initialState: PostState = { posts: [], currentImg: '#' }
+type PostState = { posts: Post[], currentId: number, nextId: number, prevId: number, currentImg: string }
+const initialState: PostState = {
+	posts: [], currentId: 0, nextId: 0, prevId: 0, currentImg: '#'
+}
 
 export const postsSlice = createSlice({
 	name: 'post',
@@ -13,6 +14,14 @@ export const postsSlice = createSlice({
 			if (state.posts.length) return
 			state.posts = action.payload
 		},
+		setPostsIds: (state, action: PayloadAction<number>) => {
+			state.currentId = action.payload
+			const Ids = state.posts.map((post) => post.id)
+			const currentIndex = Ids.indexOf(state.currentId)
+			state.nextId = Ids[currentIndex + 1]
+			state.prevId = Ids[currentIndex - 1]
+		},
+
 		increaseLikes: (state, action: PayloadAction<number>) => {
 			const likedPost = state.posts.find((post) => post.id === action.payload)
 			if (!likedPost) return
@@ -52,7 +61,7 @@ export const postsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setPosts, increaseLikes, increaseDislikes, setCurrentImg, listImages } = postsSlice.actions
+export const { setPosts, setPostsIds, increaseLikes, increaseDislikes, setCurrentImg, listImages } = postsSlice.actions
 
 /* const searchValue = useAppSelector((state) => state.search.searchValue) */
 export const postsReducer = postsSlice.reducer

@@ -17,6 +17,7 @@ import { Main } from './Main/Main';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './Store/store';
 import { FullScreenImg } from './FullScreenImg/FullScreanImg';
+import { Footer } from './Footer/Footer';
 
 export const App = () => {
 	const theme = useAppSelector((state) => state.theme.themeColor)
@@ -27,6 +28,7 @@ export const App = () => {
 				<Container>
 					<Navigation />
 				</Container>
+				<Footer></Footer>
 			</div>
 		</>
 	)

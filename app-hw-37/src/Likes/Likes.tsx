@@ -5,11 +5,9 @@ import { ReactComponent as Dislike } from "./dislike.svg"
 import './like.css'
 
 type Props = {
-	postId: number,
-	postLikes: number | undefined,
-	postsDislikes: number | undefined
+	postId: number
 }
-export const Likes = ({ postId, postLikes, postsDislikes }: Props) => {
+export const Likes = ({ postId }: Props) => {
 	const post = useAppSelector((state) => state.posts.posts.find((post) => post.id === postId))
 	const theme = useAppSelector((state) => state.theme.themeColor)
 	const dispatch = useAppDispatch()
@@ -22,3 +20,5 @@ export const Likes = ({ postId, postLikes, postsDislikes }: Props) => {
 		</div>
 	)
 }
+
+export { Like, Dislike }
