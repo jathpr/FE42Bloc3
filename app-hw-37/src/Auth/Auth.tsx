@@ -29,7 +29,7 @@ export const Auth = () => {
 				}}>Submit</button>
 			</form>
 			<div className='reg__link'>
-				<p>Don't have an account?</p>
+				<p style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Don't have an account?</p>
 				<Button variant='outlined' href='/registration'>Sign Up</Button>
 			</div>
 		</>)

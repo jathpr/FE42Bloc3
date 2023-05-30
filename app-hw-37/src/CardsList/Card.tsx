@@ -45,7 +45,7 @@ export const Card = ({ cardinfo, showFullScreen }: Cardprops) => {
 				</div>
 			</Link>
 			<div className='post__marks'>
-				<Likes postId={cardinfo.id} postLikes={cardinfo.likes} postsDislikes={cardinfo.dislikes}></Likes>
+				<Likes postId={cardinfo.id}></Likes>
 				<div className='post__favmark-wrapper'><Mark style={favourite ? { fill: 'green' } : { fill: 'black' }} onClick={() => {
 					favourite ? dispatch(removeFromFavourites(cardinfo)) : dispatch(setFavourites(cardinfo))
 				}} /></div>
@@ -53,3 +53,5 @@ export const Card = ({ cardinfo, showFullScreen }: Cardprops) => {
 		</div>
 	)
 }
+
+export { Mark }

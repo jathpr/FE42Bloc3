@@ -31,15 +31,14 @@ export const CardsList = ({ showFullScreenCard, isFavourites, isPopular }: Props
 
 	const postsList = useAppSelector((state) => state.posts.posts)
 	const favourites = useAppSelector((state) => state.favsPosts.favPosts)
-
-
+	const theme = useAppSelector((state) => state.theme.themeColor)
 
 	if (isFavourites) {
 		return (<>
 			<Title>Favourites</Title>
 			<Tabs tabs={[{ tabName: 'All', tabLink: '/posts' }, { tabName: 'My favourites', tabLink: '/favourites' }, { tabName: 'Popular', tabLink: '/popular' }]}></Tabs>
 			<div className='cards-list' >
-				{favourites.length === 0 ? <h3 className="post__title">Nothing is here</h3> : favourites.map((post: Post) => <Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card>)}
+				{favourites.length === 0 ? <h3 className="post__title" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Nothing is here</h3> : favourites.map((post: Post) => <Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card>)}
 			</div>
 		</>)
 	}
@@ -48,7 +47,7 @@ export const CardsList = ({ showFullScreenCard, isFavourites, isPopular }: Props
 			<Title>Popular</Title>
 			<Tabs tabs={[{ tabName: 'All', tabLink: '/posts' }, { tabName: 'My favourites', tabLink: '/favourites' }, { tabName: 'Popular', tabLink: '/popular' }]}></Tabs>
 			<div className='cards-list' >
-				<h3 className="post__title">Nothing is here</h3>
+				<h3 className="post__title" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Nothing is here</h3>
 			</div>
 		</>)
 	}
