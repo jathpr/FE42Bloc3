@@ -10,10 +10,12 @@ import { RenderPostsList } from './Components/Posts/RenderPostsList';
 import { Header } from './Components/Header/Header';
 import { Search } from './Components/Header/Search';
 import React from 'react';
+import { Toggle } from './Components/ThemeProvider';
 
 type User = {
   login: string,
-  password: string
+  password: string,
+  email?: string
 }
 
 type Pages = 'auth' | 'reg' | 'content';
@@ -24,12 +26,14 @@ export const App = () => {
   const [users, setUsers] = useState<User[]>([])
   const [page, setPage] = useState<Pages>('reg')
   const [cards, setCards] = useState<Post[]>([])
-  const [searchString, setSearchString] = useState('')
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => { getPosts({}).then(posts => setCards(posts)) }, [])
 
-  const addUser = (login: string, password: string) => {
+  const addUser = (login: string, password: string, email: string) => {
     setUsers([...users, { login, password }])
+    // const newUser = {login, password, email}
+    // return regUsers()
   }
 
   const checkUser = (login: string, password: string) => {
@@ -42,7 +46,8 @@ export const App = () => {
     setPage('reg')
   }
 
-    
+
+
   return (
     <div>
       {/* <Link to ='/reg'>link reg</Link>
@@ -52,17 +57,22 @@ export const App = () => {
         <Route path='auth' element= {<Auth onAuth={checkUser} onSignUp={navToReg} />}/>
       </Routes> */}
 
+      <Toggle />
       {page === 'reg' && <Registration onReg={addUser} />}
       {page === 'auth' && <Auth onAuth={checkUser} onSignUp={navToReg} />}
 
-      {page === 'content' && <> 
-      <Title />
-      <Header />
-      <Tabs tabs={tabNames} activeTab='My favourites' />
-      <RenderPostsList />
+      {page === 'content' && <>
+        <Title />
+        <Header />
+        <Tabs tabs={tabNames} activeTab='My favourites' />
+        <RenderPostsList />
       </>}
 
     </div>
   );
+}
+
+function regUsers() {
+  throw new Error('Function not implemented.');
 }
 
