@@ -16,6 +16,7 @@ export const Auth = ({ onAuth, onSignUp }: Props) => {
         <input
           className={style.input}
           value={login}
+          placeholder="Login"
           onChange={(e) => {
             setLogin(e.currentTarget.value);
           }}
@@ -23,6 +24,7 @@ export const Auth = ({ onAuth, onSignUp }: Props) => {
         <input
           className={style.input}
           value={password}
+          placeholder="Password"
           onChange={(e) => {
             setPass(e.currentTarget.value);
           }}
