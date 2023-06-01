@@ -7,12 +7,15 @@ import { Tabs } from "./HW_37/Tabs"
 import { RenderPostsList } from './HW-38/RenderPostList';
 import { Registration } from './Components/Registration/Registration';
 import { Auth } from './Components/Registration/Auth';
+
 import {Link, Route, Routes } from 'react-router-dom';
+
 
 type User = {
   login: string,
   password: string,
 }
+
 type Pages = "auth"|"reg"|'posts'
 export const App  = () => {
   const [users, setUsers] = useState <User[]>([]) 
@@ -25,6 +28,7 @@ const checkUser = (login: string, password: string)=>{
   const result = users.find(user=>user.login===login&&user.password===password)
   console.log(result)
   setPage('posts')
+
 } 
 useEffect(()=> { setPage("auth") }, [users])
 const navToReg = () => {
@@ -50,5 +54,13 @@ const navToReg = () => {
 }
     </div>
 
+      {/* <Title /> */}
+      {/* <ButtonComponent enabled /> */}
+      {/* <Tabs tabs={['All', 'My favorites', 'Popular']} activeTab='All' /> */}
+      {/* <RenderPostsList /> */}
+      {page === "reg" && <Registration onReg={addUser}/>}
+      {page === "auth" && <Auth onAuth= {checkUser} onSignUp={navToReg}/>}
+
+    </div>
   );
 }
