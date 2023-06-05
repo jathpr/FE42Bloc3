@@ -4,18 +4,15 @@
     border: 1px solid blue;
     padding-top: 30px;
 }
-.registr_login {
-    margin: 15px 23px;
-}
+
 .registr_input {
-    width: 270px;
-    margin: 10px;
+    display: block;
+    width: 320px;
+    margin: 10px auto;
 }
 
-.registr_password {
-    margin: 10px;
-}
 .registr_button {
+    display: block;
     width: 320px;
-    margin: 15px 40px 0 ;
+    margin: 15px auto;
 }
