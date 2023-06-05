@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import style from "./BurgerMenu.module.css";
 import { useState } from "react";
 
@@ -12,22 +11,15 @@ export const ButtonComponent = ({enabled}: Props) => {
   
   const click = () => {
     setIsEnabled(!isEnabled)
-export const ButtonComponent  = ({ enabled }: Props) => {  
-  const [isEnabled, setIsEnabled] = useState(enabled)
-  const click = () => {
-    setIsEnabled(!isEnabled)
   };
 
     return (
-      <button className={style.burger} onClick={click}>
-        {isEnabled ? <Burger /> : <ClosedButton />}
       <button className={style.burger} onClick={click}>
         {isEnabled ? <Burger /> : <ClosedButton />}
       </button>
     );
   }
 
-}
 
 const Burger = () => (
   <div className={style.line}>
