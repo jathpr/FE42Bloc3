@@ -45,31 +45,23 @@ export const App = () => {
     
   return (
     <div>
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      {/* <Button visible handleClick={() => console.log('ok')} /> */}
-      <Title />
-      <Button visible handleClick={() => console.log('ok')} />
-      <Tabs tabs={tabNames} activeTab='My favourites' />
-      <RenderPostsList />
+      {/* <Link to ='/reg'>link reg</Link>
+      <Link to ='/auth'>link auth</Link>
+      <Routes >
+        <Route path='reg' element={<Registration onReg={addUser} />}/>
+        <Route path='auth' element= {<Auth onAuth={checkUser} onSignUp={navToReg} />}/>
+      </Routes> */}
+
       {page === 'reg' && <Registration onReg={addUser} />}
       {page === 'auth' && <Auth onAuth={checkUser} onSignUp={navToReg} />}
+
+      {page === 'content' && <> 
+      <Title />
+      <Header />
+      <Tabs tabs={tabNames} activeTab='My favourites' />
+      <RenderPostsList />
+      </>}
+
     </div>
   );
 }
