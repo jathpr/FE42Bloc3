@@ -5,11 +5,10 @@ import { Tabs } from './Components/Tabs/Tabs';
 import { Registration } from './Components/Registration/Registration';
 import { Auth } from './Components/Authorization/Auth';
 import { Post, getPosts } from './Components/Posts/posts';
-import { Link, Route, Routes } from "react-router-dom"
+import { Link, Route, Routes, useNavigate } from "react-router-dom"
 import { RenderPostsList } from './Components/Posts/RenderPostsList';
 import { Header } from './Components/Header/Header';
 import { User, regUser } from './Components/Server/regUser';
-
 
 
 type Pages = 'auth' | 'reg' | 'content';
@@ -30,40 +29,41 @@ export const App = () => {
   }
 
   const checkUser = (login: string, password: string) => {
-    (users.find(user => (user.username === login) && (user.password === password))) ? setPage('content') : setPage('reg')
-    // (users.find(user => (user.username === login) && (user.password === password))) ? <Link to={'/content'}/> : alert('try again or register')
+    // (users.find(user => (user.username === login) && (user.password === password))) ? setPage('content') : setPage('reg')
+    (users.find(user => (user.username === login) && (user.password === password))) ? <Link to={'/header'} /> : <Link to={'/auth'} />
   }
 
-  useEffect(() => { setPage('auth') }, [users])
+  useEffect(() => { <Link to={'/auth'} /> }, [users])
 
+  const navToAuth = useNavigate()
   const navToReg = () => {
-    setPage('reg')
-    // <Link to={'/reg'}/>
-
+    // setPage('reg')
+    navToAuth('/auth')
   }
 
   return (
     <div>
-      {page === 'reg' && <Registration onReg={addUser} />}
+      {/* {page === 'reg' && <Registration onReg={addUser} />}
       {page === 'auth' && <Auth onAuth={checkUser} onSignUp={navToReg} />}
 
       {page === 'content' && <>
         <Title />
         <Header />
         <Tabs tabs={tabNames} activeTab='My favourites' />
-        <RenderPostsList /> </>}
+        <RenderPostsList /> </>} */}
 
-      {/* <Routes>
+      <Routes>
         <Route path='/reg' element={<Registration onReg={addUser} />} />
         <Route path='/auth' element={<Auth onAuth={checkUser} onSignUp={navToReg} />} />
         <Route path='//activate/:uid/:token' element={<Auth onAuth={checkUser} onSignUp={navToReg} />} />
         <Route path='/posts' element={<RenderPostsList />} />
-        
-          <Title />
+        <Route path='/header' element={<Header />} />
+
+        {/* <Title />
           <Header />
-          <Tabs tabs={tabNames} activeTab='My favourites' />
-          
-      </Routes> */}
+          <Tabs tabs={tabNames} activeTab='My favourites' /> */}
+
+      </Routes>
 
     </div>
   );

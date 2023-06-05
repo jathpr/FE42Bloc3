@@ -17,9 +17,7 @@ export const Registration = ({ onReg }: Props) => {
             <input className={style.registr_input} placeholder="Login" value={login} onChange={(e) => { setLogin(e.currentTarget.value) }} />
             <input className={style.registr_input} placeholder="Password" value={password} onChange={(e) => { setPassword(e.currentTarget.value) }} />
             <input className={style.registr_input} placeholder="Email" value={email} onChange={(e) => { setEmail(e.currentTarget.value) }} />
-            {/* <Link to={'/auth'}> */}
-                <button className={style.registr_button} onClick={() => onReg(login, password, email)}>Registration</button>
-            {/* </Link> */}
+                <Link to={'/auth'} className={style.registr_button} onClick={() => onReg(login, password, email)}>Registration</Link>
         </div>
     </>
 
