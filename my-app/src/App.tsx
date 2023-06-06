@@ -52,6 +52,7 @@ export const App = () => {
         <Tabs tabs={tabNames} activeTab='My favourites' />
         <RenderPostsList /> </>} */}
 
+        
       <Routes>
         <Route path='/reg' element={<Registration onReg={addUser} />} />
         <Route path='/auth' element={<Auth onAuth={checkUser} onSignUp={navToReg} />} />
@@ -64,7 +65,6 @@ export const App = () => {
           <Tabs tabs={tabNames} activeTab='My favourites' /> */}
 
       </Routes>
-
     </div>
   );
 }
