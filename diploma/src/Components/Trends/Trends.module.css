@@ -1,0 +1,9 @@
+.trends{
+    width: 100px;
+    background-color: rgb(170, 130, 130);
+    height: 100%;
+    display: inline-block;
+    color: white;
+    box-sizing: border-box;
+    position: relative;
+}
