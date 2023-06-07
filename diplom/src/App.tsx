@@ -1,10 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Header } from './Components/Header/Header';
+import { MoviesList } from './Components/Movies/MoviesList';
 
 export function App() {
   return (
-    <div></div>
+    <div>
+      <Header />
+      <MoviesList />
+
+    </div>
   );
 }
 
