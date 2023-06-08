@@ -13,13 +13,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
 
 export const Toggle = () => {
-    const [value, setValue] = useState('dark')
     const { theme, setTheme } = useContext(ThemeContext)
 
-    const change = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light')
-        setValue(value === 'light' ? 'dark' : 'light')
-    }    
 
-    return <button onClick={() => change() }>{value}</button>
+    return <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light') }>{theme}</button>
 }
