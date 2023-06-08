@@ -1,6 +1,7 @@
 .name_wrapper {
     display: flex;
     justify-content: space-between;
+    width: 189px;
 }
 
 .first_letters {
@@ -9,8 +10,11 @@
     height: 56px;
     background-color: blueviolet;
     color: white;
+    border-radius: 15px;
+    text-align: center;
 }
 
 .full_name {
-    width: 264px;
+    color: white;
+    text-align: center;
 }

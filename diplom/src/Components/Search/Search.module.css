@@ -4,6 +4,8 @@
     background-color: dimgray;
     border: none;
     border-radius: 12px;
+    font-size: 20px;
+    color: white;
 }
 
 .search_input::placeholder {

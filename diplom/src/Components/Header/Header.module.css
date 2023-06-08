@@ -1,8 +1,6 @@
 .header_wrapper {
     display: flex;
-    justify-content: space-between;
-    width: 1489px;
+    width: 1920px;
     height: 56px;
-    margin: 40px 0 0 368px;
-    background-color: coral;
+    background-color: black;
 }

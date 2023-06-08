@@ -1,17 +1,10 @@
 import './App.css';
-import { Aside } from './Components/Aside/Aside';
-import { Header } from './Components/Header/Header';
-import { MoviesList } from './Components/Movies/MoviesList';
+import { MainPage } from './Components/MainPage/MainPage';
 
 export function App() {
   return (
     <div>
-      <Aside />
-      <Header />
-      <MoviesList />
-
+      <MainPage />
     </div>
   );
 }
-
-
