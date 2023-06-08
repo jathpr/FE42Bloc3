@@ -3,7 +3,7 @@ import './App.css';
 import { Title } from './Components/Title/Title';
 import { Tabs } from './Components/Tabs/Tabs';
 import { Registration } from './Components/Registration/Registration';
-import { Auth } from './Components/Authorization/Auth';
+import { Auth, LoginUserProps, checkUsers, saveTokens } from './Components/Authorization/Auth';
 import { Post, getPosts } from './Components/Posts/posts';
 import { Link, Route, Routes, useNavigate } from "react-router-dom"
 import { RenderPostsList } from './Components/Posts/RenderPostsList';
@@ -41,6 +41,13 @@ export const App = () => {
     navToAuth('/auth')
   }
 
+const handlerCheck = (user:LoginUserProps)=>{
+  const tokens = await checkUsers(user)
+  saveTokens(tokens)
+}
+
+
+
   return (
     <div>
       {/* {page === 'reg' && <Registration onReg={addUser} />}
@@ -52,6 +59,9 @@ export const App = () => {
         <Tabs tabs={tabNames} activeTab='My favourites' />
         <RenderPostsList /> </>} */}
 
+        <Link to={'/onload'}>
+          onload
+        </Link>
         
       <Routes>
         <Route path='/reg' element={<Registration onReg={addUser} />} />

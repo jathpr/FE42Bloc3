@@ -21,6 +21,10 @@ type PostsResponse = {
 
 type PostsParams = { limit?: number, search?: string };
 
+export type PostNext = Required<
+  Pick<Post, "title">
+>;
+
 export const getPosts = async ({ limit, search }: PostsParams) => {
   const postsUrl = new URL(DOMAIN + POSTS);
   if (limit) postsUrl.searchParams.set("limit", String(limit));
@@ -29,3 +33,13 @@ export const getPosts = async ({ limit, search }: PostsParams) => {
   const posts: PostsResponse = await response.json();
   return posts.results;
 };
+
+export const sendPost = async (post: PostNext) =>{
+  const postUrl = new URL(DOMAIN + POSTS);
+  const token = localStorage.getItem()
+  const submit = await fetch(postUrl, {
+    method: 'POST',
+    body: JSON.stringify(post),
+    headers: {Authorization: `Bearer ${token}`}
+  })
+}

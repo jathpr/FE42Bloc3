@@ -1,6 +1,7 @@
 import { useState } from "react"
 import style from './Auth.module.css';
 import { Link } from "react-router-dom"
+import React from "react";
 
 
 type Props = {
