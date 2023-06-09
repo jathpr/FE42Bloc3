@@ -1,10 +1,24 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
 .burger {
     width: 50px;
     height: 50px;
     margin: 10px;
     background-color: blue;
-    border: none;
     cursor: pointer;
+    border: none;
+    margin: 0px;
+}
+
+.burger_dark {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-color: rgb(3, 3, 77);
+    cursor: pointer;
+    border: none;
+    margin: 0px;
 }
 
 .line{
@@ -64,6 +78,7 @@
     top: 50%; 
     transform: translateY(-50%) rotate(45deg); 
    } 
+   
 .close_line_second { 
     display: block; 
     height: 4px; 
@@ -73,3 +88,4 @@
     top: 50%; 
     transform: translateY(-50%) rotate(-45deg); 
    }
+
