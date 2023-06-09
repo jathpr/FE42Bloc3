@@ -18,3 +18,11 @@
     width: 320px;
     margin: 15px 40px 0 ;
 }
+.auth_wrapper_dark {
+    width: 400px;
+    height: 250px;
+    border: 1px solid blue;
+    padding-top: 30px;
+    background-color: black ;
+    color: aliceblue;
+}
