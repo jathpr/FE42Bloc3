@@ -21,7 +21,12 @@ type PostsResponse = {
 	results: Post[];
 }
 
-export const getPosts = async (limit: number, searchValue: string) => {
+export type PostParams = {
+	limit: number,
+	searchValue?: string,
+}
+
+export const getPosts = async ({ limit, searchValue }: PostParams) => {
 	const postsUrl = new URL(POSTSURL);
 	if (searchValue) postsUrl.searchParams.set("search", searchValue);
 	if (limit) postsUrl.searchParams.set("limit", String(limit));

@@ -1,19 +1,15 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Post, getPosts } from '../getPosts'
+import { Post, getPosts, PostParams } from '../getPosts'
 
-type PostState = { posts: Post[], currentId: number, nextId: number, prevId: number, currentImg: string }
+type PostState = { posts: Post[], currentId: number, nextId: number, prevId: number, currentImg: string, popularPosts: Post[] }
 const initialState: PostState = {
-	posts: [], currentId: 0, nextId: 0, prevId: 0, currentImg: '#'
+	posts: [], currentId: 0, nextId: 0, prevId: 0, currentImg: '#', popularPosts: []
 }
 
 export const postsSlice = createSlice({
 	name: 'post',
 	initialState,
 	reducers: {
-		setPosts: (state, action: PayloadAction<Post[]>) => {
-			if (state.posts.length) return
-			state.posts = action.payload
-		},
 		setPostsIds: (state, action: PayloadAction<number>) => {
 			state.currentId = action.payload
 			const Ids = state.posts.map((post) => post.id)
@@ -21,11 +17,14 @@ export const postsSlice = createSlice({
 			state.nextId = Ids[currentIndex + 1]
 			state.prevId = Ids[currentIndex - 1]
 		},
-
 		increaseLikes: (state, action: PayloadAction<number>) => {
 			const likedPost = state.posts.find((post) => post.id === action.payload)
 			if (!likedPost) return
 			likedPost.likes = likedPost.likes ? likedPost.likes + 1 : 1
+			const likedPosts = state.posts.filter((post) => post.likes)
+			{/* @ts-ignore */ }
+			const sortedPosts = likedPosts.sort((post1, post2) => post2.likes - post1.likes)
+			state.popularPosts = sortedPosts
 		},
 		increaseDislikes: (state, action: PayloadAction<number>) => {
 			const dislikedPost = state.posts.find((post) => post.id === action.payload)
@@ -51,22 +50,23 @@ export const postsSlice = createSlice({
 					state.currentImg = images[currentIndex - 1]
 				}
 			}
-		}
+		},
 	},
 	extraReducers(builder) {
-		builder.addCase(getPostsThunk.fulfilled, (state, action: PayloadAction<Post[]>) => {
-			state.posts = action.payload
-		})
+		builder
+			.addCase(getPostsThunk.fulfilled, (state, action: PayloadAction<Post[]>) => {
+				state.posts = action.payload
+			})
 	}
 })
 
 // Action creators are generated for each case reducer function
-export const { setPosts, setPostsIds, increaseLikes, increaseDislikes, setCurrentImg, listImages } = postsSlice.actions
+export const { setPostsIds, increaseLikes, increaseDislikes, setCurrentImg, listImages } = postsSlice.actions
 
 /* const searchValue = useAppSelector((state) => state.search.searchValue) */
 export const postsReducer = postsSlice.reducer
 
-export const getPostsThunk = createAsyncThunk('posts/getPosts', async (searchValue: string) => {
-	const posts = await getPosts(6, searchValue)
+export const getPostsThunk = createAsyncThunk('posts/getPosts', async ({ limit, searchValue }: PostParams) => {
+	const posts = await getPosts({ limit, searchValue })
 	return posts
 })

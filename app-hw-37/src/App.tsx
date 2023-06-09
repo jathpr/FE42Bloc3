@@ -12,7 +12,7 @@ import { FullScreenCard } from './FullScreenCard/FullScreenCard';
 import { CardsList } from './CardsList/CardsList';
 import { Navigation } from './Navigation/Navigation';
 import { Auth } from './Auth/Auth';
-import { Reg } from './Reg/Reg';
+import { AuthResult } from './AuthResult/AuthResult';
 import { Main } from './Main/Main';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './Store/store';

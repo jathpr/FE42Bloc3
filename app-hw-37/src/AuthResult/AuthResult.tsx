@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Title } from '../Title/Title';
-import './reg.css'
+import './authResult.css'
 import { useAppSelector } from '../Store/store';
 
-export const Reg = () => {
+export const AuthResult = () => {
 	const theme = useAppSelector((state) => state.theme.themeColor)
 	const isAuthorised = useAppSelector((state) => state.auth.isAuthorised)
 	return (
