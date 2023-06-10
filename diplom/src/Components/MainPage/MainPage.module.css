@@ -1,12 +1,11 @@
-.main_page {
-    display: grid;
-    width: 1920px;
-    height: 1226px;
-    grid-template-areas:
-    "header"
-    "aside content"
-    "aside content";
-
-
+.container {
+    height: 100vh;
+    width: 100vw;
 }
 
+.wrapper {
+    display: grid;
+    grid-template-areas:
+        'head head'
+        'sidebar article';
+}
