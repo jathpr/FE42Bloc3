@@ -1,5 +1,7 @@
 .header_wrapper {
     display: flex;
+    justify-content: space-between;
+
     width: 1920px;
     height: 56px;
     background-color: black;

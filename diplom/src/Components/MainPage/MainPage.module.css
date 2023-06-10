@@ -1,5 +1,12 @@
 .main_page {
+    display: grid;
     width: 1920px;
-    height: 1080px;
-    background-image: url(../../Image/auth-background.png);
+    height: 1226px;
+    grid-template-areas:
+    "header"
+    "aside content"
+    "aside content";
+
+
 }
+

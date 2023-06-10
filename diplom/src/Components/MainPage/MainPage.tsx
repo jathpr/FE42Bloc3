@@ -1,14 +1,10 @@
-import { Auth } from "../Auth/Auth"
-import { Title } from "../Title/Title"
-import style from "./MainPage.module.css"
+import { Aside } from '../Aside/Aside'
+import { Header } from '../Header/Header'
+import style from './MainPage.module.css'
 
-export const MainPage = () => {
-
-    return (<>
-        <div className={style.main_page}>
-            <Title />
-            <Auth />
-        </div>
-    </>
-    )
+export const MainPage = ()=> {
+    return <div className={style.main_page}>
+        <Header/>
+        <Aside/>
+    </div>
 }
