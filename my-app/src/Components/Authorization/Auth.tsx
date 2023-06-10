@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import style from './Auth.module.css';
 import { Link } from "react-router-dom"
 import React from "react";
+
 
 
 type Props = {
@@ -14,12 +15,15 @@ export const Auth = ({ onAuth, onSignUp }: Props) => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
+    const { theme } = useContext(ThemeContext)
+
     return <>
         <div className={style.auth_wrapper}>
             <input className={style.auth_input} placeholder="Login" value={login} onChange={(e) => { setLogin(e.currentTarget.value) }} />
             <input className={style.auth_input} placeholder="Password" value={password} onChange={(e) => { setPassword(e.currentTarget.value) }} />
             <Link to={'/posts'} className={style.auth_button} onClick={() => onAuth(login, password)}>Auth</Link>
             <Link to={'/reg'} className={style.auth_button} onClick={() => onSignUp()}>sign up</Link>
+
         </div>
     </>
 

@@ -1,5 +1,11 @@
 .signin {
     color: rgb(50, 50, 50);
     font-size: 24px;
-    margin: 20px 5px;
+    padding: 20px 5px;
+}
+.signin_dark {
+    background-color: black;
+    color: aliceblue;
+    font-size: 24px;
+    padding: 20px 5px;
 }

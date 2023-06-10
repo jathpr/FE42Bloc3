@@ -13,3 +13,10 @@
     /* height: 300px; */
 }
 
+.wrapper_dark {
+    height: 300px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: dimgray;
+}

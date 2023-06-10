@@ -10,7 +10,6 @@ import { RenderPostsList } from './Components/Posts/RenderPostsList';
 import { Header } from './Components/Header/Header';
 import { User, regUser } from './Components/Server/regUser';
 
-
 type Pages = 'auth' | 'reg' | 'content';
 
 const tabNames = ['All', 'My favourites', 'Popular']
@@ -26,6 +25,7 @@ export const App = () => {
     // setUsers([...users, { login, password, email }])
     const newUser = { username, password, email }
     regUser(newUser)
+
   }
 
   const checkUser = (login: string, password: string) => {
@@ -51,6 +51,7 @@ const handlerCheck = (user:LoginUserProps)=>{
   return (
     <div>
       {/* {page === 'reg' && <Registration onReg={addUser} />}
+
       {page === 'auth' && <Auth onAuth={checkUser} onSignUp={navToReg} />}
 
       {page === 'content' && <>
@@ -74,8 +75,13 @@ const handlerCheck = (user:LoginUserProps)=>{
           <Header />
           <Tabs tabs={tabNames} activeTab='My favourites' /> */}
 
+
       </Routes>
     </div>
   );
+}
+
+function regUsers() {
+  throw new Error('Function not implemented.');
 }
 

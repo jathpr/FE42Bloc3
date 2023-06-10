@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import style from './registration.module.css';
 import { Link } from "react-router-dom"
+
 
 type Props = {
     onReg: (login: string, password: string, email: string) => void
@@ -18,6 +19,7 @@ export const Registration = ({ onReg }: Props) => {
             <input className={style.registr_input} placeholder="Password" value={password} onChange={(e) => { setPassword(e.currentTarget.value) }} />
             <input className={style.registr_input} placeholder="Email" value={email} onChange={(e) => { setEmail(e.currentTarget.value) }} />
                 <Link to={'/auth'} className={style.registr_button} onClick={() => onReg(login, password, email)}>Registration</Link>
+
         </div>
     </>
 
