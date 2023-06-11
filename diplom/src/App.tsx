@@ -11,15 +11,8 @@ export function App() {
   return (
     <>
       <MainPage />
-      {/* <Header/>
-        <SideBar/> */}
-
-      {/* <Routes>
-                <Route path='/auth' element={<Auth />} />
-                <Route path='/reg' element={<Registration />} />
-            </Routes> */}
+      
       {/* <SignPage /> */}
-      {/* <Header/> */}
     </>
   );
 }

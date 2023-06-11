@@ -4,6 +4,9 @@
     background-color: #242426;
     border-radius: 10px;
     top: 270px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .reg_item {

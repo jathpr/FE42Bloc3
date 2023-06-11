@@ -2,6 +2,11 @@ import style from './Auth.module.css'
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 
+// type Props = {
+//     onSignUp: () => void
+// }
+
+// export const Auth = ({ onSignUp }: Props) => {
 
 export const Auth = () => {
     const [login, setLogin] = useState('')
