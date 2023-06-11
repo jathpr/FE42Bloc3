@@ -11,8 +11,8 @@ export const SelectedUser = () => {
 	const login = useAppSelector((state) => state.auth.userLogin)
 	return (
 		<div className='header__selected-user'>
-			<div className='selected-user__icon'>{login[0]}</div>
-			<p className='selected-user__name'>{login}</p>
+			<div className='selected-user__icon'>{login && login[0]}</div>
+			<p className='selected-user__name'>{login && login}</p>
 		</div>
 	)
 }

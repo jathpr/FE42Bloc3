@@ -12,12 +12,11 @@ export const FullScreenCard = () => {
 
 	const post = useAppSelector((state) => state.posts.posts.find((post) => String(post.id) === params.postId))
 	const theme = useAppSelector((state) => state.theme.themeColor)
-	const favourites = useAppSelector((state) => state.favsPosts.favPosts)
-	const favourite = favourites.find((postCard) => {
+	const favourite = useAppSelector((state) => state.favsPosts.favPosts.find((postCard) => {
 		if (post) {
 			return postCard.id === post.id
 		}
-	})
+	}))
 	dispatch(setPostsIds(post ? post.id : 0))
 	const nextId = useAppSelector((state) => state.posts.nextId)
 	const prevId = useAppSelector((state) => state.posts.prevId)
@@ -25,7 +24,7 @@ export const FullScreenCard = () => {
 		return <h2>Post not found</h2>
 	}
 	return (<>
-		<Link to='/posts'><button className='back-btn'>← Back to posts</button></Link>
+		<Link to={'/posts'}><button className='back-btn'>← Back to posts</button></Link>
 		<div className='card' id={String(post.id)}>
 			<h2 className='card__title' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>{post.title}</h2>
 			<p className='card__date'>{post.date}</p>
@@ -48,14 +47,14 @@ export const FullScreenCard = () => {
 				<span className='nav__arrow' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>←</span>
 				<div className='nav__text'>
 					<p className='nav__name' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Prev</p>
-					<p className='nav__post'>{'Post #' + String(post.id - 1)}</p>
+					<p className='nav__post'>{'Post #' + String(prevId)}</p>
 				</div>
 			</Link>}
 			{nextId && <Link to={'/posts/' + String(nextId)} className='nav__link'>
 				<span className='nav__arrow' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>→</span>
 				<div className='nav__text'>
 					<p className='nav__name' style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Next</p>
-					<p className='nav__post'>{'Post #' + String(post.id + 1)}</p>
+					<p className='nav__post'>{'Post #' + String(nextId)}</p>
 				</div>
 			</Link>}
 		</div>

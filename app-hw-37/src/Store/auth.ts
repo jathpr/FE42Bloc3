@@ -1,29 +1,28 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { regUser, createJWT, User, ActivateUser, activateUser, TokenUser, CheckUser, checkMe } from '../handleAuth'
-import { act } from '@testing-library/react'
 
 type Auth = {
-	isAuthorised: boolean,
+	isAuthorised: boolean | null,
 	userLogin: string,
 	userPassword: string,
-	userId: number
-}
-
-type AuthorisedUser = {
-	login: string,
-	pass: string
+	userId: number,
+	isActivated: boolean | null
 }
 
 type Tokens = {
 	access: string,
 	refresh: string
 }
-
+type Actication = {
+	uid: string,
+	token: string
+}
 const initialState: Auth = {
-	isAuthorised: false,
+	isAuthorised: null,
 	userLogin: '',
 	userPassword: '',
-	userId: 0
+	userId: 0,
+	isActivated: null
 }
 
 export const authSlice = createSlice({
@@ -36,23 +35,10 @@ export const authSlice = createSlice({
 		setUserPassword: (state, action: PayloadAction<string>) => {
 			state.userPassword = action.payload
 		},
-		/* handleAuth: (state, action: PayloadAction<TokenUser>) => { */
-		/* const user = state.users.find((user) => user.username === action.payload.login && user.password === action.payload.pass)
-		if (user) {
-			state.userLogin = action.payload.login
-			state.userPassword = action.payload.pass
-			state.isAuthorised = true
-		} else {
-			state.isAuthorised = false
-		} */
-		/* }, */
 		handleLogOut: (state) => {
 			state.isAuthorised = false
 			localStorage.clear()
 		},
-		/*addUser: (state, action: PayloadAction<User>) => {
-			 state.users.push(action.payload) 
-		}*/
 	}, extraReducers(builder) {
 		builder.addCase(handleAuthThunk.fulfilled, (state, action: PayloadAction<Tokens>) => {
 			if (!action.payload.access) {
@@ -64,7 +50,15 @@ export const authSlice = createSlice({
 			}
 		})
 			.addCase(checkMeThunk.fulfilled, (state, action: PayloadAction<CheckUser>) => {
+				state.isAuthorised = true
 				state.userLogin = action.payload.username
+			})
+			.addCase(getActivated.fulfilled, (state, action: PayloadAction<Actication>) => {
+				if (!action.payload.uid) {
+					state.isActivated = false
+				} else {
+					state.isActivated = true
+				}
 			})
 	}
 })

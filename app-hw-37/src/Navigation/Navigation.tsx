@@ -5,6 +5,7 @@ import { Main } from '../Main/Main';
 import { Registration } from '../Registration/Registration';
 import { RegRedirect } from '../RegRedirect/RegRedirect';
 import { Activate } from '../Activate/Activate';
+import { Onload } from '../Onload/Onload';
 
 export const Navigation = () => {
 	return <>
@@ -16,6 +17,7 @@ export const Navigation = () => {
 			<Route path='fail' element={<AuthResult />}></Route>
 			<Route path='registration' element={<Registration></Registration>}></Route>
 			<Route path='posts/*' element={<Main />}></Route>
+			<Route path='onload' element={<Onload></Onload>}></Route>
 		</Routes>
 	</>
 }
