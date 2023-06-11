@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     width: 189px;
+    height: 100%;
+    align-items: center;
 }
 
 .first_letters {
@@ -11,13 +13,14 @@
     background-color: blueviolet;
     color: white;
     border-radius: 15px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .full_name {
     color: white;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

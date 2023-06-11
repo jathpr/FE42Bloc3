@@ -1,4 +1,4 @@
-.container {
+.mainPage_container {
     height: 100vh;
     width: 100vw;
 }
@@ -7,5 +7,7 @@
     display: grid;
     grid-template-areas:
         'head head'
-        'sidebar article';
+        'sidebar cont';
+    grid-template-rows: 134px 1fr;
+    grid-template-columns: 368px 1fr;
 }

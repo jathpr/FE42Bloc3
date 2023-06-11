@@ -1,6 +1,11 @@
-.search_input {
-    width: 1184px;
+.search_container {
+    width: 40%;
     height: 100%;
+}
+
+.search_input {
+    width: 100%;
+    height: 56px;
     background-color: dimgray;
     border: none;
     border-radius: 12px;

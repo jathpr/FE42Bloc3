@@ -1,7 +1,9 @@
 import style from './Search.module.css'
 
-export const Search =()=> {
-    return <input className={style.search_input} placeholder='Search'>
+export const Search = () => {
+    return <div className={style.search_container}>
+        <input className={style.search_input} placeholder='Search'>
 
-    </input>
+        </input>
+    </div>
 }
