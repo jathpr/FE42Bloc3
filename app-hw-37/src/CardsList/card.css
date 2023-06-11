@@ -103,3 +103,26 @@
 .post__favmark--negative {
 	fill: red;
 }
+
+.posts__sorting-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	margin: 20px 0;
+}
+
+.posts__sorting-label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+}
+
+.posts__sorting-select {
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.post__addPost {
+	padding: 10px;
+	background-color: rgb(48, 48, 219);
+	color: white;
+}

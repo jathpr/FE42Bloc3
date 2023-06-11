@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CardsList } from '../CardsList/CardsList';
+import { MyPosts } from '../My_Posts/MyPosts';
 import { FullScreenCard } from '../FullScreenCard/FullScreenCard';
 import { FullScreenImg } from '../FullScreenImg/FullScreanImg';
 import { Routes, Route } from 'react-router-dom';
@@ -26,6 +27,7 @@ export const Main = () => {
 				<Route path='popular' element={<CardsList isPopular showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
 				<Route path=':postId' element={<FullScreenCard />}></Route>
 				<Route path='img' element={<FullScreenImg id={fullScreenPostId} />}></Route>
+				<Route path='my_posts' element={<MyPosts showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></MyPosts>}></Route>
 			</Route>
 		</Routes>
 	</>)

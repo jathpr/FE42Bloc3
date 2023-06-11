@@ -3,6 +3,7 @@ const AUTHURL = "https://studapi.teachmeskills.by/auth/users/"
 const ACTIVATEURL = 'https://studapi.teachmeskills.by/auth/users/activation/'
 const JWTCREATEURL = 'https://studapi.teachmeskills.by/auth/jwt/create/'
 const GETMEURL = 'https://studapi.teachmeskills.by/auth/users/me/'
+const REFRESHJWTURL = 'https://studapi.teachmeskills.by/auth/jwt/refresh/'
 
 export type User = {
 	username: string,
@@ -58,6 +59,25 @@ export const checkMe = async () => {
 	const response = await fetch(checkMeURL, {
 		method: 'GET', headers: { "Authorization": `Bearer ${token}` }
 	});
+
+	if (response.status === 401) {
+		const refresh = localStorage.getItem('refreshToken')
+		if (!refresh) return
+		const tokens = await refreshJWT();
+		localStorage.setItem("accessToken", tokens.access);
+		await checkMe()
+	}
+
 	const me = await response.json();
 	return me
+}
+
+export const refreshJWT = async () => {
+	const refreshJWTUrl = new URL(REFRESHJWTURL);
+	const refresh = localStorage.getItem('refreshToken')
+	const response = await fetch(refreshJWTUrl, {
+		method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refresh })
+	});
+	const result = await response.json();
+	return result
 }
