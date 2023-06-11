@@ -4,27 +4,33 @@ import { Title } from '../Title/Title';
 import { Card } from './Card';
 import './card.css';
 import { useAppDispatch, useAppSelector } from '../Store/store';
-import { getPostsThunk } from '../Store/post';
+import { getMyPostsThunk, getPostsThunk, setLimit, setOrdering } from '../Store/post';
 import { Tabs } from '../Tabs/Tabs';
 import { Post } from '../getPosts';
-import { SelectedUser } from '../SelectedUser/SelectedUser';
+import { Pagination } from '../Pagination/Pagination';
 
 type Props = {
 	showFullScreenCard: (id: number) => void,
 	isFavourites?: boolean,
-	isPopular?: boolean
+	isPopular?: boolean,
+	isMine?: boolean
 }
 
-export const CardsList = ({ showFullScreenCard, isFavourites, isPopular }: Props) => {
+export const CardsList = ({ showFullScreenCard, isFavourites, isPopular, isMine }: Props) => {
 	const dispatch = useAppDispatch()
 	const searchInputValue = useAppSelector((state) => state.search.searchValue)
-
-	useEffect(() => { dispatch(getPostsThunk({ limit: 6, searchValue: searchInputValue })) }, [searchInputValue])
+	const limit = useAppSelector((state) => state.posts.limit)
+	const ordering = useAppSelector((state) => state.posts.ordering)
+	useEffect(() => { dispatch(getPostsThunk({ limit: limit, searchValue: searchInputValue })) }, [searchInputValue, limit, ordering])
+	useEffect(() => { dispatch(getMyPostsThunk(6)) }, [])
 
 	const postsList = useAppSelector((state) => state.posts.posts)
 	const favourites = useAppSelector((state) => state.favsPosts.favPosts)
 	const theme = useAppSelector((state) => state.theme.themeColor)
 	const popularPosts = useAppSelector((state) => state.posts.popularPosts)
+	const myPosts = useAppSelector((state) => state.posts.myPosts)
+	const isLoading = useAppSelector((state) => state.posts.isLoading)
+
 	if (isFavourites) {
 		return (<>
 			<Title>Favourites</Title>
@@ -43,15 +49,47 @@ export const CardsList = ({ showFullScreenCard, isFavourites, isPopular }: Props
 			</div>
 		</>)
 	}
+	if (isMine) {
+		return (<>
+			<Title>My Posts</Title>
+			<div className='cards-list' >
+				{myPosts.length === 0 ? <h3 className="post__title" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Nothing is here</h3> : myPosts.map((post: Post) => <Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card>)}
+			</div>
+			{myPosts.length !== 0 && <Button variant='outlined' onClick={() => {
+				dispatch(getMyPostsThunk(limit + myPosts.length))
+			}}>Show more</Button>}
+		</>)
+	}
 
 	return (<>
 		<Title>{searchInputValue === '' ? 'Blog' : 'Search results "' + searchInputValue + '"'}</Title>
 		<Tabs tabs={[{ tabName: 'All', tabLink: '/posts' }, { tabName: 'My favourites', tabLink: '/favourites' }, { tabName: 'Popular', tabLink: '/popular' }]}></Tabs>
+		{isLoading && <h3 style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Loading...</h3>}
+		<div className='posts__sorting-wrapper'>
+			<label className='posts__sorting-label' htmlFor="limit-select" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Choose posts limit:</label>
+			<select name="limit" id="limit-select" className='posts__sorting-select' style={theme === 'light' ? { background: 'white', color: 'rgb(75, 73, 73)' } : { background: '#423e3e', color: 'white' }} onChange={(e) => dispatch(setLimit(Number(e.target.value)))}>
+				<option value="6" selected>6</option>
+				<option value="12">12</option>
+				<option value="18">18</option>
+			</select>
+
+			<label className='posts__sorting-label' htmlFor="order-select" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Posts ordering by:</label>
+			<select name="order" id="order-select" className='posts__sorting-select' style={theme === 'light' ? { background: 'white', color: 'rgb(75, 73, 73)' } : { background: '#423e3e', color: 'white' }} onChange={(e) => dispatch(setOrdering(e.target.value))}>
+				<option value="">--Default--</option>
+				<option value="date">Date</option>
+				<option value="title">Title</option>
+				<option value="text">Text</option>
+				<option value="lesson_num">Lesson num</option>
+			</select>
+		</div >
 		<div className='cards-list' >
-			{postsList.map((post: Post) => <Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card>)}
+			{!isLoading && postsList.length === 0 ? <h3 className="post__title" style={theme === 'light' ? { color: 'rgb(75, 73, 73)' } : { color: 'white' }}>Nothing is here</h3> : postsList.map((post: Post) => <Card key={post.id} cardinfo={post} showFullScreen={showFullScreenCard}></Card>)}
 		</div>
-		<Button variant='outlined' onClick={() => {
-			dispatch(getPostsThunk({ limit: 6 + postsList.length, searchValue: searchInputValue }))
-		}}>Show more</Button>
+		{
+			postsList.length >= limit && <Button variant='outlined' onClick={() => {
+				dispatch(getPostsThunk({ limit: 6 + postsList.length, searchValue: searchInputValue }))
+			}}>Show more</Button>
+		}
+		<Pagination></Pagination>
 	</>)
 }

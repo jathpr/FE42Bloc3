@@ -26,6 +26,7 @@ export const Main = () => {
 				<Route path='popular' element={<CardsList isPopular showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
 				<Route path=':postId' element={<FullScreenCard />}></Route>
 				<Route path='img' element={<FullScreenImg id={fullScreenPostId} />}></Route>
+				<Route path='my_posts' element={<CardsList isMine showFullScreenCard={(postId: number) => setFullScreenPostId(postId)}></CardsList>}></Route>
 			</Route>
 		</Routes>
 	</>)

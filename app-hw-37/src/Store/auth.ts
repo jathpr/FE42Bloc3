@@ -1,9 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { regUser, createJWT, User, ActivateUser, activateUser, TokenUser, CheckUser, checkMe } from '../handleAuth'
-import { act } from '@testing-library/react'
 
 type Auth = {
-	isAuthorised: boolean,
+	isAuthorised: boolean | null,
 	userLogin: string,
 	userPassword: string,
 	userId: number
@@ -20,7 +19,7 @@ type Tokens = {
 }
 
 const initialState: Auth = {
-	isAuthorised: false,
+	isAuthorised: null,
 	userLogin: '',
 	userPassword: '',
 	userId: 0
@@ -36,23 +35,10 @@ export const authSlice = createSlice({
 		setUserPassword: (state, action: PayloadAction<string>) => {
 			state.userPassword = action.payload
 		},
-		/* handleAuth: (state, action: PayloadAction<TokenUser>) => { */
-		/* const user = state.users.find((user) => user.username === action.payload.login && user.password === action.payload.pass)
-		if (user) {
-			state.userLogin = action.payload.login
-			state.userPassword = action.payload.pass
-			state.isAuthorised = true
-		} else {
-			state.isAuthorised = false
-		} */
-		/* }, */
 		handleLogOut: (state) => {
 			state.isAuthorised = false
 			localStorage.clear()
 		},
-		/*addUser: (state, action: PayloadAction<User>) => {
-			 state.users.push(action.payload) 
-		}*/
 	}, extraReducers(builder) {
 		builder.addCase(handleAuthThunk.fulfilled, (state, action: PayloadAction<Tokens>) => {
 			if (!action.payload.access) {
