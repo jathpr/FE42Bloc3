@@ -22,3 +22,4 @@ export type Movie = {
     const movies: MoviesResponse = await response.json();
     return movies.results;
 };
+

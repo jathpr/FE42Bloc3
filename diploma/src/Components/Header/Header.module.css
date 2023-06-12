@@ -1,6 +1,13 @@
-.pixema{
+
+.header{
+    grid-area: header;
     font-size: 48px;
     font-weight: 700;
+    width: 100%;
+    background-color: black;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
 }
 
 .pix{

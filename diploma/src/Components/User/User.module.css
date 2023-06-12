@@ -1,0 +1,37 @@
+.user {
+    height: 56px;
+    width: 20%;
+    background-color: black;
+    margin: 22px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.user_icon {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    background: #7B61FF;
+    border-radius: 10px;
+    position: relative;
+
+}
+
+.user_letters {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 25%;
+    left: 19%;
+}
+
+.username {
+    position: absolute;
+    margin: 15px;
+    font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+}

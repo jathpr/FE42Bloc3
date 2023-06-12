@@ -1,0 +1,25 @@
+*{
+    text-decoration: none;
+    margin: 0;
+}
+
+.li{
+    margin-bottom: 40px;
+}
+.a{
+    list-style: none;
+    color: #80858B;
+    
+}
+
+.sidebar{
+    grid-area: sidebar;
+    height: 100%;
+    min-height: 700px;
+    background-color: black;
+}
+
+.svg{
+    margin-right: 15px;
+    margin-bottom: -3px;
+}

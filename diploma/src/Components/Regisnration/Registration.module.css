@@ -1,0 +1,64 @@
+.sign_in_page {
+    position: fixed;
+    width: 100vw;
+    height: 100hv;
+    background-image: url(../Auth/Frame1439.jpg);
+    background-size: cover;
+}
+
+.auth {
+    width: 50%;
+    height: 50%;
+    background: #242426;
+    margin: 10% auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+
+.sign_in {
+    margin-left: 40px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.input {
+    border-radius: 10px;
+    height: 10%;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #323537;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+}
+
+.button_auth {
+    display: block;
+    margin: 40px auto;
+    height: 56px;
+    width: 494px;
+    border-radius: 10px;
+    background-color: #7B61FF;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+}
+
+.password {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 40px;
+}
+
+.have_account {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}

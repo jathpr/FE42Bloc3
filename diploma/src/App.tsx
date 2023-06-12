@@ -1,36 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { Header } from './Components/Header/Header'
-import { RenderMoviesList } from './Components/Movies/RenderMoviesList';
-import { RenderMovie } from './Components/Movies/RenderMovie';
-import { Aside } from './Components/Aside/Aside';
-import { Trends } from './Components/Trends/Trends';
-import style from "./Components/Wrapper/Wrapper.module.css"
-import {Link, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import style from "./App.module.css";
+import { Header } from "./Components/Header/Header";
+import { RenderMoviesList } from "./Components/Movies/RenderMoviesList";
+import { RenderMovie } from "./Components/Movies/RenderMovie";
+import { Auth } from "./Components/Auth/Auth";
+import { Link, Route, Routes } from "react-router-dom";
+import { Registration } from "./Components/Regisnration/Registration";
+import { Sidebar } from "./Components/Sidebar/Sidebar";
+import { Content } from "./Components/Content/Content";
+import { Mainpage } from "./Components/Mainpage/Mainpage";
 
-type Pages = "main"|"trends"|'favorites'
+type Pages = "reg" | "auth" | "movies";
+type User = {
+  login: string;
+  password: string;
+};
+export const App = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [page, setPage] = useState<Pages>("reg");
+  const addUser = (login: string, password: string) => {
+    setUsers([...users, { login, password }]);
+  };
 
-function App() {
-  const [page, setPage] = useState<Pages>("main")
-
-//   useEffect(()=> { setPage("trends") }, [users])
-// const navToTrends = () => {
-//   setPage('trends')
-// }
+  const checkUser = (login: string, password: string) => {
+    const result = users.find((user) => user.login === login && user.password === password);
+  setPage("movies")}
+  useEffect(() => {setPage("reg")}, [users]);
+  const navToReg = () => setPage("reg");
+  const navToMovie = () => setPage("movies");
+  const navToAuth = () => setPage("auth")
   return (
-    <div className="App">
-      {page === "main"}
-      <header className="App-header"> 
-      <Header />
-      </header>
-      <div className={style.wrapper}>
-      <Aside />
-      <Trends />
-      </div>
-      <RenderMoviesList />
-      <RenderMovie movie={{}} />
-    </div>
+    <>
+ {/* {page === "reg" && <Registration onReg={navToAuth} onSignUp={navToAuth} />}
+    {page === "auth" && <Auth onAuth={checkUser} onSignIn={navToMovie}/>}
+  {page === "movies" && <Mainpage />} */}
+
+
+ <Routes>
+      <Route path="/reg"element={<Registration onReg={navToReg} onSignUp={navToAuth} />}/>
+      <Route path="/auth" element={<Auth onAuth={checkUser} onSignIn={navToMovie}/>} />
+      <Route path = '/movies' element = {<Mainpage />} />
+  </Routes>
+
+  {/* <Auth  onAuth={checkUser} onSignIn={navToMovie}/>  */}
+  {/* <Registration onReg={navToAuth} onSignUp={navToReg} />
+  <Mainpage /> */}
+
+   
+  </>
   );
-}
+};
 
 export default App;
