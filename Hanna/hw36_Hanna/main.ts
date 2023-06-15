@@ -169,13 +169,3 @@ const filteredMoviesByYear = (arr: Movie[], year: number) => arr.filter(movie =>
 const filteredMoviesByTitle = (arr: Movie[], titlepart:string) => arr.filter(movie => movie.title.includes(titlepart))
 // console.log(filteredMoviesByTitle(movies, "Harry"))
 
-/* TASK 7 */
-// Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции должен быть отфильтрованный массив с фильмами, 
-// где строка входит в название фильма или его сюжет.
-
-// const filteredMoviesByPhrase = (arr: Movie[], phrase:string) => {
-//     return arr.filter((film) => movies.title.includes(phrase) || movies.plot.includes(phrase))
-// }
-// console.log(filteredMoviesByTitle(movies, "Harry"))
-
-
