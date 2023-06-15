@@ -1,5 +1,5 @@
 import React from 'react';
-import { Posts } from '../../hw38/PostList/Posts/Posts';
+import { Posts } from '../PostList/Posts/Posts';
 
 type Props = {
     onMain: (page: string) => void
