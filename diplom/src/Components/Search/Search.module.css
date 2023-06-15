@@ -11,6 +11,7 @@
     border-radius: 12px;
     font-size: 20px;
     color: white;
+    margin: 37px 0 0 0;
 }
 
 .search_input::placeholder {

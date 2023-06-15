@@ -15,13 +15,13 @@
 
 .set_profile {
     width: 100%;
-    height: 22%;
+    height: 18%;
     margin-bottom: 40px;
     background-color: #242426;
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
 }
 
 
@@ -32,23 +32,36 @@
 }
 
 .set_profile_wrap_input {
-    height: 30%;
-    width: 80%;
+    height: 30px;
+    width: 100%;
     border: none;
 }
 
 .set_password {
     width: 100%;
-    height: 35%;
-    background-color: aquamarine;
+    height: 32%;
     margin-bottom: 40px;
+    background-color: #242426;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .set_color {
     width: 100%;
-    height: 15%;
-    background-color: blueviolet;
-    margin-bottom: 48px;
+    height: 10%;
+    margin-bottom: 40px;
+    color: white;
+    background-color: #242426;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.text {
+    font-size: 12px;
+    margin: 0;
 }
 
 .set_buttons {
@@ -56,5 +69,12 @@
     height: 6%;
     display: flex;
     justify-content: flex-end;
-    background-color: brown;
+    background-color: black;
+}
+
+.round {
+    width: 20px;
+    height: 20px;
+    background-color: blueviolet;
+    border-radius: 50%;
 }

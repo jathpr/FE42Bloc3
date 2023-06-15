@@ -9,6 +9,5 @@ export const MoviesList = () => {
     useEffect(() => { getMovies().then(mov => setFilm(mov)) }, [])
 
     return <>
-        <h3>Search result</h3>
-        {films.map(item => <RenderMovie film={item} />)} </>
+       {films.map(item => <RenderMovie film={item} />)} </>
 }
