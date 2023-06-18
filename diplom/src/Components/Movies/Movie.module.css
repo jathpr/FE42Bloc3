@@ -1,13 +1,13 @@
 .movieItem_item {
     width: 266px;
     height: 433px;
-    background-color: rgb(238, 195, 195);
+    background-color: black;
     margin: 0 40px 40px 0;
 }
 
 .movieItem_img {
-    width: 266px;
-    height: 357px;
+    max-width: 266px;
+    max-height: 357px;
     margin-bottom: 24px;
     border-radius: 20px;
     position: relative;
