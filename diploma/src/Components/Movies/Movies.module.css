@@ -1,0 +1,20 @@
+.movie {
+    cursor: pointer;
+    margin: 20px;
+    min-width: 200px;
+    height: auto;
+    display: flex;
+}
+
+.movielist_wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.onemovie {
+    width: 500px;
+    height: auto;
+}

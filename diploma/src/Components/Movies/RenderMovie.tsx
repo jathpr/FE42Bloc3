@@ -1,15 +1,17 @@
-import { useContext } from 'react';
-import { Movie, getMovies } from "./movies";
-// import style from "./RenderPost.module.css";
+import { Movie } from "./movies";
+import style from './Movies.module.css'
+import { Link } from "react-router-dom";
 
 export const RenderMovie = (props: {movie: Movie}) => {
+
   return (
-    <>
-        <div >
-            <p>{props.movie.Year}</p>
+        <div className={style.movie}> <Link to = {'/' + props.movie.imdbID} >
+            <img src={props.movie.Poster} />
             <h2>{props.movie.Title}</h2>
-            <p>{props.movie.Released}</p>
+            <p>{props.movie.Year}</p>
+            <p> {props.movie.Genre}</p>
+            <p>{props.movie.Type}</p>
+        </Link>
         </div>
-    </>
   );
-};
+};  

@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from 'react'
-import { Movie, getMovies } from './movies'
+import {  Movie, getMovies } from './movies'
 import { RenderMovie } from './RenderMovie'
-// import { SearchContext } from '../Components/SearchProvider'
+import { Search } from '../Search/Search'
+import { SearchContext } from '../Search/SearchProvider'
+import style from './Movies.module.css'
+
 
 
 export const RenderMoviesList = () => {
     const [cards, setCards] = useState<Movie[]>([])
-    //   const {searchString} = useContext(SearchContext)
-    
-    
-    useEffect(() => {getMovies({limit: 3 }).then(movies=> setCards(movies))}, [])
-    // console.log (movie)
+    const {searchString} = useContext(SearchContext) 
 
-    return <>
-    {cards}
-     {/* {cards .map(item => <RenderMovie movie={item}  />)}  */}
-     </>
-} 
+    useEffect(() => {searchString && getMovies(searchString).then(movie=> setCards(movie))}, [searchString])
+
+    return <div className={style.movielist_wrapper}>
+     { cards.map(item => <RenderMovie movie={item}  />)}
+</div>
+    } 

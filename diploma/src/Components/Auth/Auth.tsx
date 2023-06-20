@@ -6,15 +6,12 @@ type Props = {
   onAuth: (Login: string, password: string) => void;
   onSignIn: () => void;  
 };
-// type Pages = "reg" | "auth" | "movies";
-// const [page, setPage] = useState<Pages>("reg");
 
 
 export const Auth = ({ onAuth}: Props) => {
   
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
-  // const navToMovie = () => setPage("movies");
  
   return (
     <>

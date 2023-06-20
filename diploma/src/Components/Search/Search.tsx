@@ -1,24 +1,28 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import style  from "../Search/Search.module.css";
 import { SearchContext } from './SearchProvider';
+import { getMovies } from '../Movies/movies';
 // import { ThemeContext } from "../ThemeProvider";
 
 
 export const Search = () => {
-  const [search, setSearch] = useState("")
-  const {setSearchString} = useContext(SearchContext)
-//   const { theme } = useContext(ThemeContext)
-
+  const [search, setSearch] = useState("");
+  const { setSearchString } = useContext(SearchContext);
+  const handleKeyDown = (event: { key: string }) => {
+    if (event.key === "Enter") {setSearchString(search)}
+  };
   return (
-  <>
-    <input
-      className={style.search}
-      placeholder="search..."
-      value= {search}
-      onChange={(e) => {
-        setSearch(e.currentTarget.value);
-      }}
-    />
-  </>
+    <div className={style.search_wrapper}>
+      <input
+        className={style.search}
+        placeholder="search..."
+        value={search}
+        onKeyDown={handleKeyDown}
+        onChange={(event) => {
+          setSearch(event.currentTarget.value);
+        }}
+      />
+      <button className={style.button} onClick={() => setSearchString(search)}>Search</button>
+    </div>
   );
 };

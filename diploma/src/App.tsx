@@ -5,7 +5,7 @@ import { RenderMoviesList } from "./Components/Movies/RenderMoviesList";
 import { RenderMovie } from "./Components/Movies/RenderMovie";
 import { Auth } from "./Components/Auth/Auth";
 import { Link, Route, Routes } from "react-router-dom";
-import { Registration } from "./Components/Regisnration/Registration";
+import { Registration } from "./Components/Registration/Registration";
 import { Sidebar } from "./Components/Sidebar/Sidebar";
 import { Content } from "./Components/Content/Content";
 import { Mainpage } from "./Components/Mainpage/Mainpage";
@@ -36,15 +36,15 @@ export const App = () => {
   {page === "movies" && <Mainpage />} */}
 
 
- <Routes>
+ {/* <Routes>
       <Route path="/reg"element={<Registration onReg={navToReg} onSignUp={navToAuth} />}/>
       <Route path="/auth" element={<Auth onAuth={checkUser} onSignIn={navToMovie}/>} />
       <Route path = '/movies' element = {<Mainpage />} />
-  </Routes>
+  </Routes> */}
 
   {/* <Auth  onAuth={checkUser} onSignIn={navToMovie}/>  */}
-  {/* <Registration onReg={navToAuth} onSignUp={navToReg} />
-  <Mainpage /> */}
+  {/* <Registration onReg={navToAuth} onSignUp={navToReg} /> */}
+  <Mainpage /> 
 
    
   </>
