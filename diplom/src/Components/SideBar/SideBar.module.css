@@ -3,13 +3,13 @@
     background-color: black;
     width: 368px;
     /* height: calc(100%-124px); */
-    max-height: 600px;
+    min-height: 600px;
     margin: 0;
 }
 
 .sidebar_wrapper {
     width: 140px;
-    height: 1114px;
+    height: 100%;
     margin: 0 auto;
 }
 

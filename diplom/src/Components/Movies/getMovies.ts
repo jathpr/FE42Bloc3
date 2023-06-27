@@ -2,16 +2,14 @@ const DOMAIN = "http://www.omdbapi.com/";
 const movieUrl = new URL(DOMAIN)
 movieUrl.searchParams.set('apikey', 'd098f760')
 
-
-export type Movie = {
+export type PropsMovie = {
   Title: string,
   Poster: string,
-  ImdbRating: string,
+  imdbRating: string,
+  imdbID?: string
 };
 
-export type OneMovie = {
-  Title: string,
-  Year: string,
+export type PropsOneMovie = PropsMovie & {
   Released: string,
   Runtime: string,
   Genre: string,
@@ -21,15 +19,23 @@ export type OneMovie = {
   Country: string,
   Awards: string,
   Poster: string,
-  imdbRating: string,
+  Year: string
 }
 
-export const getMovies = async (search: string, page: number) => {
-
+export const getMovies = async (search?: string, page?: number, year?: string) => {
   if (search) movieUrl.searchParams.set("s", search);
-  movieUrl.searchParams.set("page", String(page));
+  if (page) movieUrl.searchParams.set("page", String(page));
+  if (year) movieUrl.searchParams.set("y", year);
   const response = await fetch(movieUrl);
-
   const films = await response.json();
   return films.Search;
 };
+
+export const getOneMovie = async (movieId: string) => {
+  const oneMovieUrl = new URL(DOMAIN)
+  oneMovieUrl.searchParams.set('apikey', 'd098f760')
+  if (movieId) oneMovieUrl.searchParams.set('i', movieId)
+  const response = await fetch(oneMovieUrl);
+  const movie: PropsOneMovie = await response.json();
+  return movie;
+}
