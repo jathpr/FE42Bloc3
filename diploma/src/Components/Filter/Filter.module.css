@@ -1,0 +1,23 @@
+.filter{
+    width: 50%;
+    background-color: rgb(122, 122, 122);
+    height: 70%;
+    color: white;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 8px;
+    border: 1px;
+    border-color: white;
+    border-style: solid;
+}
+.filter_wrapper{
+    width: 100vw;
+    height: 100vh;
+}
+
+.search_year{
+    background-color: black;
+    height: 5%;
+    width: 30%;
+    font-size: 24px;
+}

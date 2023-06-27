@@ -13,6 +13,7 @@ export type Movie = {
     Type?: string
   };
   export type OneMovie = {
+    Plot?: string;
     Genre?: string;
     Title?: string;
     Year?: number;
@@ -22,11 +23,13 @@ export type Movie = {
     imdbRating?: string
     Type?: string
   }
-  export const getMovies = async (search: string) => {
-    if (search) movieUrl.searchParams.set("s", search);
+  export const getMovies = async (search: string, page: number, year: string) => {
+    if (search) movieUrl.searchParams.set("s", search)
+    movieUrl.searchParams.set("page", String(page))
+    movieUrl.searchParams.set("y", year)
+    console.log("🚀 ~ file: movies.ts:30 ~ getMovies ~ year:", year)
     const response = await fetch(movieUrl);
     const movies = await response.json();
-    console.log("🚀 ~ file: movies.ts:31 ~ getMovies ~ movies.Search:", movies.Search)
     return movies.Search;
 };
  export const getOneMovie = async (movieId:string) => {
@@ -37,4 +40,3 @@ export type Movie = {
   const oneMovie:OneMovie = await response.json();
   return oneMovie;
  }
- 

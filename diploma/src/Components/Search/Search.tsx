@@ -22,7 +22,7 @@ export const Search = () => {
           setSearch(event.currentTarget.value);
         }}
       />
-      <button className={style.button} onClick={() => setSearchString(search)}>Search</button>
+      {/* <button className={style.button} onClick={() => setSearchString(search)}>Search</button> */}
     </div>
   );
 };

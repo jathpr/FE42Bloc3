@@ -6,9 +6,9 @@ export const RenderMovie = (props: {movie: Movie}) => {
 
   return (
         <div className={style.movie}> <Link to = {'/' + props.movie.imdbID} >
-            <img src={props.movie.Poster} />
-            <h2>{props.movie.Title}</h2>
-            <p>{props.movie.Year}</p>
+            <img src={props.movie.Poster} className={props.movie.Poster!=='N/A'?style.Poster:style.Poster_NA} />
+            <h2 className={style.h2}>{props.movie.Title}</h2>
+            <p className={style.p}>{props.movie.Year}</p>
             <p> {props.movie.Genre}</p>
             <p>{props.movie.Type}</p>
         </Link>

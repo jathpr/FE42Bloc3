@@ -1,19 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import style  from "./Content.module.css";
 import { Trends } from "../Trends/Trends";
-import { Favorites } from "../Favorites/Favorites";
+import { Filter } from "../Filter/Filter";
 import { MovieDetails } from "../Movies/Movie.Details";
 import { RenderMoviesList } from "../Movies/RenderMoviesList";
-import { Movie, getMovies } from "../Movies/movies";
-import {useEffect, useState} from 'react'
+import { useEffect } from "react";
 
-export const Content = (movie: Movie) => {
-  const [ movieId, setMovieId] = useState('')
+export const Content = () => {
   return <div className={style.conten}>
     <Routes>
       <Route path="/" element={<RenderMoviesList />}></Route>
       <Route path="/trends" element={<Trends></Trends>}></Route>
-      <Route path="/favorites" element={<Favorites></Favorites>}></Route>
+      <Route path="/filter" element={<Filter></Filter>}></Route>
       <Route path="/:movieId" element={<MovieDetails ></MovieDetails>}></Route>
     </Routes>
   </div>;
