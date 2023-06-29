@@ -3,6 +3,9 @@ import { OnePost } from "../server/getPosts"
 import styles from "../css/PostsList.module.css";
 import { Post } from "./Post";
 import { searchPosts } from "../server/searchPosts";
+import { setPosts } from "../store/post";
+import { useAppSelector, useAppDispatch } from "../store/store";
+import { PopupImg } from "./PopupImg";
 
 type Props = {
    searchInputValue: string,
@@ -12,17 +15,26 @@ type Props = {
 
 export const SearchPostsList = ({ searchInputValue, onPostClick }: Props) => {
 
-   const [posts, setPosts] = useState<OnePost[]>([])
+   // const [posts, setPosts] = useState<OnePost[]>([])
+
+   const posts = useAppSelector((state => state.posts.posts))
+   const dispatch = useAppDispatch()
 
    useEffect(() => {
       searchPosts({ search: searchInputValue })
-         .then(serverPosts => setPosts(serverPosts))
+         .then(serverPosts => dispatch(setPosts(serverPosts)))
+      // .then(serverPosts => setPosts(serverPosts))
    }, [posts])
+
+   const showImgPopup = () => {
+
+   }
 
    return <>
       <ul className={styles['posts-list']}>
-         {posts.map((post: OnePost) => <li onClick={(e) => onPostClick(post, e)} key={post.id} className={styles['one-post']}><Post post={post} /></li>)}
+         {posts.map((post: OnePost) => <li onClick={(e) => onPostClick(post, e)} key={post.id} className={styles['one-post']}><Post post={post} onImgClick={showImgPopup} /></li>)}
       </ul>
+      <PopupImg />
    </>
 
 }

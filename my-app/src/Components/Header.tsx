@@ -32,7 +32,7 @@ export const Header = ({ username, clickSearch }: Props) => {
             <Search username={username} clickSearch={getSearchValue} />
             <User username={username} />
          </header>
-         {displayMenu ? <Menu username={username}></Menu> : ''}
+         {displayMenu && <Menu username={username} />}
 
       </>
    );
