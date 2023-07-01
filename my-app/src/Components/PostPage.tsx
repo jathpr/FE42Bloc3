@@ -4,6 +4,7 @@ import { OnePost, getPost } from "../server/getPosts";
 import { Header } from "./Header";
 import { ThemeContext } from "./Context/themeContext";
 import { useParams } from "react-router-dom";
+import { useAppSelector } from "../store/store";
 
 type Props = {
    post?: OnePost
@@ -19,17 +20,24 @@ export const PostPage = ({ post: postNotServer }: Props) => {
    const authorClassName = theme === 'light' ? styles['post__author'] : `${styles['post__author']} ${styles['dark-theme-text']}`
 
    const { postId } = useParams();
-   const [post, setPost] = useState(postNotServer)
+   // const [post, setPost] = useState(postNotServer)
    // console.log(postId);
 
-   useEffect(() => {
-      postId && getPost(postId)
-         .then(postFromServer => {
-            setPost(postFromServer)
-         })
-   }, [postId])
+   // let post
+   const posts = useAppSelector((state) => state.posts.posts)
+   console.log("🚀 ~ file: PostPage.tsx:28 ~ PostPage ~ posts:", posts)
+   const post = posts.find(postFromArr => postFromArr.id === Number(postId))
 
-   if (!post) return null
+   // useEffect(() => {
+   //    // postId && getPost(postId)
+   //    //    .then(postFromServer => {
+   //    //       setPost(postFromServer)
+   //    //    })
+
+   //    post = posts.find(postFromArr => postFromArr.id === Number(postId))
+   // }, [postId])
+
+   if (!post) return (<h2 className={titleClassName}>Post not found</h2>)
 
 
    return <>

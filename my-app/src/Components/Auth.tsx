@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 type Props = {
    onAuth: (login: string, pass: string) => void,
-   onRegClick: () => void
+   // onRegClick: () => void
 }
-export const Auth = ({ onAuth, onRegClick }: Props) => {
+export const Auth = ({ onAuth }: Props) => {
 
    const [login, setLogin] = useState('');
    const [pass, setPass] = useState('');
@@ -17,9 +17,9 @@ export const Auth = ({ onAuth, onRegClick }: Props) => {
       onAuth(login, pass)
    }
 
-   const handleReg = () => {
-      onRegClick();
-   }
+   // const handleReg = () => {
+   //    onRegClick();
+   // }
 
    return <>
       <div className={styles.auth}>
