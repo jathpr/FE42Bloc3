@@ -28,9 +28,9 @@ export const Navigation = () => {
 
    const [users, setUsers] = useState<User[]>([TEST_USER])
 
-   const [page, setPage] = useState('auth');
+   // const [page, setPage] = useState('auth');
    const [user, setUser] = useState<User>({});
-   const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
+   // const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
    const [searchInputValue, setSearchInputValue] = useState('')
 
 
@@ -50,7 +50,7 @@ export const Navigation = () => {
 
       setUsers([...users, newUser])
 
-      setPage('auth');
+      // setPage('auth');
       setUser(newUser)
    }
 
@@ -61,7 +61,7 @@ export const Navigation = () => {
       if (userFound) {
          if (pass === userFound.pass) {
 
-            setPage('postsList');
+            // setPage('postsList');
             setUser(userFound)
          }
       }
@@ -69,25 +69,25 @@ export const Navigation = () => {
       return
    }
 
-   const onPostClick = (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+   // const onPostClick = (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
 
-      setPage('postPage');
-      setSelectedPost(post);
-   }
+   //    setPage('postPage');
+   //    setSelectedPost(post);
+   // }
 
-   const onRegClick = () => {
-      setPage('reg')
-   }
+   // const onRegClick = () => {
+   //    setPage('reg')
+   // }
 
-   const onAuthClick = () => {
-      setPage('auth')
-   }
+   // const onAuthClick = () => {
+   //    setPage('auth')
+   // }
 
    const navigate = useNavigate()
 
    const onSearchClick = (inputValue: string) => {
       // console.log('Component Navigation, onSearchClick:', inputValue);
-      setPage('postsList')
+      // setPage('postsList')
       setSearchInputValue(inputValue)
       // console.log(' 2 Component Navigation, onSearchClick:', inputValue);
       if (inputValue) {
@@ -101,12 +101,12 @@ export const Navigation = () => {
    document.body.style.backgroundColor = theme === 'light' ? '#F3F3F3' : '#141414';
 
    return <>
-      <Header username={(page !== 'auth' && page !== 'reg') ? user.username : undefined} clickSearch={onSearchClick} />
+      <Header username={user.username} clickSearch={onSearchClick} />
       <Routes>
-         <Route path="auth" element={<Auth onAuth={onAuth} onRegClick={onRegClick} />} />
-         <Route path="reg" element={<Registration onReg={onReg} onAuthClick={onAuthClick} />} />
+         <Route path="auth" element={<Auth onAuth={onAuth} />} />
+         <Route path="reg" element={<Registration onReg={onReg} />} />
          <Route path="posts">
-            <Route index element={<PostsList searchInputValue={searchInputValue} onPostClick={onPostClick} />} />
+            <Route index element={<PostsList searchInputValue={searchInputValue} />} />
             <Route path=":postId" element={<PostPage />} />
          </Route>
       </Routes>
