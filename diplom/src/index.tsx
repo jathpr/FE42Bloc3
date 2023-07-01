@@ -4,8 +4,8 @@ import './index.css';
 import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { SearchProvider } from './Components/Search/SearchProvider';
-import { MoviesProvider } from './Components/MoviesProvider';
 import { FilterProvider } from './Components/Filter/FilterProvider';
+import { TypeProvider } from './Components/Filter/TypeProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,12 +13,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <SearchProvider>
-    <FilterProvider>
-      {/* <MoviesProvider> */}
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      {/* </MoviesProvider> */}
+      <FilterProvider>
+          <TypeProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </TypeProvider>
       </FilterProvider>
     </SearchProvider>
   </React.StrictMode>

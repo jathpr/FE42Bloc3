@@ -22,10 +22,11 @@ export type PropsOneMovie = PropsMovie & {
   Year: string
 }
 
-export const getMovies = async (search?: string, page?: number, year?: string) => {
+export const getMovies = async (search?: string, page?: number, year?: string, type?: string) => {
   if (year) movieUrl.searchParams.set("y", year);
   if (search) movieUrl.searchParams.set("s", search);
   if (page) movieUrl.searchParams.set("page", String(page));
+  if (type) movieUrl.searchParams.set("type", type);
   const response = await fetch(movieUrl);
   const films = await response.json();
   return films.Search;

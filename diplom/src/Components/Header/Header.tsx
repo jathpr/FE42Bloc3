@@ -9,7 +9,7 @@ export const Header = () => {
             <div className={style.header_wrapper}>
                 <Title />
                 <Search />
-                <Name />
+                {/* <Name /> */}
             </div>
         </div>
     </>
