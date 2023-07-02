@@ -11,7 +11,7 @@ export const Content = () => {
     <Routes>
       <Route path="/" element={<RenderMoviesList />}></Route>
       <Route path="/trends" element={<Trends></Trends>}></Route>
-      <Route path="/filter" element={<Filter></Filter>}></Route>
+      {/* <Route path="/filter" element={<Filter></Filter>}></Route> */}
       <Route path="/:movieId" element={<MovieDetails ></MovieDetails>}></Route>
     </Routes>
   </div>;

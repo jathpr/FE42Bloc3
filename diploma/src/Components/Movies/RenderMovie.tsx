@@ -11,6 +11,7 @@ export const RenderMovie = (props: {movie: Movie}) => {
             <p className={style.p}>{props.movie.Year}</p>
             <p> {props.movie.Genre}</p>
             <p>{props.movie.Type}</p>
+
         </Link>
         </div>
   );

@@ -6,6 +6,6 @@
   .wrapper{
     display: grid;
     grid-template-areas: 'header header' 'sidebar conten';
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 300px 1fr;
     grid-template-rows: 100px 1fr;
   }

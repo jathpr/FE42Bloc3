@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import {  Movie, getMovies } from './movies'
 import { RenderMovie } from './RenderMovie'
-import { SearchContext, YearContext } from '../Search/SearchProvider'
+import { SearchContext, TypeContext, YearContext } from '../Search/SearchProvider'
 import style from './Movies.module.css'
 import styles from '../Content/Content.module.css'
 
@@ -11,18 +11,25 @@ export const RenderMoviesList = () => {
   const { yearString } = useContext(YearContext);
   const [cards, setCards] = useState<Movie[]>([]);
   const { searchString } = useContext(SearchContext);
+  const {type} = useContext(TypeContext)
 
-  useEffect(() => {searchString && getMovies(searchString, page, yearString).then((movies) => setCards(movies));
-  }, [searchString]);
-  useEffect(()=> {searchString && getMovies(searchString, page, yearString).then((movies) => setCards([...cards, ...movies]));
+  useEffect(() => {searchString && getMovies(searchString, page, yearString, type).then((movies) => setCards(movies));
+  }, [searchString, yearString, type]);
+  useEffect(()=> {searchString && getMovies(searchString, page, yearString, type).then((movies) => setCards([...cards, ...movies]));
   }, [page])
-
+  useEffect(()=> {searchString && getMovies(searchString, page, yearString, type).then((movies) => setCards(movies));
+  }, [yearString])
+   useEffect(()=> {searchString && getMovies(searchString, page, yearString, type).then((movies) => setCards(movies));
+  }, [type])
+  
+  
+  
+  console.log("🚀 ~ file: RenderMoviesList.tsx:18 ~ RenderMoviesList ~  type:",  type)
   if (!cards) return <>
    <div className={styles.conten_noresults}>No results</div>
   </>
   return (
       <>
-        {/* <div className={cards.length>0?style.results:style.results_none}>Display results on request '{searchString}'</div> */}
         <div className={style.movielist_wrapper}>
           {cards.map((item) => (<RenderMovie movie={item} />))}
         </div>

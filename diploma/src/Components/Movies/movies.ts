@@ -23,11 +23,11 @@ export type Movie = {
     imdbRating?: string
     Type?: string
   }
-  export const getMovies = async (search: string, page: number, year: string) => {
+  export const getMovies = async (search: string, page: number, year: string, type: string) => {
     if (search) movieUrl.searchParams.set("s", search)
     movieUrl.searchParams.set("page", String(page))
     movieUrl.searchParams.set("y", year)
-    console.log("🚀 ~ file: movies.ts:30 ~ getMovies ~ year:", year)
+    movieUrl.searchParams.set("type", type)
     const response = await fetch(movieUrl);
     const movies = await response.json();
     return movies.Search;

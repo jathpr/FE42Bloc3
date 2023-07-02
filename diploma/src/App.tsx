@@ -44,9 +44,7 @@ export const App = () => {
 
   {/* <Auth  onAuth={checkUser} onSignIn={navToMovie}/>  */}
   {/* <Registration onReg={navToAuth} onSignUp={navToReg} /> */}
-  <Mainpage /> 
-
-   
+  <Mainpage />
   </>
   );
 };
