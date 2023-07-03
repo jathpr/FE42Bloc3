@@ -1,14 +1,26 @@
 import styles from "../css/User.module.css";
+import { useAppSelector } from "../store/store";
 
 type Props = {
-   username?: string,
+   // username?: string,
    menu?: boolean
 }
 
-export const User = ({ username, menu }: Props) => {
-   if (username) {
+export const User = ({ menu }: Props) => {
+
+   const username = useAppSelector(state => state.auth.userUsername)
+   const isAuthorized = useAppSelector(state => state.auth.isAuthorized)
+
+   if (username && isAuthorized) {
       const nameSurnameArr = username.split(' ');
-      const userInitials = (nameSurnameArr[0][0] + nameSurnameArr[1][0]).toUpperCase();
+      let userInitials
+      if (nameSurnameArr.length > 1) {
+
+         userInitials = (nameSurnameArr[0][0] + nameSurnameArr[1][0]).toUpperCase();
+      }
+      else
+         userInitials = username[0].toUpperCase()
+
       return (
          <div className={menu ? `${styles.user} ${styles['menu-item']}` : styles.user}>
             <p className={styles['user__initials-block']}>{userInitials}</p>
