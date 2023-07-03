@@ -31,7 +31,8 @@ export const Menu = ({ username }: Props) => {
    return (
       <div className={theme === 'light' ? styles.menu : `${styles.menu} ${styles['dark-theme-menu-bg']}`}>
          <div>
-            <User menu username={username}></User>
+            <User menu></User>
+            {/* <User menu username={username}></User> */}
             <ul>
                <Link className={styles['menu__item']} to='/posts'><li className={theme === 'light' ? '' : styles['dark-theme-text']}>Home</li></Link>
             </ul>

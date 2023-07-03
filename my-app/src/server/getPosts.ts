@@ -10,6 +10,9 @@ export type OnePost = {
    lesson_num?: number;
    text: string;
    title?: string;
+   likes?: number;
+   dislikes?: number;
+   isFavorite?: boolean;
 };
 
 // export type OnePost = {
