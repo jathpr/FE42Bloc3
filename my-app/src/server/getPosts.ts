@@ -10,6 +10,9 @@ export type OnePost = {
    lesson_num?: number;
    text: string;
    title?: string;
+   likes?: number;
+   dislikes?: number;
+   isFavorite?: boolean;
 };
 
 // export type OnePost = {
@@ -41,7 +44,7 @@ export const getPosts = async ({ limit }: PostsParams) => {
 };
 
 export const getPost = async (postId?: string) => {
-   const postsUrl = new URL(DOMAIN + POSTS + postId);
+   const postsUrl = new URL(DOMAIN + POSTS + postId + '/');
    // if (limit) postsUrl.searchParams.set("limit", String(limit));
    const response = await fetch(postsUrl);
    const post: OnePost = await response.json();

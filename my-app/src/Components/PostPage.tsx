@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "../css/PostPage.module.css";
-import { OnePost, getPost } from "../server/getPosts";
-import { Header } from "./Header";
 import { ThemeContext } from "./Context/themeContext";
 import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { Favorites } from "./Favorites";
+import { Likes } from "./Likes";
+import { getPostByIdThunk } from "../store/post";
 
-type Props = {
-   post?: OnePost
-}
-
-export const PostPage = ({ post: postNotServer }: Props) => {
+export const PostPage = () => {
 
    const theme = useContext(ThemeContext);
 
@@ -19,18 +17,24 @@ export const PostPage = ({ post: postNotServer }: Props) => {
    const authorClassName = theme === 'light' ? styles['post__author'] : `${styles['post__author']} ${styles['dark-theme-text']}`
 
    const { postId } = useParams();
-   const [post, setPost] = useState(postNotServer)
-   // console.log(postId);
+
+   const post = useAppSelector((state) => state.posts.post)
+   // const post = useAppSelector((state) => state.posts.posts.find(postFromArr => postFromArr.id === Number(postId)))
+   // const post = posts.find(postFromArr => postFromArr.id === Number(postId))
+   const dispatch = useAppDispatch()
 
    useEffect(() => {
-      postId && getPost(postId)
-         .then(postFromServer => {
-            setPost(postFromServer)
-         })
+      // postId && getPost(postId)
+      //    .then(postFromServer => {
+      //       setPost(postFromServer)
+      //    })
+
+      // post = posts.find(postFromArr => postFromArr.id === Number(postId))
+
+      dispatch(getPostByIdThunk(postId))
    }, [postId])
 
-   if (!post) return null
-
+   if (!post) return (<h2 className={titleClassName}>Post not found</h2>)
 
    return <>
       <div className={styles.post}>
@@ -40,5 +44,10 @@ export const PostPage = ({ post: postNotServer }: Props) => {
          <p className={textClassName}>{post.text}</p>
          <p className={authorClassName}>{post.author}</p>
       </div>
+      <div className={styles['options-panel']}>
+         <Likes postId={post.id} />
+         <Favorites postId={post.id} />
+      </div>
+
    </>
 }
