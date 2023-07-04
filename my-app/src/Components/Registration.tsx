@@ -1,41 +1,65 @@
 import { useState } from "react";
 import styles from "../css/Registration.module.css";
 import { Title } from "./Title";
-import { Link } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { regUserThunk, setUserEmail, setUserPassword, setUserUsername } from "../store/auth";
+import { UserForReg } from "../server/auth";
 
 type Props = {
-   onReg: (login: string, pass: string, username: string) => void,
-   onAuthClick: () => void
+   onReg: ({ email, password, username }: UserForReg) => void,
+   // onAuthClick: () => void
 }
 
-export const Registration = ({ onReg, onAuthClick }: Props) => {
+export const Registration = () => {
 
-   const [login, setLogin] = useState('')
-   const [pass, setPass] = useState('')
-   const [username, setUsername] = useState('')
+   // const [email, setEmail] = useState('')
+   // const [pass, setPass] = useState('')
+   // const [username, setUsername] = useState('')
+
+   const email = useAppSelector(state => state.auth.userEmail)
+   const pass = useAppSelector(state => state.auth.userPassword)
+   const username = useAppSelector(state => state.auth.userUsername)
+
+   const dispatch = useAppDispatch()
 
    const handleReg = () => {
-      onReg(login, pass, username)
+      // onReg(email, pass, username)
+
+      // dispatch(addUser({
+      //    email: email,
+      //    password: pass,
+      //    username: username
+      // }))
+
+      dispatch(regUserThunk({
+         email: email,
+         password: pass,
+         username: username
+      }))
    }
 
-   const goToAuthGage = () => {
-      onAuthClick()
-   }
+   // const goToAuthGage = () => {
+   //    onAuthClick()
+   // }
 
    return <>
       <div className={styles.reg}>
          <Title>Registration</Title>
-         <input placeholder="Enter email" value={login} type="text" className={styles['reg__input']} onChange={(e) => {
-            setLogin(e.target.value)
+         <input placeholder="Enter email" value={email} type="text" className={styles['reg__input']} onChange={(e) => {
+            // setEmail(e.target.value)
+            dispatch(setUserEmail(e.target.value))
          }} />
          <input placeholder="Enter username" value={username} type="text" className={styles['reg__input']} onChange={(e) => {
-            setUsername(e.target.value)
+            // setUsername(e.target.value)
+            dispatch(setUserUsername(e.target.value))
          }} />
          <input placeholder="Enter password" value={pass} type="text" className={styles['reg__input']} onChange={(e) => {
-            setPass(e.target.value)
+            // setPass(e.target.value)
+            dispatch(setUserPassword(e.target.value))
          }} />
          <button className={styles['reg__btn']} onClick={handleReg}>Register</button>
-         <Link to='/auth'><button className={styles['reg__btn']} onClick={goToAuthGage}>Sign In</button></Link>
+         <Link to='/auth'><button className={styles['reg__btn']}>Sign In</button></Link>
          {/* <button className={styles['reg__btn']} onClick={goToAuthGage}>Sign In</button> */}
       </div>
 
