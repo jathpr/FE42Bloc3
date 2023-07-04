@@ -1,0 +1,74 @@
+import React, { useEffect, useState } from "react";
+import styles from "../css/PostsList.module.css";
+import { Post } from "./Post";
+import { OnePost, getPosts } from "../server/getPosts";
+import { searchPosts } from "../server/searchPosts";
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { getPostsThunk, setPosts } from "../store/post";
+import { PopupImg } from "./PopupImg";
+import { Tabs } from "./Tabs";
+
+type Props = {
+   searchInputValue?: string,
+   // onPostClick: (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+}
+
+export const PostsListUser = ({ searchInputValue }: Props) => {
+
+   // const [posts, setPosts] = useState<OnePost[]>([]);
+
+   const activeTab = useAppSelector(state => state.tabs.tab)
+   const posts = useAppSelector(state => {
+      const ps = state.posts.posts;
+      console.log("🚀 ~ file: PostsListUser.tsx:24 ~ posts ~ ps:", ps)
+      if (activeTab === 'Popular') {
+         return ps.filter(p => p.likes)
+      }
+      else if (activeTab === 'My favorites') {
+         return ps.filter(p => p.isFavorite)
+         // return state.posts.posts.filter(p => p.likes || p.dislikes)
+      }
+      else
+         return ps
+   })
+   const postImg = useAppSelector(state => state.posts.postImg)
+   const dispatch = useAppDispatch()
+
+   // const [searchValue, setSearchValue] = useState(searchInputValue)
+
+
+   useEffect(() => {
+      console.log('effect', searchInputValue);
+
+      dispatch(getPostsThunk({ searchInputValue: searchInputValue, isForUser: true }))
+
+   }, [searchInputValue])
+
+   const showImgPopup = () => {
+      console.log('state in list', postImg.id)
+      console.log('state in list', postImg.image)
+   }
+
+   const noPosts = (
+      <h2>No posts yet</h2>
+   )
+
+   const postsList = (
+      <>
+         {/* <p>{postImg.id}</p> */}
+
+         <Tabs tabsArr={['All', 'My favorites', 'Popular']}></Tabs>
+         {/* <p><Post post={}></Post></p> */}
+         <ul className={styles['posts-list']}>
+            {posts && posts.map((post: OnePost) => <li className={styles['one-post']} key={post.id}><Post post={post} onImgClick={showImgPopup} /></li>)}
+            {/* {posts.map((post: OnePost) => <Link className={styles['one-post']} to={'/posts/' + post.id}><li key={post.id}><Post post={post} /></li></Link>)} */}
+            {/* {posts.map((post: OnePost) => <li onClick={(e) => onPostClick(post, e)} key={post.id} className={styles['one-post']}><Post post={post} /></li>)} */}
+         </ul>
+         <PopupImg />
+      </>
+   )
+
+   if (posts && posts.length > 0) return postsList
+   else return noPosts
+}

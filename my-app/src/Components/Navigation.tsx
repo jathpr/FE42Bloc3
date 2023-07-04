@@ -9,15 +9,18 @@ import { ChangeThemeContext, ThemeContext } from "./Context/themeContext";
 import { SearchPostsList } from "./SearchPostsList";
 import { Header } from "./Header";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { UserForReg } from "../server/auth";
+import { Activate } from "./Activate";
+import { PostsListUser } from "./PostsListUser";
 
 type User = {
-   login?: string,
+   email?: string,
    pass?: string,
    username?: string
 }
 
 const TEST_USER = {
-   login: 'user',
+   email: 'user',
    pass: 'user',
    username: 'Artem Malkin'
 }
@@ -28,40 +31,39 @@ export const Navigation = () => {
 
    const [users, setUsers] = useState<User[]>([TEST_USER])
 
-   const [page, setPage] = useState('auth');
+   // const [page, setPage] = useState('auth');
    const [user, setUser] = useState<User>({});
-   const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
+   // const [selectedPost, setSelectedPost] = useState<OnePost | null>(null);
    const [searchInputValue, setSearchInputValue] = useState('')
 
 
-   const onReg = (login: string, pass: string, username: string) => {
-      if (!login) return
-      if (!pass) return
+   const onReg = ({ email, password, username }: UserForReg) => {
+      if (!email) return
+      if (!password) return
       if (!username) return
 
-      const userFound = users.find(user => user.login === login);
-      if (userFound) return
+      // const userFound = users.find(user => user.email === email);
+      // if (userFound) return
 
-      const newUser: User = {
-         login: login,
-         pass: pass,
+      const newUser: UserForReg = {
+         email: email,
+         password: password,
          username: username
       }
 
-      setUsers([...users, newUser])
-
-      setPage('auth');
-      setUser(newUser)
+      onReg(newUser)
+      // setUsers([...users, newUser])
+      // setUser(newUser)
    }
 
-   const onAuth = (login: string, pass: string) => {
+   const onAuth = (email: string, pass: string) => {
 
-      const userFound = users.find(user => user.login === login);
+      const userFound = users.find(user => user.email === email);
 
       if (userFound) {
          if (pass === userFound.pass) {
 
-            setPage('postsList');
+            // setPage('postsList');
             setUser(userFound)
          }
       }
@@ -69,25 +71,25 @@ export const Navigation = () => {
       return
    }
 
-   const onPostClick = (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+   // const onPostClick = (post: OnePost, e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
 
-      setPage('postPage');
-      setSelectedPost(post);
-   }
+   //    setPage('postPage');
+   //    setSelectedPost(post);
+   // }
 
-   const onRegClick = () => {
-      setPage('reg')
-   }
+   // const onRegClick = () => {
+   //    setPage('reg')
+   // }
 
-   const onAuthClick = () => {
-      setPage('auth')
-   }
+   // const onAuthClick = () => {
+   //    setPage('auth')
+   // }
 
    const navigate = useNavigate()
 
    const onSearchClick = (inputValue: string) => {
       // console.log('Component Navigation, onSearchClick:', inputValue);
-      setPage('postsList')
+      // setPage('postsList')
       setSearchInputValue(inputValue)
       // console.log(' 2 Component Navigation, onSearchClick:', inputValue);
       if (inputValue) {
@@ -101,12 +103,19 @@ export const Navigation = () => {
    document.body.style.backgroundColor = theme === 'light' ? '#F3F3F3' : '#141414';
 
    return <>
-      <Header username={(page !== 'auth' && page !== 'reg') ? user.username : undefined} clickSearch={onSearchClick} />
+      <Header clickSearch={onSearchClick} />
+      {/* <Header username={user.username} clickSearch={onSearchClick} /> */}
       <Routes>
-         <Route path="auth" element={<Auth onAuth={onAuth} onRegClick={onRegClick} />} />
-         <Route path="reg" element={<Registration onReg={onReg} onAuthClick={onAuthClick} />} />
+         <Route path="auth" element={<Auth onAuth={onAuth} />} />
+         <Route path="reg" element={<Registration />} />
+         {/* <Route path="reg" element={<Registration onReg={onReg} />} /> */}
+         <Route path="//activate/:uid/:token" element={<Activate />} />
          <Route path="posts">
-            <Route index element={<PostsList searchInputValue={searchInputValue} onPostClick={onPostClick} />} />
+            <Route index element={<PostsList searchInputValue={searchInputValue} />} />
+            <Route path=":postId" element={<PostPage />} />
+         </Route>
+         <Route path="myposts">
+            <Route index element={<PostsListUser searchInputValue={searchInputValue} />} />
             <Route path=":postId" element={<PostPage />} />
          </Route>
       </Routes>

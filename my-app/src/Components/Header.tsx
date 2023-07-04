@@ -4,15 +4,18 @@ import { ButtonHamburger } from "./ButtonHamburger";
 import { Menu } from "./Menu";
 import { Search } from "./Search";
 import { User } from "./User";
+import { useAppSelector } from "../store/store";
 
 type Props = {
-   username?: string,
+   // username?: string,
    clickSearch: (inputValue: string) => void
 }
 
-export const Header = ({ username, clickSearch }: Props) => {
+export const Header = ({ clickSearch }: Props) => {
 
    const [displayMenu, setDisplayMenu] = useState(false)
+
+   const username = useAppSelector(state => state.auth.userUsername)
 
    const onBurgerClick = (isCollapsed: boolean) => {
       // console.log('ok', isCollapsed)
@@ -29,10 +32,12 @@ export const Header = ({ username, clickSearch }: Props) => {
       <>
          <header className={styles.header}>
             <ButtonHamburger handleClick={onBurgerClick} collapsed />
-            <Search username={username} clickSearch={getSearchValue} />
-            <User username={username} />
+            <Search clickSearch={getSearchValue} />
+            {/* <Search username={username} clickSearch={getSearchValue} /> */}
+            <User />
+            {/* <User username={username} /> */}
          </header>
-         {displayMenu ? <Menu username={username}></Menu> : ''}
+         {displayMenu && <Menu username={username} />}
 
       </>
    );
