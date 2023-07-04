@@ -1,14 +1,40 @@
+import { useEffect } from "react";
 import styles from "../css/User.module.css";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { getProfileThunk } from "../store/auth";
 
 type Props = {
-   username?: string,
+   // username?: string,
    menu?: boolean
 }
 
-export const User = ({ username, menu }: Props) => {
+export const User = ({ menu }: Props) => {
+
+   const username = useAppSelector(state => state.auth.userUsername)
+   const isAuthorized = useAppSelector(state => state.auth.isAuthorized)
+   const accessTokenStore = useAppSelector(state => state.auth.accessToken)
+
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      // console.log("🚀 ~ file: User.tsx:14 ~ User ~ username:", username)
+      // console.log("🚀 ~ file: User.tsx:15 ~ User ~ isAuthorized:", isAuthorized)
+      // console.log("🚀 ~ file: User.tsx:21 ~ useEffect ~ accessTokenStore:", accessTokenStore)
+      if (!username) {
+         dispatch(getProfileThunk())
+      }
+   }, [username])
+
    if (username) {
       const nameSurnameArr = username.split(' ');
-      const userInitials = (nameSurnameArr[0][0] + nameSurnameArr[1][0]).toUpperCase();
+      let userInitials
+      if (nameSurnameArr.length > 1) {
+
+         userInitials = (nameSurnameArr[0][0] + nameSurnameArr[1][0]).toUpperCase();
+      }
+      else
+         userInitials = username[0].toUpperCase()
+
       return (
          <div className={menu ? `${styles.user} ${styles['menu-item']}` : styles.user}>
             <p className={styles['user__initials-block']}>{userInitials}</p>
