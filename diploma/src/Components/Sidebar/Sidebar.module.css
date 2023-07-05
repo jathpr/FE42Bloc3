@@ -27,18 +27,6 @@
     margin-bottom: -3px;
 }
 
-.filter{
-    width: 300px;
-    background-color: rgb(122, 122, 122);
-    height: 500px;
-    color: white;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: 1px;
-    border-color: white;
-    border-style: solid;
-}
-
 .filter_none{
   display: none;
 }

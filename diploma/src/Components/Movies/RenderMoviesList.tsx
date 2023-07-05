@@ -24,7 +24,6 @@ export const RenderMoviesList = () => {
   
   
   
-  console.log("🚀 ~ file: RenderMoviesList.tsx:18 ~ RenderMoviesList ~  type:",  type)
   if (!cards) return <>
    <div className={styles.conten_noresults}>No results</div>
   </>

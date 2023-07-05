@@ -1,13 +1,14 @@
 .filter{
-    width: 300px;
+    width: 260px;
     background-color: rgb(122, 122, 122);
-    height: 500px;
+    height: 300px;
     color: white;
     box-sizing: border-box;
     border-radius: 8px;
     border: 1px;
     border-color: white;
     border-style: solid;
+    margin: auto;
 }
 
 .filter_none{
@@ -22,7 +23,7 @@
 
 .search_year{
     background-color: black;
-    height: 5%;
+    height: 10%;
     width: 50%;
     font-size: 24px;
     margin: 20px;
@@ -56,4 +57,13 @@
     border-radius: 10px;
     cursor: pointer;
     padding-top: 10px;
+}
+
+.reset {
+    height: 30px;
+    width: 90px;
+    border-radius: 5px;
+    cursor: grab;
+    margin: 20px;
+    background-color: red;
 }

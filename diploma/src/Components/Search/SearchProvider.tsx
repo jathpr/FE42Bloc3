@@ -2,7 +2,7 @@ import { useState } from "react"
 import React from "react"
 
 const setLoadSearchString = () => {
-    const kino = ['terminator','matrix','star wars', 'movie', 'cat', 'film', 'friends', 'love', 'travel', 'cartoon','dog', 'animal']
+    const kino = ['terminator','matrix','star wars', 'movie', 'cat', 'film', 'friends', 'love', 'travel', 'cartoon','dog', 'animal', 'man', 'woman', 'comedy', 'hero', 'story', 'girl', 'gun', 'war' ]
     return kino[Math.floor(Math.random() * kino.length)]
 }
 
