@@ -13,10 +13,11 @@ export const MoviesList = () => {
     const { year } = useContext(FilterContext)
     const { type } = useContext(TypeContext)
 
-    useEffect(() => { searchString && getMovies(searchString).then(movies => setFilm(movies)) }, [searchString])
     useEffect(() => { getMovies(searchString, page).then(movies => setFilm([...films, ...movies])) }, [page])
-    useEffect(() => { getMovies(searchString, page, year).then(movies => setFilm(movies)) }, [year])
-    useEffect(() => { getMovies(searchString, page, year, type).then(movies => setFilm(movies)) }, [type])
+    useEffect(() => {
+
+        getMovies(searchString, page, year, type).then(movies => setFilm(movies))
+    }, [searchString, year, type])
 
     if (!films) return null
     return <>
@@ -25,7 +26,7 @@ export const MoviesList = () => {
         </div>
         {/* <button className={style.button} onClick={() => setPage(page + 1)}>Show more</button> </> */}
 
-    <button className={films.length >9 ? style.button : style.button_none} onClick={() => setPage(page + 1)}>Show more</button> </>
+        <button className={films.length > 9 ? style.button : style.button_none} onClick={() => setPage(page + 1)}>Show more</button> </>
 
 
 }

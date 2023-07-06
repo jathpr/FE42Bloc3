@@ -27,15 +27,18 @@
 }
 
 .movie_title {
-    font-weight: 700;
-    font-size: 16px;
     color: white;
     margin-bottom: 4px;
 }
 
-.movie_genre {
+.movie_subtitle {
+    color: rgb(212, 178, 245);
+    margin-bottom: -15px;
+}
+
+.movie_text {
     font-weight: 500;
     font-size: 16px;
     color: white;
-    margin: 0;
+    margin-bottom: 15px;
 }

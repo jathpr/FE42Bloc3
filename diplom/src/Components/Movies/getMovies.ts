@@ -1,6 +1,4 @@
 const DOMAIN = "http://www.omdbapi.com/";
-const movieUrl = new URL(DOMAIN)
-movieUrl.searchParams.set('apikey', 'd098f760')
 
 export type PropsMovie = {
   Title: string,
@@ -23,6 +21,8 @@ export type PropsOneMovie = PropsMovie & {
 }
 
 export const getMovies = async (search?: string, page?: number, year?: string, type?: string) => {
+  const movieUrl = new URL(DOMAIN)
+  movieUrl.searchParams.set('apikey', 'd098f760')
   if (year) movieUrl.searchParams.set("y", year);
   if (search) movieUrl.searchParams.set("s", search);
   if (page) movieUrl.searchParams.set("page", String(page));
